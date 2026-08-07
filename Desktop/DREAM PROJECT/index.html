@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>RYDEX</title>
+    <meta name="description" content="RYDEX booking flow." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body class="app-body">
+    <div class="phone-shell">
+      <header class="top-bar">
+        <div class="top-left">
+          <div class="brand-mark">R</div>
+          <div>
+            <strong class="brand-name">RYDEX</strong>
+            <p class="brand-sub">Ride booking</p>
+          </div>
+        </div>
+        <div class="top-right">
+          <a class="login-btn" href="login.html">Login</a>
+          <button class="top-icon" type="button" data-modal="shareModal">⤴</button>
+          <button class="top-icon" type="button" data-modal="safetyModal">🛡</button>
+        </div>
+      </header>
+
+      <main class="screen">
+        <section class="map-zone">
+          <div id="map" class="map-stage"></div>
+          <div class="map-fallback" id="mapFallback" hidden>
+            Real map view loading failed.
+          </div>
+
+          <div class="map-actions">
+            <button class="ghost-pill" type="button">Pickup View</button>
+            <button class="circle-action" type="button" data-modal="shareModal">◎</button>
+            <button class="ghost-pill" type="button" data-modal="safetyModal">Safety</button>
+          </div>
+          <div class="map-hint">Tap anywhere on the map to update the pickup location.</div>
+
+        </section>
+
+        <section class="sheet">
+          <div class="handle"></div>
+
+          <div class="location-panel">
+            <div class="location-field">
+              <label for="pickupInput">Pickup</label>
+              <input id="pickupInput" type="text" placeholder="Select pickup location" />
+              <div id="pickupResults" class="results" hidden></div>
+            </div>
+            <div class="location-field">
+              <label for="dropInput">Destination</label>
+              <input id="dropInput" type="text" placeholder="Select destination" />
+              <div id="dropResults" class="results" hidden></div>
+            </div>
+          </div>
+
+          <div class="empty-state"></div>
+
+          <div id="recentPlaces" class="recent-places hidden">
+            <h3>Recently travelled places</h3>
+            <div id="recentPlacesList" class="recent-list"></div>
+          </div>
+
+          <div id="serviceChoices" class="hidden service-section">
+            <h3>Choose a service</h3>
+            <div class="control-grid">
+              <button class="control-card active" type="button" data-service="bike">🏍 Bike</button>
+              <button class="control-card" type="button" data-service="auto">🛺 Auto</button>
+              <button class="control-card" type="button" data-service="cab">🚗 Cab</button>
+              <button class="control-card" type="button" data-service="parcel">📦 Parcel</button>
+              <button class="control-card" type="button" data-service="delivery">⚡ Instant Delivery</button>
+            </div>
+          </div>
+
+          <button id="bookRideBtn" class="book-ride-btn" type="button" disabled>Book Ride</button>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
