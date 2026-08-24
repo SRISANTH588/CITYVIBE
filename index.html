@@ -48,7 +48,6 @@
 
       <div class="hero-actions">
           <a class="btn btn-primary" href="events.html">Browse Events</a>
-          <a class="btn btn-secondary" href="#checkout">See Booking Flow</a>
         </div>
 
         <div class="hero-note">Launch in minutes. Accept payments your way.</div>
@@ -144,60 +143,7 @@
         </div>
       </section>
 
-      <section class="checkout" id="checkout">
-        <div class="checkout-card">
-          <span class="eyebrow">Checkout</span>
-          <h2>Complete your booking</h2>
-          <p>QR payment, app redirects, and live payment status for listings, workshops, and restaurant reservations.</p>
 
-          <form id="bookingForm" class="booking-form">
-            <label>
-              Listing selection
-              <select id="eventSelect" required></select>
-            </label>
-            <label>
-              Seats or passes
-              <input id="ticketCount" type="number" min="1" value="2" required />
-            </label>
-            <label>
-              Your name
-              <input id="fullName" type="text" placeholder="Your name" required />
-            </label>
-            <label>
-              Email
-              <input id="email" type="email" placeholder="you@example.com" required />
-            </label>
-            <label class="full">
-              Payment option
-              <div class="payment-options">
-                <label><input type="radio" name="payment" value="card" checked /> Card</label>
-                <label><input type="radio" name="payment" value="upi" /> UPI</label>
-                <label><input type="radio" name="payment" value="wallet" /> Wallet</label>
-              </div>
-            </label>
-            <div class="summary full">
-              <div><span>Ticket total</span><strong id="ticketTotal">₹2,998</strong></div>
-              <div><span>Service fee</span><strong id="serviceFee">₹149</strong></div>
-              <div class="grand"><span>Grand total</span><strong id="grandTotal">₹3,147</strong></div>
-            </div>
-            <button class="btn btn-primary full" type="submit">Pay now</button>
-          </form>
-        </div>
-
-        <aside class="receipt-card">
-          <span class="eyebrow">Live receipt</span>
-          <h3 id="receiptTitle">Sunset Music Festival</h3>
-          <div class="receipt-lines">
-            <div><span>Tickets</span><strong id="receiptTickets">2</strong></div>
-            <div><span>Buyer</span><strong id="receiptName">Guest</strong></div>
-            <div><span>Status</span><strong class="status-pill">Waiting</strong></div>
-          </div>
-          <div class="qr-box">
-            <div class="qr"></div>
-            <p>Scan to open the payment flow.</p>
-          </div>
-        </aside>
-      </section>
     </main>
 
     <footer class="site-footer">
