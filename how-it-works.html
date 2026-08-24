@@ -243,6 +243,101 @@
         font-weight: 800;
       }
 
+      /* VERTICAL TIMELINE */
+      .hw-timeline-section { padding: 4rem 0; }
+      .hw-timeline-section h2 {
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #0a0f1e;
+        margin: 0 0 3rem;
+        text-align: center;
+      }
+      .hw-timeline { display: grid; grid-template-columns: 1fr 56px 1fr; gap: 0; max-width: 860px; margin: 0 auto; }
+      .hw-tl-left { padding-right: 2rem; padding-bottom: 3rem; }
+      .hw-tl-right { padding-left: 2rem; padding-bottom: 3rem; }
+      .hw-tl-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hw-tl-line {
+        width: 2px;
+        flex: 1;
+        background: linear-gradient(180deg, #dce8ff, #1242c5, #dce8ff);
+        min-height: 60px;
+      }
+      .hw-tl-num {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #1242c5;
+        color: #fff;
+        font-weight: 800;
+        font-size: 1rem;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        box-shadow: 0 6px 20px rgba(18,66,197,0.3);
+        border: 3px solid #fff;
+        z-index: 1;
+      }
+      .hw-tl-icon-circle {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #f0f5ff;
+        border: 2px solid #dce8ff;
+        display: grid;
+        place-items: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        z-index: 1;
+      }
+      .hw-tl-phase {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #0a0f1e;
+        font-style: italic;
+        padding-top: 0.8rem;
+      }
+      .hw-tl-feature { padding-top: 0.6rem; }
+      .hw-tl-feature h4 {
+        margin: 0 0 0.3rem;
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: #0a0f1e;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .hw-tl-feature h4 .tl-check { color: #1242c5; font-size: 1rem; }
+      .hw-tl-feature p { margin: 0 0 0.6rem; font-size: 0.85rem; color: #6b7280; line-height: 1.6; }
+      .hw-tl-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+      .hw-tl-tag {
+        border: 1px solid #dce8ff;
+        background: #f0f5ff;
+        color: #1242c5;
+        border-radius: 999px;
+        padding: 0.2rem 0.65rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+      }
+      .hw-tl-divider {
+        border: none;
+        border-top: 1px solid #f0f2f8;
+        margin: 1rem 0;
+      }
+      .hw-tl-empty { padding-top: 0.8rem; }
+      @media (max-width: 700px) {
+        .hw-timeline { grid-template-columns: 40px 1fr; }
+        .hw-tl-left { display: none; }
+        .hw-tl-right { padding-left: 1.2rem; }
+        .hw-tl-num { width: 40px; height: 40px; font-size: 0.85rem; }
+        .hw-tl-icon-circle { width: 36px; height: 36px; }
+      }
+
       /* FAQ */
       .hw-faq { padding: 0 0 4rem; }
       .hw-faq h2 {
@@ -481,6 +576,114 @@
           </div>
         </div>
       </div>
+
+      <!-- VERTICAL TIMELINE -->
+      <section class="hw-timeline-section">
+        <div class="hw-wrap">
+          <h2>The full event journey</h2>
+          <div class="hw-timeline">
+
+            <!-- Phase 01 -->
+            <div class="hw-tl-left"><div class="hw-tl-phase">"Create your event"</div></div>
+            <div class="hw-tl-center"><div class="hw-tl-num">01</div><div class="hw-tl-line"></div></div>
+            <div class="hw-tl-right hw-tl-empty"></div>
+
+            <!-- Feature: Event page -->
+            <div class="hw-tl-left hw-tl-empty"></div>
+            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">📋</div><div class="hw-tl-line"></div></div>
+            <div class="hw-tl-right">
+              <div class="hw-tl-feature">
+                <h4>Your event page is live <span class="tl-check">✓</span></h4>
+                <p>Add title, venue, date, ticket tiers, and capacity. Publish in under 5 minutes.</p>
+                <div class="hw-tl-tags"><span class="hw-tl-tag">No Code</span><span class="hw-tl-tag">Instant Publish</span></div>
+              </div>
+              <hr class="hw-tl-divider" />
+              <div class="hw-tl-feature">
+                <h4>Share your link <span class="tl-check">✓</span></h4>
+                <p>One link — share on WhatsApp, Instagram, or email. Guests book directly.</p>
+                <div class="hw-tl-tags"><span class="hw-tl-tag">One Link</span><span class="hw-tl-tag">Mobile Ready</span></div>
+              </div>
+            </div>
+
+            <!-- Phase 02 -->
+            <div class="hw-tl-left"><div class="hw-tl-phase">"Guests book & pay"</div></div>
+            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-num">02</div><div class="hw-tl-line"></div></div>
+            <div class="hw-tl-right hw-tl-empty"></div>
+
+            <!-- Feature: Payment -->
+            <div class="hw-tl-left hw-tl-empty"></div>
+            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">💳</div><div class="hw-tl-line"></div></div>
+            <div class="hw-tl-right">
+              <div class="hw-tl-feature">
+                <h4>Payment in seconds <span class="tl-check">✓</span></h4>
+                <p>UPI, QR scan, card, or wallet — guests pay instantly without leaving your page.</p>
+                <div class="hw-tl-tags"><span class="hw-tl-tag">UPI</span><span class="hw-tl-tag">QR Scan</span><span class="hw-tl-tag">Card</span></div>
+              </div>
+              <hr class="hw-tl-divider" />
+              <div class="hw-tl-feature">
+                <h4>Auto confirmation <span class="tl-check">✓</span></h4>
+                <p>Guests get an instant booking confirmation with a unique code — no manual follow-up needed.</p>
+                <div class="hw-tl-tags"><span class="hw-tl-tag">Instant</span><span class="hw-tl-tag">Booking Code</span></div>
+              </div>
+            </div>
+
+            <!-- Phase 03 -->
+            <div class="hw-tl-left"><div class="hw-tl-phase">"On your Event Day!"</div></div>
+            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-num">03</div><div class="hw-tl-line"></div></div>
+            <div class="hw-tl-right hw-tl-empty"></div>
+
+            <!-- Feature: Reminders -->
+            <div class="hw-tl-left hw-tl-empty"></div>
+            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">🔔</div><div class="hw-tl-line"></div></div>
+            <div class="hw-tl-right">
+              <div class="hw-tl-feature">
+                <h4>Nobody forgets to show up <span class="tl-check">✓</span></h4>
+                <p>Auto reminders sent — 1 week, 1 day, 1 hour before the event.</p>
+                <div class="hw-tl-tags"><span class="hw-tl-tag">Email</span><span class="hw-tl-tag">Auto Reminders</span></div>
+              </div>
+            </div>
+
+            <!-- Feature: Check-in -->
+            <div class="hw-tl-left hw-tl-empty"></div>
+            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">📷</div><div class="hw-tl-line"></div></div>
+            <div class="hw-tl-right">
+              <div class="hw-tl-feature">
+                <h4>Check-in takes 2 seconds <span class="tl-check">✓</span></h4>
+                <p>Scan QR on their ticket, done. <strong>Duplicate ticket? Instant alert.</strong></p>
+                <div class="hw-tl-tags"><span class="hw-tl-tag">QR Scan</span><span class="hw-tl-tag">Fraud-Proof</span></div>
+              </div>
+            </div>
+
+            <!-- Feature: Dashboard -->
+            <div class="hw-tl-left hw-tl-empty"></div>
+            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">👥</div><div class="hw-tl-line"></div></div>
+            <div class="hw-tl-right">
+              <div class="hw-tl-feature">
+                <h4>You know who's here <span class="tl-check">✓</span></h4>
+                <p><strong>Live dashboard</strong> — who checked in, who hasn't, real-time headcount.</p>
+                <div class="hw-tl-tags"><span class="hw-tl-tag">Real-Time</span><span class="hw-tl-tag">Export</span></div>
+              </div>
+            </div>
+
+            <!-- Phase 04 -->
+            <div class="hw-tl-left"><div class="hw-tl-phase">"How do I get my money?"</div></div>
+            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-num">04</div><div class="hw-tl-line"></div></div>
+            <div class="hw-tl-right hw-tl-empty"></div>
+
+            <!-- Feature: Payout -->
+            <div class="hw-tl-left hw-tl-empty"></div>
+            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">💰</div></div>
+            <div class="hw-tl-right">
+              <div class="hw-tl-feature">
+                <h4>Payouts to your account <span class="tl-check">✓</span></h4>
+                <p>Revenue is settled directly to your linked bank account. OGSHOOTS LUXE members keep 100% — zero platform fee.</p>
+                <div class="hw-tl-tags"><span class="hw-tl-tag">0% for LUXE</span><span class="hw-tl-tag">2% Starter</span><span class="hw-tl-tag">Fast Settlement</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       <!-- CTA STRIP -->
       <div class="hw-wrap">
