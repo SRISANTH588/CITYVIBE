@@ -303,6 +303,142 @@
         vertical-align: middle;
       }
 
+      /* ── TABBED SHOWCASE ── */
+      .ft-showcase { padding: 0 0 4rem; }
+      .ft-showcase-head { margin-bottom: 1.6rem; }
+      .ft-showcase-head p { color: #6b7280; font-size: 0.95rem; margin: 0.4rem 0 1.2rem; max-width: 520px; }
+      .ft-showcase-tabs {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.6rem;
+      }
+      .ft-stab {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        border: 1.5px solid #d0d9f0;
+        background: #fff;
+        border-radius: 999px;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #4a5580;
+        cursor: pointer;
+        transition: all 0.18s;
+      }
+      .ft-stab.active {
+        background: #f0f5ff;
+        border-color: #1242c5;
+        color: #1242c5;
+      }
+      .ft-stab-icon { font-size: 1rem; }
+      .ft-showcase-panel { display: none; }
+      .ft-showcase-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+      .ft-showcase-box {
+        background: linear-gradient(135deg, #f4f6ff, #eef2ff);
+        border: 1.5px solid #e2eafc;
+        border-radius: 24px;
+        padding: 2rem;
+      }
+      .ft-showcase-eyebrow {
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: #1242c5;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .ft-showcase-box h3 {
+        margin: 0 0 0.7rem;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #0a0f1e;
+        line-height: 1.15;
+      }
+      .ft-showcase-box > p { margin: 0 0 1.2rem; color: #6b7280; font-size: 0.9rem; line-height: 1.65; }
+      .ft-showcase-list { display: grid; gap: 0.55rem; }
+      .ft-showcase-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #374151;
+      }
+      .ft-showcase-item::before { content: "✓"; color: #1242c5; font-weight: 800; flex-shrink: 0; }
+      /* slot preview */
+      .ft-slot-preview {
+        background: #fff;
+        border: 1.5px solid #e8edf8;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.07);
+      }
+      .ft-slot-header {
+        background: linear-gradient(135deg, #f0f5ff, #e8f0fe);
+        padding: 0.9rem 1.2rem;
+        border-bottom: 1px solid #e2eafc;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .ft-slot-dot { width: 10px; height: 10px; border-radius: 50%; }
+      .ft-slot-dot.r { background: #ff5f57; }
+      .ft-slot-dot.y { background: #febc2e; }
+      .ft-slot-dot.g { background: #28c840; }
+      .ft-slot-label { margin-left: 0.4rem; font-size: 0.75rem; font-weight: 800; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em; }
+      .ft-slot-body { padding: 1rem; display: grid; gap: 0.6rem; }
+      .ft-slot-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f7faff;
+        border: 1px solid #e8edf8;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+      }
+      .ft-slot-info { display: flex; align-items: center; gap: 0.7rem; }
+      .ft-slot-ico { font-size: 1rem; color: #1242c5; }
+      .ft-slot-date { font-size: 0.88rem; font-weight: 800; color: #0a0f1e; }
+      .ft-slot-time { font-size: 0.75rem; color: #6b7280; }
+      .ft-slot-left { font-size: 0.78rem; font-weight: 800; }
+      .ft-slot-left.hi { color: #dc2626; }
+      .ft-slot-left.mid { color: #d97706; }
+      .ft-slot-left.lo { color: #16a34a; }
+      /* ticket preview */
+      .ft-ticket-preview { display: grid; gap: 0.7rem; padding: 1.2rem; background: #fff; border: 1.5px solid #e8edf8; border-radius: 20px; box-shadow: 0 4px 20px rgba(18,66,197,0.07); }
+      .ft-ticket-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 1rem;
+        border-radius: 12px;
+        border: 1.5px solid #e8edf8;
+        background: #f7faff;
+      }
+      .ft-ticket-row.featured { border-color: #1242c5; background: #f0f5ff; }
+      .ft-ticket-name { font-size: 0.88rem; font-weight: 800; color: #0a0f1e; }
+      .ft-ticket-price { font-size: 0.88rem; font-weight: 800; color: #1242c5; }
+      .ft-ticket-badge { font-size: 0.68rem; font-weight: 800; background: #1242c5; color: #fff; border-radius: 999px; padding: 0.15rem 0.5rem; }
+      /* discount preview */
+      .ft-discount-preview { display: grid; gap: 0.7rem; padding: 1.2rem; background: #fff; border: 1.5px solid #e8edf8; border-radius: 20px; box-shadow: 0 4px 20px rgba(18,66,197,0.07); }
+      .ft-discount-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; border-radius: 12px; border: 1.5px solid #e8edf8; background: #f7faff; }
+      .ft-discount-label { font-size: 0.88rem; font-weight: 800; color: #0a0f1e; }
+      .ft-discount-val { font-size: 0.88rem; font-weight: 800; color: #16a34a; }
+      /* coupon preview */
+      .ft-coupon-preview { display: grid; gap: 0.7rem; padding: 1.2rem; background: #fff; border: 1.5px solid #e8edf8; border-radius: 20px; box-shadow: 0 4px 20px rgba(18,66,197,0.07); }
+      .ft-coupon-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; border-radius: 12px; border: 1.5px dashed #dce8ff; background: #f7faff; }
+      .ft-coupon-code { font-size: 0.95rem; font-weight: 800; color: #1242c5; letter-spacing: 0.08em; }
+      .ft-coupon-off { font-size: 0.82rem; font-weight: 800; color: #16a34a; }
+      @media (max-width: 860px) {
+        .ft-showcase-panel.active { grid-template-columns: 1fr; }
+      }
+
       /* ── CTA ── */
       .ft-cta {
         background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 100%);
@@ -571,6 +707,130 @@
         </div>
       </section>
 
+      <!-- TABBED SHOWCASE -->
+      <section class="ft-showcase">
+        <div class="ft-wrap">
+          <div class="ft-showcase-head">
+            <span class="ft-eyebrow">Ticketing Tools</span>
+            <h2 style="font-size:clamp(1.9rem,3.5vw,3rem);font-weight:800;letter-spacing:-0.05em;color:#0a0f1e;margin:0.3rem 0 0;">Multiple dates, ticket types, coupons, group discounts.</h2>
+            <p>Set it up once, sell forever.</p>
+          </div>
+          <div class="ft-showcase-tabs">
+            <button class="ft-stab active" data-panel="slots"><span class="ft-stab-icon">🗓️</span> Time Slots</button>
+            <button class="ft-stab" data-panel="tickets"><span class="ft-stab-icon">🎟️</span> Ticket Types</button>
+            <button class="ft-stab" data-panel="discounts"><span class="ft-stab-icon">👥</span> Group Discounts</button>
+            <button class="ft-stab" data-panel="coupons"><span class="ft-stab-icon">🏷️</span> Coupon Codes</button>
+          </div>
+
+          <!-- TIME SLOTS -->
+          <div class="ft-showcase-panel active" id="panel-slots">
+            <div class="ft-showcase-box">
+              <div class="ft-showcase-eyebrow">🗓️ TIME SLOTS</div>
+              <h3>Same event, different dates. People pick their slot.</h3>
+              <p>Running a 3-day workshop? A weekend batch? Add multiple dates and times. Attendees choose when they want to come.</p>
+              <div class="ft-showcase-list">
+                <div class="ft-showcase-item">Multiple dates and times for one event</div>
+                <div class="ft-showcase-item">Attendees pick the slot that works</div>
+                <div class="ft-showcase-item">Each slot has its own capacity</div>
+              </div>
+            </div>
+            <div class="ft-slot-preview">
+              <div class="ft-slot-header">
+                <div class="ft-slot-dot r"></div><div class="ft-slot-dot y"></div><div class="ft-slot-dot g"></div>
+                <span class="ft-slot-label">Available Slots</span>
+              </div>
+              <div class="ft-slot-body">
+                <div class="ft-slot-row">
+                  <div class="ft-slot-info"><span class="ft-slot-ico">🕙</span><div><div class="ft-slot-date">Sat, Dec 14</div><div class="ft-slot-time">10:00 AM — 1:00 PM</div></div></div>
+                  <span class="ft-slot-left hi">8 left</span>
+                </div>
+                <div class="ft-slot-row">
+                  <div class="ft-slot-info"><span class="ft-slot-ico">🕙</span><div><div class="ft-slot-date">Sun, Dec 15</div><div class="ft-slot-time">10:00 AM — 1:00 PM</div></div></div>
+                  <span class="ft-slot-left mid">22 left</span>
+                </div>
+                <div class="ft-slot-row">
+                  <div class="ft-slot-info"><span class="ft-slot-ico">🕑</span><div><div class="ft-slot-date">Sat, Dec 21</div><div class="ft-slot-time">2:00 PM — 5:00 PM</div></div></div>
+                  <span class="ft-slot-left lo">30 left</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TICKET TYPES -->
+          <div class="ft-showcase-panel" id="panel-tickets">
+            <div class="ft-showcase-box">
+              <div class="ft-showcase-eyebrow">🎟️ TICKET TYPES</div>
+              <h3>Free, paid, VIP, or invite-only. You decide.</h3>
+              <p>Create multiple ticket tiers for the same event. Set different prices, capacities, and access levels for each type.</p>
+              <div class="ft-showcase-list">
+                <div class="ft-showcase-item">Unlimited ticket tiers per event</div>
+                <div class="ft-showcase-item">Set capacity per ticket type</div>
+                <div class="ft-showcase-item">Free, paid, or invite-only access</div>
+              </div>
+            </div>
+            <div class="ft-ticket-preview">
+              <div class="ft-ticket-row">
+                <span class="ft-ticket-name">General Admission</span>
+                <span class="ft-ticket-price">₹499</span>
+              </div>
+              <div class="ft-ticket-row featured">
+                <div><span class="ft-ticket-name">VIP Pass</span> <span class="ft-ticket-badge">Popular</span></div>
+                <span class="ft-ticket-price">₹1,499</span>
+              </div>
+              <div class="ft-ticket-row">
+                <span class="ft-ticket-name">Student</span>
+                <span class="ft-ticket-price">₹199</span>
+              </div>
+              <div class="ft-ticket-row">
+                <span class="ft-ticket-name">Complimentary</span>
+                <span class="ft-ticket-price" style="color:#16a34a;">Free</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- GROUP DISCOUNTS -->
+          <div class="ft-showcase-panel" id="panel-discounts">
+            <div class="ft-showcase-box">
+              <div class="ft-showcase-eyebrow">👥 GROUP DISCOUNTS</div>
+              <h3>Bigger groups, better deals. Automatically.</h3>
+              <p>Set tiered discounts based on group size. The more people book together, the more they save — applied automatically at checkout.</p>
+              <div class="ft-showcase-list">
+                <div class="ft-showcase-item">Auto-applied at checkout</div>
+                <div class="ft-showcase-item">Set your own group size thresholds</div>
+                <div class="ft-showcase-item">Works with all ticket types</div>
+              </div>
+            </div>
+            <div class="ft-discount-preview">
+              <div class="ft-discount-row"><span class="ft-discount-label">5–9 people</span><span class="ft-discount-val">10% off</span></div>
+              <div class="ft-discount-row"><span class="ft-discount-label">10–19 people</span><span class="ft-discount-val">20% off</span></div>
+              <div class="ft-discount-row"><span class="ft-discount-label">20+ people</span><span class="ft-discount-val">30% off</span></div>
+              <div class="ft-discount-row" style="border-color:#dce8ff;background:#f0f5ff;"><span class="ft-discount-label" style="color:#1242c5;">Corporate group (50+)</span><span class="ft-discount-val">Custom deal</span></div>
+            </div>
+          </div>
+
+          <!-- COUPON CODES -->
+          <div class="ft-showcase-panel" id="panel-coupons">
+            <div class="ft-showcase-box">
+              <div class="ft-showcase-eyebrow">🏷️ COUPON CODES</div>
+              <h3>Create codes. Share them. Watch bookings roll in.</h3>
+              <p>Generate custom coupon codes for early birds, sponsors, or partners. Set usage limits and expiry dates for each code.</p>
+              <div class="ft-showcase-list">
+                <div class="ft-showcase-item">Percentage or flat discount</div>
+                <div class="ft-showcase-item">Set usage limits & expiry</div>
+                <div class="ft-showcase-item">Track redemptions in dashboard</div>
+              </div>
+            </div>
+            <div class="ft-coupon-preview">
+              <div class="ft-coupon-row"><span class="ft-coupon-code">EARLYBIRD</span><span class="ft-coupon-off">20% off</span></div>
+              <div class="ft-coupon-row"><span class="ft-coupon-code">LUXE2026</span><span class="ft-coupon-off">Free entry</span></div>
+              <div class="ft-coupon-row"><span class="ft-coupon-code">STUDENT50</span><span class="ft-coupon-off">₹50 off</span></div>
+              <div class="ft-coupon-row"><span class="ft-coupon-code">PARTNER15</span><span class="ft-coupon-off">15% off</span></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       <!-- CTA -->
       <div class="ft-wrap">
         <div class="ft-cta">
@@ -609,5 +869,15 @@
         <span>Built for events, workshops, and restaurant reservations.</span>
       </div>
     </footer>
+    <script>
+      document.querySelectorAll(".ft-stab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".ft-stab").forEach(t => t.classList.remove("active"));
+          document.querySelectorAll(".ft-showcase-panel").forEach(p => p.classList.remove("active"));
+          tab.classList.add("active");
+          document.getElementById("panel-" + tab.dataset.panel).classList.add("active");
+        });
+      });
+    </script>
   </body>
 </html>
