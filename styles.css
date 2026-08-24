@@ -29,9 +29,9 @@ button, input, select { font: inherit; }
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 .nav-wrap {
-  max-width: 1240px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 1rem 1.4rem;
+  padding: 1rem 2rem;
   display: flex;
   align-items: center;
   gap: 1.2rem;
@@ -86,31 +86,31 @@ button, input, select { font: inherit; }
 
 main { max-width: none; margin: 0; padding: 0; }
 .main-wrap {
-  max-width: 1240px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1.4rem;
+  padding: 0 2rem;
 }
 
 .hero {
-  min-height: 78vh;
+  min-height: 85vh;
   display: grid;
   place-items: center;
   text-align: center;
-  padding: 2rem 0 3rem;
+  padding: 3rem 0 4rem;
 }
 .hero h1 {
   margin: 0;
-  font-size: clamp(3rem, 8vw, 6.9rem);
+  font-size: clamp(3.5rem, 9vw, 8rem);
   line-height: 0.95;
   letter-spacing: -0.07em;
   font-weight: 800;
 }
 .hero h1 span { color: var(--blue); }
 .hero-copy {
-  max-width: 760px;
-  margin: 1.5rem auto 0;
+  max-width: 860px;
+  margin: 1.8rem auto 0;
   color: #666;
-  font-size: clamp(1.05rem, 2vw, 1.45rem);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
   line-height: 1.6;
 }
 .hero-actions {
@@ -123,8 +123,9 @@ main { max-width: none; margin: 0; padding: 0; }
 .btn {
   border: 0;
   border-radius: 18px;
-  padding: 1rem 1.6rem;
+  padding: 1.1rem 2rem;
   font-weight: 800;
+  font-size: 1rem;
   cursor: pointer;
 }
 .btn-primary {
@@ -234,14 +235,14 @@ main { max-width: none; margin: 0; padding: 0; }
 }
 .section-head h2 {
   margin: 0.5rem 0 0;
-  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
   letter-spacing: -0.05em;
 }
 
 .events-section, .split-info, .checkout {
-  max-width: 1240px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 2rem 1.4rem;
+  padding: 2.5rem 2rem;
 }
 .event-grid {
   display: grid;
@@ -727,9 +728,9 @@ main { max-width: none; margin: 0; padding: 0; }
   background: #fafafa;
 }
 .footer-wrap {
-  max-width: 1240px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 1.4rem 1.4rem 1.8rem;
+  padding: 1.8rem 2rem 2.2rem;
   display: grid;
   grid-template-columns: 1.3fr 1fr 1fr;
   gap: 1.5rem;
@@ -772,9 +773,9 @@ main { max-width: none; margin: 0; padding: 0; }
   color: #555;
 }
 .footer-bottom {
-  max-width: 1240px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 1.4rem 1.5rem;
+  padding: 0 2rem 1.5rem;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
