@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Features</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── HERO ── */
+      .ft-hero {
+        background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 60%, #fff 100%);
+        border-bottom: 1px solid #e2eafc;
+        padding: 4rem 0 3.5rem;
+        text-align: center;
+      }
+      .ft-hero-inner {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 1.4rem;
+      }
+      .ft-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(18,66,197,0.08);
+        border: 1px solid rgba(18,66,197,0.2);
+        border-radius: 999px;
+        padding: 0.32rem 0.9rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #1242c5;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+      }
+      .ft-hero h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.6rem, 5vw, 4.2rem);
+        font-weight: 800;
+        letter-spacing: -0.06em;
+        line-height: 1.05;
+        color: #0a0f1e;
+      }
+      .ft-hero h1 span { color: #1242c5; }
+      .ft-hero p {
+        margin: 0 0 2rem;
+        color: #5a6480;
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+      .ft-hero-actions {
+        display: flex;
+        gap: 0.8rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .ft-btn-primary {
+        background: #1242c5;
+        color: #fff;
+        border: 0;
+        border-radius: 14px;
+        padding: 0.9rem 1.6rem;
+        font-weight: 800;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: 0 8px 24px rgba(18,66,197,0.25);
+        transition: background 0.18s, transform 0.15s;
+      }
+      .ft-btn-primary:hover { background: #0d36b2; transform: translateY(-1px); }
+      .ft-btn-secondary {
+        background: #fff;
+        color: #1242c5;
+        border: 1.5px solid #d0d9f0;
+        border-radius: 14px;
+        padding: 0.9rem 1.6rem;
+        font-weight: 800;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: border-color 0.18s, background 0.18s;
+      }
+      .ft-btn-secondary:hover { border-color: #1242c5; background: #f0f5ff; }
+
+      /* ── SECTION WRAPPER ── */
+      .ft-wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 1.4rem;
+      }
+      .ft-section { padding: 4rem 0; }
+      .ft-section-head {
+        text-align: center;
+        margin-bottom: 2.8rem;
+      }
+      .ft-eyebrow {
+        display: inline-block;
+        color: #1242c5;
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+      }
+      .ft-section-head h2 {
+        margin: 0;
+        font-size: clamp(1.9rem, 3.5vw, 3rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #0a0f1e;
+      }
+      .ft-section-head p {
+        margin: 0.6rem auto 0;
+        max-width: 520px;
+        color: #6b7280;
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      /* ── MAIN FEATURE GRID ── */
+      .ft-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.4rem;
+      }
+      .ft-card {
+        border: 1.5px solid #e8edf8;
+        border-radius: 22px;
+        padding: 1.6rem;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.05);
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      }
+      .ft-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(18,66,197,0.11);
+        border-color: #c7d9ff;
+      }
+      .ft-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #e8f0fe, #dce8ff);
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .ft-card h3 {
+        margin: 0 0 0.45rem;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #0a0f1e;
+        letter-spacing: -0.02em;
+      }
+      .ft-card p {
+        margin: 0;
+        color: #6b7280;
+        font-size: 0.88rem;
+        line-height: 1.65;
+      }
+      .ft-card-tag {
+        display: inline-block;
+        margin-top: 1rem;
+        background: #f0f5ff;
+        border: 1px solid #dce8ff;
+        color: #1242c5;
+        border-radius: 999px;
+        padding: 0.22rem 0.7rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+      }
+
+      /* ── HIGHLIGHT STRIP ── */
+      .ft-highlight {
+        background: linear-gradient(135deg, #1242c5 0%, #2f6bff 100%);
+        border-radius: 28px;
+        padding: 3rem 2.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+        margin: 0 0 4rem;
+      }
+      .ft-highlight h2 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #fff;
+        line-height: 1.1;
+      }
+      .ft-highlight p { margin: 0; color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.65; }
+      .ft-highlight-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .ft-stat {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 18px;
+        padding: 1.2rem;
+        text-align: center;
+      }
+      .ft-stat strong {
+        display: block;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -0.04em;
+      }
+      .ft-stat span { color: rgba(255,255,255,0.65); font-size: 0.82rem; font-weight: 600; }
+
+      /* ── HOW IT WORKS ── */
+      .ft-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem;
+        position: relative;
+      }
+      .ft-steps::before {
+        content: "";
+        position: absolute;
+        top: 26px;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background: linear-gradient(90deg, #dce8ff, #1242c5, #dce8ff);
+        z-index: 0;
+      }
+      .ft-step {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .ft-step-num {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #1242c5;
+        color: #fff;
+        font-weight: 800;
+        font-size: 1.1rem;
+        display: grid;
+        place-items: center;
+        margin: 0 auto 1rem;
+        box-shadow: 0 6px 18px rgba(18,66,197,0.3);
+      }
+      .ft-step h3 { margin: 0 0 0.4rem; font-size: 0.95rem; font-weight: 800; color: #0a0f1e; }
+      .ft-step p { margin: 0; color: #6b7280; font-size: 0.82rem; line-height: 1.6; }
+
+      /* ── COMPARISON TABLE ── */
+      .ft-table-wrap {
+        border: 1.5px solid #e8edf8;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.05);
+      }
+      .ft-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+      .ft-table thead tr {
+        background: linear-gradient(135deg, #f0f5ff, #e8f0fe);
+      }
+      .ft-table th {
+        padding: 1rem 1.2rem;
+        text-align: left;
+        font-weight: 800;
+        color: #0a0f1e;
+        font-size: 0.85rem;
+        letter-spacing: -0.01em;
+      }
+      .ft-table th:not(:first-child) { text-align: center; }
+      .ft-table td {
+        padding: 0.9rem 1.2rem;
+        border-top: 1px solid #f0f2f8;
+        color: #374151;
+        font-weight: 600;
+      }
+      .ft-table td:not(:first-child) { text-align: center; }
+      .ft-table tr:hover td { background: #fafbff; }
+      .ft-check { color: #1242c5; font-size: 1.1rem; }
+      .ft-cross { color: #d1d5db; font-size: 1.1rem; }
+      .ft-table .highlight-col { background: rgba(18,66,197,0.04); }
+      .ft-plan-badge {
+        display: inline-block;
+        background: #1242c5;
+        color: #fff;
+        border-radius: 999px;
+        padding: 0.18rem 0.6rem;
+        font-size: 0.68rem;
+        font-weight: 800;
+        margin-left: 0.4rem;
+        vertical-align: middle;
+      }
+
+      /* ── CTA ── */
+      .ft-cta {
+        background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 100%);
+        border: 1.5px solid #dce8ff;
+        border-radius: 28px;
+        padding: 3.5rem 2rem;
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .ft-cta h2 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #0a0f1e;
+      }
+      .ft-cta p { margin: 0 0 1.8rem; color: #6b7280; font-size: 1rem; }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 960px) {
+        .ft-grid { grid-template-columns: repeat(2, 1fr); }
+        .ft-highlight { grid-template-columns: 1fr; }
+        .ft-steps { grid-template-columns: repeat(2, 1fr); }
+        .ft-steps::before { display: none; }
+      }
+      @media (max-width: 600px) {
+        .ft-grid { grid-template-columns: 1fr; }
+        .ft-steps { grid-template-columns: 1fr; }
+        .ft-highlight { padding: 2rem 1.4rem; }
+        .ft-highlight-stats { grid-template-columns: 1fr 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="nav-wrap">
+        <div class="brand-block">
+          <div class="logo">cityvibe</div>
+          <div class="brand-sub">by OGSHOOTS LUXE</div>
+        </div>
+        <nav class="topnav">
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="features.html">Features</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#how">How it works</a>
+        </nav>
+        <div class="auth-actions">
+          <a class="nav-link" href="login.html">Login</a>
+          <a class="nav-cta" href="login.html">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- HERO -->
+      <section class="ft-hero">
+        <div class="ft-hero-inner">
+          <div class="ft-badge">✦ Platform Features</div>
+          <h1>Everything you need to<br><span>run great events</span></h1>
+          <p>From listing creation to instant payments — cityvibe gives organizers and guests a seamless experience in one place.</p>
+          <div class="ft-hero-actions">
+            <a class="ft-btn-primary" href="login.html">Start for Free</a>
+            <a class="ft-btn-secondary" href="events.html">Browse Events</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORE FEATURES -->
+      <section class="ft-section">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">Core Features</span>
+            <h2>Built for organizers & guests</h2>
+            <p>Every tool you need to create, manage, and monetize events without the complexity.</p>
+          </div>
+          <div class="ft-grid">
+
+            <div class="ft-card">
+              <div class="ft-icon">🎟️</div>
+              <h3>Smart Ticketing</h3>
+              <p>Create tiered tickets — free, paid, or invite-only. Set capacity limits and let the system handle waitlists automatically.</p>
+              <span class="ft-card-tag">All Plans</span>
+            </div>
+
+            <div class="ft-card">
+              <div class="ft-icon">💳</div>
+              <h3>Instant Payments</h3>
+              <p>Accept UPI, QR codes, cards, and wallets. Payments confirm in real time with live status updates for both organizer and guest.</p>
+              <span class="ft-card-tag">All Plans</span>
+            </div>
+
+            <div class="ft-card">
+              <div class="ft-icon">📋</div>
+              <h3>Event Dashboard</h3>
+              <p>Track bookings, revenue, and attendee data from one clean dashboard. Export reports with a single click.</p>
+              <span class="ft-card-tag">Pro & Business</span>
+            </div>
+
+            <div class="ft-card">
+              <div class="ft-icon">🔔</div>
+              <h3>Automated Reminders</h3>
+              <p>Send booking confirmations, event reminders, and follow-ups automatically via email and SMS — no manual work needed.</p>
+              <span class="ft-card-tag">Pro & Business</span>
+            </div>
+
+            <div class="ft-card">
+              <div class="ft-icon">🗺️</div>
+              <h3>Venue & Map Integration</h3>
+              <p>Attach venue details, Google Maps links, and parking info directly to your event listing so guests always know where to go.</p>
+              <span class="ft-card-tag">All Plans</span>
+            </div>
+
+            <div class="ft-card">
+              <div class="ft-icon">👥</div>
+              <h3>Team & Role Management</h3>
+              <p>Add co-organizers, volunteers, and admins with custom permissions. Keep your team in sync without sharing credentials.</p>
+              <span class="ft-card-tag">Business</span>
+            </div>
+
+            <div class="ft-card">
+              <div class="ft-icon">📱</div>
+              <h3>Mobile-First Design</h3>
+              <p>Every page — from listing to checkout — is optimized for mobile. Guests book in seconds from any device.</p>
+              <span class="ft-card-tag">All Plans</span>
+            </div>
+
+            <div class="ft-card">
+              <div class="ft-icon">🔒</div>
+              <h3>Secure Authentication</h3>
+              <p>Firebase-powered login with Google sign-in, email verification, and session management. Your data stays protected.</p>
+              <span class="ft-card-tag">All Plans</span>
+            </div>
+
+            <div class="ft-card">
+              <div class="ft-icon">📊</div>
+              <h3>Analytics & Insights</h3>
+              <p>See which events perform best, where guests drop off, and how revenue trends over time — all in visual charts.</p>
+              <span class="ft-card-tag">Business</span>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- HIGHLIGHT STRIP -->
+      <div class="ft-wrap">
+        <div class="ft-highlight">
+          <div>
+            <h2>Trusted by event organizers across Hyderabad</h2>
+            <p>From small workshops to large exhibitions — cityvibe handles the booking and payment flow so you can focus on the event itself.</p>
+          </div>
+          <div class="ft-highlight-stats">
+            <div class="ft-stat"><strong>5+</strong><span>Live Events</span></div>
+            <div class="ft-stat"><strong>100%</strong><span>Uptime</span></div>
+            <div class="ft-stat"><strong>3</strong><span>Payment Methods</span></div>
+            <div class="ft-stat"><strong>∞</strong><span>Bookings</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <section class="ft-section" style="padding-top: 0;">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">How It Works</span>
+            <h2>From listing to confirmed booking</h2>
+            <p>Four simple steps — that's all it takes for a guest to go from discovery to confirmed seat.</p>
+          </div>
+          <div class="ft-steps">
+            <div class="ft-step">
+              <div class="ft-step-num">1</div>
+              <h3>Browse Events</h3>
+              <p>Guests discover events by category, date, or location on the events page.</p>
+            </div>
+            <div class="ft-step">
+              <div class="ft-step-num">2</div>
+              <h3>Select & Book</h3>
+              <p>Choose seats or passes, fill in details, and pick a payment method.</p>
+            </div>
+            <div class="ft-step">
+              <div class="ft-step-num">3</div>
+              <h3>Pay Instantly</h3>
+              <p>Complete payment via UPI, QR scan, card, or wallet in seconds.</p>
+            </div>
+            <div class="ft-step">
+              <div class="ft-step-num">4</div>
+              <h3>Get Confirmed</h3>
+              <p>Receive an instant booking confirmation with a unique code and receipt.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPARISON TABLE -->
+      <section class="ft-section" style="padding-top: 0;">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">Plans</span>
+            <h2>Compare what's included</h2>
+            <p>Pick the plan that fits your event size and team.</p>
+          </div>
+          <div class="ft-table-wrap">
+            <table class="ft-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Free</th>
+                  <th class="highlight-col">Pro <span class="ft-plan-badge">Popular</span></th>
+                  <th>Business</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Event listings</td>
+                  <td>Up to 3</td>
+                  <td class="highlight-col">Unlimited</td>
+                  <td>Unlimited</td>
+                </tr>
+                <tr>
+                  <td>UPI & QR payments</td>
+                  <td><span class="ft-check">✓</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Card payments</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Booking dashboard</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Automated reminders</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Team & role management</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-cross">✗</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Analytics & reports</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-cross">✗</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Priority support</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <div class="ft-wrap">
+        <div class="ft-cta">
+          <h2>Ready to launch your event?</h2>
+          <p>Join organizers across Hyderabad using cityvibe to manage bookings and payments.</p>
+          <div class="ft-hero-actions">
+            <a class="ft-btn-primary" href="login.html">Get Started Free</a>
+            <a class="ft-btn-secondary" href="events.html">Browse Events</a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-wrap">
+        <div class="footer-branding">
+          <div class="footer-brand">cityvibe</div>
+          <p>Events, workshops, and restaurant bookings in one smooth flow.</p>
+          <span class="footer-tag">Developed by Srisanth Boddu</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="features.html">Features</a>
+          <a href="index.html#pricing">Pricing</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <a href="tel:+916305183601">6305183601</a>
+          <span>Contact details will be updated from the admin panel.</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 cityvibe. All rights reserved.</span>
+        <span>Built for events, workshops, and restaurant reservations.</span>
+      </div>
+    </footer>
+  </body>
+</html>
