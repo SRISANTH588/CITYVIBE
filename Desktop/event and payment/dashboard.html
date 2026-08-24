@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body.dashboard-body {
+        background: linear-gradient(180deg, #eef5ff, #f8fbff);
+        min-height: 100vh;
+      }
+      .dashboard-shell {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1.2rem;
+      }
+      .dashboard-hero {
+        border: 1px solid rgba(18, 66, 197, 0.12);
+        background: #fff;
+        border-radius: 30px;
+        padding: 1.4rem;
+        box-shadow: 0 18px 44px rgba(18, 66, 197, 0.08);
+      }
+      .dashboard-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .dash-brand {
+        display: grid;
+        gap: 0.25rem;
+      }
+      .dash-brand strong {
+        font-size: 1.6rem;
+        color: var(--blue);
+      }
+      .role-badge {
+        display: inline-flex;
+        align-items: center;
+        width: fit-content;
+        padding: 0.45rem 0.8rem;
+        border-radius: 999px;
+        background: #dce8ff;
+        color: var(--blue);
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.78rem;
+      }
+      .dashboard-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+      .dash-btn {
+        border: 0;
+        border-radius: 16px;
+        padding: 0.9rem 1.2rem;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .dash-btn.primary {
+        background: var(--blue);
+        color: #fff;
+      }
+      .dash-btn.secondary {
+        background: #fff;
+        color: var(--blue);
+        border: 1px solid rgba(18, 66, 197, 0.18);
+      }
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .panel {
+        border: 1px solid rgba(18, 66, 197, 0.12);
+        background: #fff;
+        border-radius: 28px;
+        padding: 1.2rem;
+        box-shadow: 0 12px 30px rgba(18, 66, 197, 0.06);
+      }
+      .panel h2,
+      .panel h3 {
+        margin: 0;
+        letter-spacing: -0.04em;
+      }
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+      .metric {
+        border-radius: 22px;
+        background: #f7faff;
+        border: 1px solid rgba(18, 66, 197, 0.1);
+        padding: 1rem;
+      }
+      .metric strong {
+        display: block;
+        font-size: 1.4rem;
+        color: #0f172a;
+      }
+      .metric span {
+        color: #64748b;
+      }
+      .role-cards {
+        display: grid;
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+      .role-card-large {
+        border-radius: 22px;
+        padding: 1rem;
+        background: #f7faff;
+        border: 1px solid rgba(18, 66, 197, 0.1);
+      }
+      .role-card-large strong {
+        display: block;
+        margin-bottom: 0.25rem;
+      }
+      .activity-list {
+        display: grid;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      .activity {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.95rem 1rem;
+        border-radius: 18px;
+        background: #f7faff;
+      }
+      .activity span { color: #64748b; }
+      .logout-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        padding: 0.85rem 1.1rem;
+        border-radius: 16px;
+        background: #fee2e2;
+        color: #991b1b;
+        font-weight: 800;
+      }
+      @media (max-width: 900px) {
+        .dashboard-grid, .metric-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body class="dashboard-body">
+    <main class="dashboard-shell">
+      <section class="dashboard-hero">
+        <div class="dashboard-top">
+          <div class="dash-brand">
+            <strong>cityvibe</strong>
+            <span id="welcomeLine">Welcome back</span>
+            <span class="role-badge" id="roleBadge">customer</span>
+          </div>
+          <div class="dashboard-actions">
+            <a class="dash-btn secondary" href="/index.html">Home</a>
+            <button class="dash-btn primary" id="refreshBtn" type="button">Refresh session</button>
+            <button class="dash-btn secondary" id="logoutBtn" type="button">Logout</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="dashboard-grid">
+        <div class="panel">
+          <h2 id="panelTitle">Customer Dashboard</h2>
+          <p id="panelText">Your bookings, payments, and account activity in one place.</p>
+          <div class="metric-grid">
+            <div class="metric">
+              <strong id="metricOne">12</strong>
+              <span>Bookings</span>
+            </div>
+            <div class="metric">
+              <strong id="metricTwo">4</strong>
+              <span>Active payments</span>
+            </div>
+            <div class="metric">
+              <strong id="metricThree">98%</strong>
+              <span>Verification</span>
+            </div>
+          </div>
+          <div class="role-cards" id="roleCards"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Recent activity</h3>
+          <div class="activity-list" id="activityList"></div>
+          <button class="logout-link" id="logoutLink" type="button">Open logout flow</button>
+        </div>
+      </section>
+    </main>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+      import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBCgNQy8EJLg7E-SA1cMePGetWLOR7WWMI",
+        authDomain: "ogshootsluxe-36740.firebaseapp.com",
+        projectId: "ogshootsluxe-36740",
+        storageBucket: "ogshootsluxe-36740.firebasestorage.app",
+        messagingSenderId: "5471814825",
+        appId: "1:5471814825:web:07e84f2f88486da817d5b8",
+      };
+
+      initializeApp(firebaseConfig);
+      const auth = getAuth();
+
+      const roleBadge = document.getElementById("roleBadge");
+      const welcomeLine = document.getElementById("welcomeLine");
+      const panelTitle = document.getElementById("panelTitle");
+      const panelText = document.getElementById("panelText");
+      const metricOne = document.getElementById("metricOne");
+      const metricTwo = document.getElementById("metricTwo");
+      const metricThree = document.getElementById("metricThree");
+      const roleCards = document.getElementById("roleCards");
+      const activityList = document.getElementById("activityList");
+      const logoutBtn = document.getElementById("logoutBtn");
+      const logoutLink = document.getElementById("logoutLink");
+      const refreshBtn = document.getElementById("refreshBtn");
+
+      const roleData = {
+        customer: {
+          title: "Customer Dashboard",
+          text: "Track your bookings, payments, and upcoming events.",
+          metrics: ["12", "4", "98%"],
+          cards: [
+            ["Upcoming bookings", "See confirmed tickets and reservation details."],
+            ["Payment history", "Review your latest payments and receipts."],
+            ["Profile status", "Your email and phone verification status."],
+          ],
+          activity: [
+            ["Booking confirmed", "Sunset Music Festival"],
+            ["Payment received", "₹3,147 paid successfully"],
+            ["Profile verified", "Email and phone checks complete"],
+          ],
+        },
+        manager: {
+          title: "Manager Workspace",
+          text: "Monitor live bookings, approvals, and event operations.",
+          metrics: ["26", "9", "100%"],
+          cards: [
+            ["Live booking queue", "Approvals and recent requests in motion."],
+            ["Payment tracking", "Match payments with pending orders."],
+            ["Operations notes", "Keep your team aligned on updates."],
+          ],
+          activity: [
+            ["New booking", "HITEX event request received"],
+            ["Payment verified", "Order order_8f3a confirmed"],
+            ["Event update", "Capacity changed for tonight"],
+          ],
+        },
+        admin: {
+          title: "Admin Console",
+          text: "Manage users, roles, events, and platform settings.",
+          metrics: ["48", "17", "100%"],
+          cards: [
+            ["User management", "Review access, roles, and verification status."],
+            ["Events panel", "Publish or edit public event listings."],
+            ["System settings", "Control brand, payments, and moderation."],
+          ],
+          activity: [
+            ["Role assigned", "Manager access granted to new account"],
+            ["Event published", "Design Democracy 2026 is live"],
+            ["Security", "Firebase auth session active"],
+          ],
+        },
+      };
+
+      function renderRole(role, name) {
+        const data = roleData[role] || roleData.customer;
+        roleBadge.textContent = role;
+        welcomeLine.textContent = `Welcome back, ${name || "Guest"}`;
+        panelTitle.textContent = data.title;
+        panelText.textContent = data.text;
+        metricOne.textContent = data.metrics[0];
+        metricTwo.textContent = data.metrics[1];
+        metricThree.textContent = data.metrics[2];
+        roleCards.innerHTML = data.cards
+          .map(([title, text]) => `<div class="role-card-large"><strong>${title}</strong><span>${text}</span></div>`)
+          .join("");
+        activityList.innerHTML = data.activity
+          .map(([title, text]) => `<div class="activity"><strong>${title}</strong><span>${text}</span></div>`)
+          .join("");
+      }
+
+      async function loadSession() {
+        const response = await fetch("/api/auth/me", { credentials: "include" });
+        if (!response.ok) {
+          window.location.href = "/login.html";
+          return;
+        }
+        const payload = await response.json();
+        renderRole(payload.user.role || "customer", payload.user.name);
+      }
+
+      async function doLogout() {
+        await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+        try {
+          await signOut(auth);
+        } catch {
+          // Ignore Firebase logout errors and still move on.
+        }
+        window.location.href = "/login.html";
+      }
+
+      logoutBtn.addEventListener("click", doLogout);
+      logoutLink.addEventListener("click", doLogout);
+
+      refreshBtn.addEventListener("click", loadSession);
+      loadSession();
+    </script>
+  </body>
+</html>

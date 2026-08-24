@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Events, Booking & Payments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="nav-wrap">
+        <div class="brand-block">
+          <div class="logo">cityvibe</div>
+          <div class="brand-sub">by OGSHOOTS LUXE</div>
+        </div>
+        <nav class="topnav">
+          <a href="events.html">Events Listed</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#how">How it works</a>
+        </nav>
+        <div class="auth-actions">
+          <a class="nav-link" href="login.html">Login</a>
+          <a class="nav-cta" href="login.html">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>
+          Events that are easier<br />
+          to list, book, and pay.<br />
+          <span>Built for fast checkouts.</span>
+        </h1>
+
+        <p class="hero-copy">
+          Create event pages, workshop listings, and restaurant booking flows in one clean
+          platform. Designed for organizers who want bookings and payments in one place.
+        </p>
+
+      <div class="hero-actions">
+          <a class="btn btn-primary" href="events.html">Browse Events</a>
+          <a class="btn btn-secondary" href="#checkout">See Booking Flow</a>
+        </div>
+
+        <div class="hero-note">Launch in minutes. Accept payments your way.</div>
+      </section>
+
+      <section class="trusted">
+        <p>LOVED BY COMMUNITIES</p>
+      </section>
+
+      <section class="logos">
+        <div class="logo-marquee" aria-label="Partner logos">
+          <div class="logo-track">
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+          </div>
+          <div class="logo-track" aria-hidden="true">
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+            <div class="logo-pill"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonials" id="features">
+        <div class="section-head">
+          <span class="eyebrow">What people say</span>
+          <h2>Hear from organizers and hosts.</h2>
+        </div>
+
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              “We moved our event pages, bookings, and payments into one place and the
+              workflow got a lot cleaner. It feels simple for both the team and guests.”
+            </p>
+            <h3>Priya Nair</h3>
+            <span>Community Host</span>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p>
+              “Guests can choose a listing, pay through QR or UPI, and confirm instantly.
+              That cut down the friction we had before.”
+            </p>
+            <h3>Arjun Mehta</h3>
+            <span>Workshop Organizer</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="split-info" id="pricing">
+        <div class="section-head">
+          <span class="eyebrow">Pricing</span>
+          <h2>Simple plans for teams of any size.</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><strong>Free</strong><span>Basic listings for smaller events and trials.</span></div>
+          <div class="step"><strong>Pro</strong><span>More bookings, payment tools, and manager access.</span></div>
+          <div class="step"><strong>Business</strong><span>Best for larger organizers and admin workflows.</span></div>
+        </div>
+      </section>
+
+      <section class="split-info" id="how">
+        <div class="section-head">
+          <span class="eyebrow">How it works</span>
+          <h2>Pick a listing, pay securely, and confirm instantly.</h2>
+        </div>
+        <div class="steps">
+          <div class="step"><strong>1</strong><span>Choose an event, workshop, or table booking.</span></div>
+          <div class="step"><strong>2</strong><span>Use QR or UPI app options to complete payment.</span></div>
+          <div class="step"><strong>3</strong><span>Get an instant success or failure result.</span></div>
+        </div>
+      </section>
+
+      <section class="checkout" id="checkout">
+        <div class="checkout-card">
+          <span class="eyebrow">Checkout</span>
+          <h2>Complete your booking</h2>
+          <p>QR payment, app redirects, and live payment status for listings, workshops, and restaurant reservations.</p>
+
+          <form id="bookingForm" class="booking-form">
+            <label>
+              Listing selection
+              <select id="eventSelect" required></select>
+            </label>
+            <label>
+              Seats or passes
+              <input id="ticketCount" type="number" min="1" value="2" required />
+            </label>
+            <label>
+              Your name
+              <input id="fullName" type="text" placeholder="Your name" required />
+            </label>
+            <label>
+              Email
+              <input id="email" type="email" placeholder="you@example.com" required />
+            </label>
+            <label class="full">
+              Payment option
+              <div class="payment-options">
+                <label><input type="radio" name="payment" value="card" checked /> Card</label>
+                <label><input type="radio" name="payment" value="upi" /> UPI</label>
+                <label><input type="radio" name="payment" value="wallet" /> Wallet</label>
+              </div>
+            </label>
+            <div class="summary full">
+              <div><span>Ticket total</span><strong id="ticketTotal">₹2,998</strong></div>
+              <div><span>Service fee</span><strong id="serviceFee">₹149</strong></div>
+              <div class="grand"><span>Grand total</span><strong id="grandTotal">₹3,147</strong></div>
+            </div>
+            <button class="btn btn-primary full" type="submit">Pay now</button>
+          </form>
+        </div>
+
+        <aside class="receipt-card">
+          <span class="eyebrow">Live receipt</span>
+          <h3 id="receiptTitle">Sunset Music Festival</h3>
+          <div class="receipt-lines">
+            <div><span>Tickets</span><strong id="receiptTickets">2</strong></div>
+            <div><span>Buyer</span><strong id="receiptName">Guest</strong></div>
+            <div><span>Status</span><strong class="status-pill">Waiting</strong></div>
+          </div>
+          <div class="qr-box">
+            <div class="qr"></div>
+            <p>Scan to open the payment flow.</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-wrap">
+        <div class="footer-branding">
+          <div class="footer-brand">cityvibe</div>
+          <p>Events, workshops, and restaurant bookings in one smooth flow.</p>
+          <span class="footer-tag">Developed by Srisanth Boddu</span>
+        </div>
+        <div class="footer-links">
+          <a href="#events">Events Listed</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#how">How it works</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <a href="tel:+916305183601">6305183601</a>
+          <span>Contact details will be updated from the admin panel.</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 cityvibe. All rights reserved.</span>
+        <span>Built for events, workshops, and restaurant reservations.</span>
+      </div>
+    </footer>
+
+    <div class="modal" id="paymentModal" aria-hidden="true">
+      <div class="modal-card">
+        <button class="close-btn" id="closeModal" aria-label="Close">×</button>
+        <span class="eyebrow">Payment gateway</span>
+        <h2 id="paymentHeading">Ready for payment</h2>
+        <p id="confirmationText"></p>
+        <div class="payment-shell">
+          <div class="qr-preview" id="qrPreview"></div>
+          <div class="app-links">
+            <a href="#" id="gpayLink">Open Google Pay</a>
+            <a href="#" id="phonePeLink">Open PhonePe</a>
+            <a href="#" id="paytmLink">Open Paytm</a>
+          </div>
+        </div>
+        <div class="confirmation-box">
+          <div><span>Booking code</span><strong id="bookingCode">PP-0000</strong></div>
+          <div><span>Amount</span><strong id="paidAmount">₹0</strong></div>
+          <div><span>Status</span><strong id="liveStatus">Pending</strong></div>
+        </div>
+        <button class="btn btn-primary wide" id="doneBtn">Done</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="nav-wrap">
+        <div class="brand-block">
+          <div class="logo">cityvibe</div>
+          <div class="brand-sub">by OGSHOOTS LUXE</div>
+        </div>
+        <div class="auth-actions">
+          <a class="nav-link" href="index.html">Back to Home</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="login-page">
+        <div class="login-frame">
+          <div class="login-tabs" role="tablist" aria-label="Authentication tabs">
+            <button class="login-tab active" type="button" data-auth-tab="login">Login</button>
+            <button class="login-tab" type="button" data-auth-tab="signup">Sign Up</button>
+          </div>
+
+          <div class="login-copy">
+            <h1>Sign in to your account</h1>
+            <p>Access your event dashboard</p>
+          </div>
+
+          <div class="auth-status" id="authStatus" aria-live="polite"></div>
+
+          <form class="auth-form auth-form-login auth-form-active" data-auth-form="login">
+            <label>
+              <span class="field-label">Username / Phone</span>
+              <div class="field-shell">
+                <span class="field-icon">📱</span>
+                <input id="loginPhone" type="tel" placeholder="Enter phone number" inputmode="numeric" autocomplete="tel" />
+              </div>
+            </label>
+
+            <label>
+              <span class="field-label">Password</span>
+              <div class="field-shell password-shell">
+                <span class="field-icon">🔒</span>
+                <input id="loginPassword" type="password" placeholder="••••••••" autocomplete="current-password" />
+                <button class="eye-btn" type="button" aria-label="Show password">◔</button>
+              </div>
+            </label>
+
+            <div class="auth-actions-row">
+              <label class="remember-toggle">
+                <input type="checkbox" />
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="auth-link">Forgot password?</a>
+            </div>
+
+            <button class="btn premium-btn full" id="loginBtn" type="submit">Login →</button>
+
+            <div class="or-divider"><span>or</span></div>
+
+            <button class="google-btn full" id="googleLoginBtn" type="button">
+              <span class="google-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="">
+                  <path fill="#EA4335" d="M12 10.2v3.95h5.62c-.25 1.48-1.68 4.33-5.62 4.33-3.38 0-6.13-2.8-6.13-6.25S8.62 6 12 6c1.93 0 3.22.82 3.96 1.52l2.7-2.6C16.93 3.32 14.71 2.33 12 2.33 6.49 2.33 2 6.77 2 12.08S6.49 21.83 12 21.83c5.76 0 9.58-4.05 9.58-9.76 0-.66-.07-1.16-.15-1.65H12Z"/>
+                  <path fill="#4285F4" d="M21.18 12.08c0-.66-.07-1.16-.15-1.65H12v3.95h5.17c-.22 1.31-1.01 3.04-2.88 4.2l2.78 2.15c1.63-1.51 2.71-3.73 2.71-6.65Z"/>
+                  <path fill="#FBBC05" d="M5.87 14.11c-.21-.64-.34-1.31-.34-2.03s.12-1.39.34-2.03L3.02 7.88A9.6 9.6 0 0 0 2 12.08c0 1.51.36 2.94 1.02 4.2l2.85-2.17Z"/>
+                  <path fill="#34A853" d="M12 21.83c2.71 0 4.99-.89 6.65-2.43l-2.78-2.15c-.74.5-1.74 1.06-3.87 1.06-3.06 0-5.65-2.07-6.58-4.98L2.57 15.5C4.2 19.05 7.73 21.83 12 21.83Z"/>
+                  <path fill="#0F9D58" d="M12 2.33c2.71 0 4.57.95 5.6 1.75l-2.58 2.45C14.29 5.79 13.25 5.18 12 5.18c-2.26 0-4.19 1.45-4.98 3.47L3.98 6.5C5.8 3.18 8.68 2.33 12 2.33Z"/>
+                </svg>
+              </span>
+              <span>Continue with Google</span>
+            </button>
+          </form>
+
+          <form class="auth-form auth-form-signup" data-auth-form="signup" hidden>
+            <label>
+              <span class="field-label">Full Name</span>
+              <div class="field-shell">
+                <span class="field-icon">👤</span>
+                <input id="signupName" type="text" placeholder="Your full name" autocomplete="name" />
+              </div>
+            </label>
+
+            <label>
+              <span class="field-label">Email</span>
+              <div class="field-shell">
+                <span class="field-icon">✉</span>
+                <input id="signupEmail" type="email" placeholder="you@example.com" autocomplete="email" />
+              </div>
+            </label>
+
+            <label>
+              <span class="field-label">Phone Number</span>
+              <div class="field-shell">
+                <span class="field-icon">📱</span>
+                <input id="signupPhone" type="tel" placeholder="Enter phone number" autocomplete="tel" />
+              </div>
+            </label>
+
+            <label>
+              <span class="field-label">Password</span>
+              <div class="field-shell password-shell">
+                <span class="field-icon">🔒</span>
+                <input id="signupPassword" type="password" placeholder="Create a password" autocomplete="new-password" />
+                <button class="eye-btn" type="button" aria-label="Show password">◔</button>
+              </div>
+            </label>
+
+            <button class="btn premium-btn full" type="submit">Create Account →</button>
+
+            <div class="signup-note">You will verify your email after signup.</div>
+          </form>
+
+          <div class="signup-footer">
+            <span>New customer?</span>
+            <a href="#" id="signupCta">Sign Up</a>
+          </div>
+
+          <a class="back-home" href="index.html">Back to Home</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer login-footer">
+      <div class="footer-wrap">
+        <div class="footer-branding">
+          <div class="footer-brand">cityvibe</div>
+          <p>Simple login, Google sign-in, and verified account access.</p>
+          <span class="footer-tag">Premium city experience</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="#loginPhone">Login</a>
+          <a href="#signupName">Sign Up</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Need help?</h3>
+          <a href="mailto:support@cityvibe.com">support@cityvibe.com</a>
+          <span>Use the form above to sign in or create a new account.</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 cityvibe. All rights reserved.</span>
+        <span>Login secured with Firebase and backend session sync.</span>
+      </div>
+    </footer>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+      import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        sendEmailVerification,
+        onAuthStateChanged,
+        signOut,
+        GoogleAuthProvider,
+        signInWithPopup,
+        updateProfile,
+      } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+      import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBCgNQy8EJLg7E-SA1cMePGetWLOR7WWMI",
+        authDomain: "ogshootsluxe-36740.firebaseapp.com",
+        projectId: "ogshootsluxe-36740",
+        storageBucket: "ogshootsluxe-36740.firebasestorage.app",
+        messagingSenderId: "5471814825",
+        appId: "1:5471814825:web:07e84f2f88486da817d5b8",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      const googleProvider = new GoogleAuthProvider();
+
+      const authTabs = document.querySelectorAll("[data-auth-tab]");
+      const authForms = document.querySelectorAll("[data-auth-form]");
+      const copyTitle = document.querySelector(".login-copy h1");
+      const copySubtitle = document.querySelector(".login-copy p");
+      const signupFooterLink = document.querySelector(".signup-footer a");
+      const authStatus = document.getElementById("authStatus");
+      const googleLoginBtn = document.getElementById("googleLoginBtn");
+      const signupCta = document.getElementById("signupCta");
+      const loginPhone = document.getElementById("loginPhone");
+      const loginPassword = document.getElementById("loginPassword");
+      const signupName = document.getElementById("signupName");
+      const signupEmail = document.getElementById("signupEmail");
+      const signupPhone = document.getElementById("signupPhone");
+      const signupPassword = document.getElementById("signupPassword");
+
+      let selectedRole = "customer";
+
+      function setStatus(message, kind = "info") {
+        authStatus.textContent = message;
+        authStatus.dataset.kind = kind;
+      }
+
+      function goHome() {
+        window.location.href = "/dashboard";
+      }
+
+      function isVerifiedUser(user) {
+        const providerIds = user.providerData.map((provider) => provider.providerId);
+        return user.emailVerified || providerIds.includes("phone") || providerIds.includes("google.com");
+      }
+
+      function setMode(mode) {
+        authTabs.forEach((item) => item.classList.toggle("active", item.dataset.authTab === mode));
+        authForms.forEach((form) => {
+          const isActive = form.dataset.authForm === mode;
+          form.hidden = !isActive;
+          form.classList.toggle("auth-form-active", isActive);
+        });
+
+        if (mode === "login") {
+          copyTitle.textContent = "Sign in to your account";
+          copySubtitle.textContent = "Access your event dashboard";
+          signupFooterLink.textContent = "Sign Up";
+        } else {
+          copyTitle.textContent = "Create your account";
+          copySubtitle.textContent = "New users must verify email or phone";
+          signupFooterLink.textContent = "Login";
+        }
+      }
+
+      async function syncBackendSession(user) {
+        const idToken = await user.getIdToken();
+        const response = await fetch("/api/auth/verify", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idToken, role: selectedRole }),
+        });
+        if (!response.ok) {
+          throw new Error("Backend session could not be created");
+        }
+        return response.json();
+      }
+
+      authTabs.forEach((tab) => {
+        tab.addEventListener("click", () => setMode(tab.dataset.authTab));
+      });
+      signupCta.addEventListener("click", (event) => {
+        event.preventDefault();
+        setMode("signup");
+      });
+
+      document.querySelector(".auth-form-login")?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const phone = loginPhone.value.trim();
+        const password = loginPassword.value;
+        if (!phone || !password) {
+          setStatus("Enter your phone number and password.", "warning");
+          return;
+        }
+        const q = query(collection(db, "users"), where("phone", "==", phone));
+        const snap = await getDocs(q);
+        if (snap.empty) {
+          setStatus("No account found for that phone number.", "warning");
+          return;
+        }
+        const userDoc = snap.docs[0].data();
+        const email = userDoc.email;
+        const credential = await signInWithEmailAndPassword(auth, email, password);
+        if (!credential.user.emailVerified && !credential.user.providerData.some((p) => p.providerId === "google.com")) {
+          await sendEmailVerification(credential.user);
+          await signOut(auth);
+          setStatus("Please verify your email before signing in.", "warning");
+          return;
+        }
+        selectedRole = userDoc.role || "customer";
+        await syncBackendSession(credential.user);
+        goHome();
+      });
+
+      document.querySelector(".auth-form-signup")?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const fullName = signupName.value.trim();
+        const email = signupEmail.value.trim();
+        const phone = signupPhone.value.trim();
+        const password = signupPassword.value;
+        if (!fullName || !email || !phone || !password) {
+          setStatus("Fill in name, email, phone, and password.", "warning");
+          return;
+        }
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(userCredential.user, { displayName: fullName });
+        await sendEmailVerification(userCredential.user);
+        await setDoc(doc(db, "users", userCredential.user.uid), {
+          uid: userCredential.user.uid,
+          name: fullName,
+          email,
+          phone,
+          role: selectedRole,
+          emailVerified: false,
+          createdAt: Date.now(),
+        });
+        selectedRole = "customer";
+        await syncBackendSession(userCredential.user);
+        await signOut(auth);
+        setStatus("Account created. Please verify your email, then log in.", "warning");
+        setMode("login");
+      });
+
+      googleLoginBtn.addEventListener("click", async () => {
+        try {
+          googleLoginBtn.disabled = true;
+          googleLoginBtn.textContent = "Signing in...";
+          const credential = await signInWithPopup(auth, googleProvider);
+          if (credential?.user) {
+            const userRef = doc(db, "users", credential.user.uid);
+            const existing = await getDoc(userRef);
+            if (!existing.exists()) {
+              await setDoc(userRef, {
+                uid: credential.user.uid,
+                name: credential.user.displayName || "Guest",
+                email: credential.user.email || "",
+                phone: "",
+                role: selectedRole,
+                emailVerified: true,
+                createdAt: Date.now(),
+              });
+            }
+            await syncBackendSession(credential.user);
+            setStatus("Google sign-in successful. Redirecting...", "success");
+            goHome();
+          }
+        } catch (err) {
+          console.error("Google sign-in error:", err);
+          if (err.code === "auth/popup-closed-by-user") {
+            setStatus("Sign-in cancelled.", "info");
+          } else if (err.code === "auth/popup-blocked") {
+            setStatus("Popup was blocked. Please allow popups for this site.", "warning");
+          } else if (err.code === "auth/unauthorized-domain") {
+            setStatus("This domain is not authorised in Firebase. Add it in the Firebase Console.", "warning");
+          } else {
+            setStatus(err.message || "Google sign-in failed. Try again.", "warning");
+          }
+        } finally {
+          googleLoginBtn.disabled = false;
+          googleLoginBtn.innerHTML = `<span class="google-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="#EA4335" d="M12 10.2v3.95h5.62c-.25 1.48-1.68 4.33-5.62 4.33-3.38 0-6.13-2.8-6.13-6.25S8.62 6 12 6c1.93 0 3.22.82 3.96 1.52l2.7-2.6C16.93 3.32 14.71 2.33 12 2.33 6.49 2.33 2 6.77 2 12.08S6.49 21.83 12 21.83c5.76 0 9.58-4.05 9.58-9.76 0-.66-.07-1.16-.15-1.65H12Z"/><path fill="#4285F4" d="M21.18 12.08c0-.66-.07-1.16-.15-1.65H12v3.95h5.17c-.22 1.31-1.01 3.04-2.88 4.2l2.78 2.15c1.63-1.51 2.71-3.73 2.71-6.65Z"/><path fill="#FBBC05" d="M5.87 14.11c-.21-.64-.34-1.31-.34-2.03s.12-1.39.34-2.03L3.02 7.88A9.6 9.6 0 0 0 2 12.08c0 1.51.36 2.94 1.02 4.2l2.85-2.17Z"/><path fill="#34A853" d="M12 21.83c2.71 0 4.99-.89 6.65-2.43l-2.78-2.15c-.74.5-1.74 1.06-3.87 1.06-3.06 0-5.65-2.07-6.58-4.98L2.57 15.5C4.2 19.05 7.73 21.83 12 21.83Z"/></svg></span><span>Continue with Google</span>`;
+        }
+      });
+
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) return;
+        try {
+          await syncBackendSession(user);
+          goHome();
+        } catch {
+          await signOut(auth);
+          setStatus("Session error. Please sign in again.", "warning");
+        }
+      });
+      setMode("login");
+    </script>
+  </body>
+</html>
