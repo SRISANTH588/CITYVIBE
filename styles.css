@@ -85,6 +85,11 @@ button, input, select { font: inherit; }
 }
 
 main { max-width: none; margin: 0; padding: 0; }
+.main-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.4rem;
+}
 
 .hero {
   min-height: 78vh;
@@ -234,7 +239,9 @@ main { max-width: none; margin: 0; padding: 0; }
 }
 
 .events-section, .split-info, .checkout {
-  padding: 2rem 0;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 2rem 1.4rem;
 }
 .event-grid {
   display: grid;
