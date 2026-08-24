@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | How It Works</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body { background: #fff; }
+
+      /* HERO */
+      .hw-hero {
+        background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 60%, #fff 100%);
+        border-bottom: 1px solid #e2eafc;
+        padding: 4rem 0 3.5rem;
+        text-align: center;
+      }
+      .hw-hero-inner { max-width: 680px; margin: 0 auto; padding: 0 1.4rem; }
+      .hw-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(18,66,197,0.08);
+        border: 1px solid rgba(18,66,197,0.2);
+        border-radius: 999px;
+        padding: 0.32rem 0.9rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #1242c5;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      .hw-hero h1 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(2.4rem, 5vw, 4rem);
+        font-weight: 800;
+        letter-spacing: -0.06em;
+        color: #0a0f1e;
+        line-height: 1.05;
+      }
+      .hw-hero h1 span { color: #1242c5; }
+      .hw-hero p { margin: 0; color: #5a6480; font-size: 1rem; line-height: 1.7; }
+
+      .hw-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.4rem; }
+
+      /* ROLE TABS */
+      .hw-tabs-section { padding: 3.5rem 0 0; }
+      .hw-tabs {
+        display: flex;
+        gap: 0.6rem;
+        justify-content: center;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+      }
+      .hw-tab {
+        border: 1.5px solid #d0d9f0;
+        background: #fff;
+        border-radius: 999px;
+        padding: 0.55rem 1.2rem;
+        font-size: 0.88rem;
+        font-weight: 800;
+        color: #4a5580;
+        cursor: pointer;
+        transition: all 0.18s;
+      }
+      .hw-tab.active {
+        background: #1242c5;
+        border-color: #1242c5;
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(18,66,197,0.25);
+      }
+
+      /* STEPS */
+      .hw-steps-panel { display: none; }
+      .hw-steps-panel.active { display: block; }
+
+      .hw-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        position: relative;
+        margin-bottom: 3rem;
+      }
+      .hw-steps::before {
+        content: "";
+        position: absolute;
+        top: 28px;
+        left: calc(12.5%);
+        right: calc(12.5%);
+        height: 2px;
+        background: linear-gradient(90deg, #dce8ff, #1242c5, #dce8ff);
+        z-index: 0;
+      }
+      .hw-step { text-align: center; position: relative; z-index: 1; padding: 0 0.8rem; }
+      .hw-step-num {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #1242c5;
+        color: #fff;
+        font-weight: 800;
+        font-size: 1.1rem;
+        display: grid;
+        place-items: center;
+        margin: 0 auto 1.2rem;
+        box-shadow: 0 6px 20px rgba(18,66,197,0.3);
+        border: 3px solid #fff;
+      }
+      .hw-step-icon {
+        font-size: 1.6rem;
+        display: block;
+        margin-bottom: 0.6rem;
+      }
+      .hw-step h3 {
+        margin: 0 0 0.4rem;
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: #0a0f1e;
+      }
+      .hw-step p { margin: 0; color: #6b7280; font-size: 0.82rem; line-height: 1.6; }
+
+      /* DETAIL CARDS */
+      .hw-detail-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+        margin-bottom: 3.5rem;
+      }
+      .hw-detail-card {
+        border: 1.5px solid #e8edf8;
+        border-radius: 22px;
+        padding: 1.6rem;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.05);
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .hw-detail-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(18,66,197,0.1);
+      }
+      .hw-detail-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #e8f0fe, #dce8ff);
+        display: grid;
+        place-items: center;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+      }
+      .hw-detail-card h3 {
+        margin: 0 0 0.35rem;
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: #0a0f1e;
+      }
+      .hw-detail-card p { margin: 0; color: #6b7280; font-size: 0.85rem; line-height: 1.6; }
+
+      /* BLUE STRIP */
+      .hw-strip {
+        background: linear-gradient(135deg, #1242c5 0%, #2f6bff 100%);
+        border-radius: 28px;
+        padding: 3rem 2.5rem;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2rem;
+        align-items: center;
+        margin: 0 0 4rem;
+      }
+      .hw-strip h2 {
+        margin: 0 0 0.5rem;
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #fff;
+      }
+      .hw-strip p { margin: 0; color: rgba(255,255,255,0.7); font-size: 0.95rem; }
+      .hw-strip-btn {
+        background: #fff;
+        color: #1242c5;
+        border: 0;
+        border-radius: 14px;
+        padding: 0.9rem 1.6rem;
+        font-weight: 800;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        white-space: nowrap;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        transition: transform 0.15s;
+      }
+      .hw-strip-btn:hover { transform: translateY(-1px); }
+
+      /* VIDEO / VISUAL SECTION */
+      .hw-visual {
+        border: 1.5px solid #e8edf8;
+        border-radius: 24px;
+        overflow: hidden;
+        margin-bottom: 4rem;
+        box-shadow: 0 4px 24px rgba(18,66,197,0.07);
+      }
+      .hw-visual-header {
+        background: linear-gradient(135deg, #f0f5ff, #e8f0fe);
+        padding: 1.4rem 1.6rem;
+        border-bottom: 1px solid #e2eafc;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .hw-dot { width: 12px; height: 12px; border-radius: 50%; }
+      .hw-dot.red { background: #ff5f57; }
+      .hw-dot.yellow { background: #febc2e; }
+      .hw-dot.green { background: #28c840; }
+      .hw-visual-body {
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+      .hw-screen {
+        border: 1.5px solid #e8edf8;
+        border-radius: 16px;
+        padding: 1.2rem;
+        background: #fafbff;
+        text-align: center;
+      }
+      .hw-screen-icon { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+      .hw-screen h4 { margin: 0 0 0.3rem; font-size: 0.88rem; font-weight: 800; color: #0a0f1e; }
+      .hw-screen p { margin: 0; font-size: 0.78rem; color: #6b7280; line-height: 1.5; }
+      .hw-screen-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: #1242c5;
+        font-weight: 800;
+      }
+
+      /* FAQ */
+      .hw-faq { padding: 0 0 4rem; }
+      .hw-faq h2 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #0a0f1e;
+        margin: 0 0 1.4rem;
+      }
+      .hw-faq-list { display: grid; gap: 0.8rem; }
+      .hw-faq-item { border: 1.5px solid #e8edf8; border-radius: 16px; overflow: hidden; }
+      .hw-faq-q {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.2rem;
+        background: #fff;
+        border: 0;
+        font-weight: 800;
+        font-size: 0.92rem;
+        color: #0a0f1e;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: inherit;
+      }
+      .hw-faq-q::after { content: "+"; font-size: 1.2rem; color: #1242c5; }
+      .hw-faq-q.open::after { content: "−"; }
+      .hw-faq-a { display: none; padding: 0 1.2rem 1rem; color: #6b7280; font-size: 0.88rem; line-height: 1.7; }
+      .hw-faq-a.open { display: block; }
+
+      @media (max-width: 900px) {
+        .hw-steps { grid-template-columns: repeat(2, 1fr); }
+        .hw-steps::before { display: none; }
+        .hw-detail-grid { grid-template-columns: 1fr; }
+        .hw-strip { grid-template-columns: 1fr; }
+        .hw-visual-body { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 600px) {
+        .hw-steps { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="nav-wrap">
+        <div class="brand-block">
+          <div class="logo">cityvibe</div>
+          <div class="brand-sub">by OGSHOOTS LUXE</div>
+        </div>
+        <nav class="topnav">
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="features.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="how-it-works.html">How It Works</a>
+        </nav>
+        <div class="auth-actions">
+          <a class="nav-link" href="login.html">Login</a>
+          <a class="nav-cta" href="login.html">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- HERO -->
+      <section class="hw-hero">
+        <div class="hw-hero-inner">
+          <div class="hw-badge">⚡ How It Works</div>
+          <h1>From listing to<br><span>confirmed booking</span></h1>
+          <p>Whether you're an organizer creating events or a guest booking tickets — cityvibe makes the entire flow simple, fast, and secure.</p>
+        </div>
+      </section>
+
+      <!-- TABS + STEPS -->
+      <section class="hw-tabs-section">
+        <div class="hw-wrap">
+          <div class="hw-tabs">
+            <button class="hw-tab active" data-tab="guest">For Guests</button>
+            <button class="hw-tab" data-tab="organizer">For Organizers</button>
+          </div>
+
+          <!-- GUEST STEPS -->
+          <div class="hw-steps-panel active" id="tab-guest">
+            <div class="hw-steps">
+              <div class="hw-step">
+                <div class="hw-step-num">1</div>
+                <span class="hw-step-icon">🔍</span>
+                <h3>Discover Events</h3>
+                <p>Browse verified events in Hyderabad by category, date, or keyword.</p>
+              </div>
+              <div class="hw-step">
+                <div class="hw-step-num">2</div>
+                <span class="hw-step-icon">🎟️</span>
+                <h3>Select & Book</h3>
+                <p>Pick your seats or passes, enter your details, and choose a payment method.</p>
+              </div>
+              <div class="hw-step">
+                <div class="hw-step-num">3</div>
+                <span class="hw-step-icon">💳</span>
+                <h3>Pay Instantly</h3>
+                <p>Complete payment via UPI, QR scan, card, or wallet in seconds.</p>
+              </div>
+              <div class="hw-step">
+                <div class="hw-step-num">4</div>
+                <span class="hw-step-icon">✅</span>
+                <h3>Get Confirmed</h3>
+                <p>Receive an instant booking confirmation with a unique code and receipt.</p>
+              </div>
+            </div>
+
+            <div class="hw-detail-grid">
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">🗺️</div>
+                <div>
+                  <h3>Find events near you</h3>
+                  <p>Filter by location, category, or date. Every listing includes venue details, maps, and parking info so you always know where to go.</p>
+                </div>
+              </div>
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">⚡</div>
+                <div>
+                  <h3>Lightning-fast checkout</h3>
+                  <p>Our checkout is optimised for mobile. From event page to confirmed booking in under 60 seconds — no account required for free events.</p>
+                </div>
+              </div>
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">📱</div>
+                <div>
+                  <h3>Pay your way</h3>
+                  <p>UPI, Google Pay, PhonePe, Paytm, QR scan, debit/credit card, or wallet — choose whatever works best for you.</p>
+                </div>
+              </div>
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">🔔</div>
+                <div>
+                  <h3>Reminders & updates</h3>
+                  <p>Get automatic email and SMS reminders before your event. If anything changes, you'll be the first to know.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ORGANIZER STEPS -->
+          <div class="hw-steps-panel" id="tab-organizer">
+            <div class="hw-steps">
+              <div class="hw-step">
+                <div class="hw-step-num">1</div>
+                <span class="hw-step-icon">🔐</span>
+                <h3>Create Account</h3>
+                <p>Sign up with Google or email. OGSHOOTS LUXE members get instant access with 0% fees.</p>
+              </div>
+              <div class="hw-step">
+                <div class="hw-step-num">2</div>
+                <span class="hw-step-icon">📋</span>
+                <h3>List Your Event</h3>
+                <p>Add event name, venue, date, ticket tiers, capacity, and payment details in minutes.</p>
+              </div>
+              <div class="hw-step">
+                <div class="hw-step-num">3</div>
+                <span class="hw-step-icon">📣</span>
+                <h3>Share & Sell</h3>
+                <p>Share your event link. Guests book and pay directly — no third-party redirects.</p>
+              </div>
+              <div class="hw-step">
+                <div class="hw-step-num">4</div>
+                <span class="hw-step-icon">📊</span>
+                <h3>Track & Manage</h3>
+                <p>Monitor bookings, revenue, and attendees live from your dashboard.</p>
+              </div>
+            </div>
+
+            <div class="hw-detail-grid">
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">🎛️</div>
+                <div>
+                  <h3>Powerful dashboard</h3>
+                  <p>See all bookings, payment statuses, and attendee data in one clean view. Export reports with a single click.</p>
+                </div>
+              </div>
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">💰</div>
+                <div>
+                  <h3>Transparent pricing</h3>
+                  <p>Starter plan charges just 2% per ticket. OGSHOOTS LUXE members pay 0% — forever. No hidden fees, no surprises.</p>
+                </div>
+              </div>
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">👥</div>
+                <div>
+                  <h3>Team management</h3>
+                  <p>Add co-organizers and volunteers with custom roles. Keep your team in sync without sharing your login credentials.</p>
+                </div>
+              </div>
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">🔒</div>
+                <div>
+                  <h3>Secure & verified</h3>
+                  <p>Firebase-powered authentication with email verification and session management keeps your account and data safe.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- VISUAL FLOW -->
+      <div class="hw-wrap">
+        <div class="hw-visual">
+          <div class="hw-visual-header">
+            <div class="hw-dot red"></div>
+            <div class="hw-dot yellow"></div>
+            <div class="hw-dot green"></div>
+            <span style="margin-left:0.6rem; font-size:0.82rem; font-weight:700; color:#6b7280;">cityvibe booking flow</span>
+          </div>
+          <div class="hw-visual-body">
+            <div class="hw-screen">
+              <span class="hw-screen-icon">🔍</span>
+              <h4>Events Page</h4>
+              <p>Browse and filter events by category, date, and location</p>
+            </div>
+            <div class="hw-screen-arrow">→</div>
+            <div class="hw-screen">
+              <span class="hw-screen-icon">💳</span>
+              <h4>Checkout</h4>
+              <p>Select seats, enter details, choose UPI / QR / Card</p>
+            </div>
+            <div class="hw-screen-arrow">→</div>
+            <div class="hw-screen">
+              <span class="hw-screen-icon">✅</span>
+              <h4>Confirmed</h4>
+              <p>Instant confirmation with booking code and receipt</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA STRIP -->
+      <div class="hw-wrap">
+        <div class="hw-strip">
+          <div>
+            <h2>Ready to get started?</h2>
+            <p>Create your first event or browse what's happening in Hyderabad today.</p>
+          </div>
+          <div style="display:flex;gap:0.8rem;flex-wrap:wrap;">
+            <a class="hw-strip-btn" href="login.html">Create an Event</a>
+            <a class="hw-strip-btn" href="events.html" style="background:rgba(255,255,255,0.12);color:#fff;border:1.5px solid rgba(255,255,255,0.25);">Browse Events</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <section class="hw-faq">
+        <div class="hw-wrap">
+          <h2>Common questions</h2>
+          <div class="hw-faq-list">
+            <div class="hw-faq-item">
+              <button class="hw-faq-q">Do I need an account to book a ticket?</button>
+              <div class="hw-faq-a">For free events, no account is needed. For paid events, you'll need to sign in so we can send your confirmation and receipt securely.</div>
+            </div>
+            <div class="hw-faq-item">
+              <button class="hw-faq-q">How long does payment take to confirm?</button>
+              <div class="hw-faq-a">Payments via UPI and QR confirm instantly — usually within 5 seconds. Card payments may take up to 30 seconds depending on your bank.</div>
+            </div>
+            <div class="hw-faq-item">
+              <button class="hw-faq-q">Can I get a refund if I cancel?</button>
+              <div class="hw-faq-a">Refund policies are set by each event organizer. You can view the refund policy on the event listing page before booking.</div>
+            </div>
+            <div class="hw-faq-item">
+              <button class="hw-faq-q">How do I list my event on cityvibe?</button>
+              <div class="hw-faq-a">Sign up or log in, go to your dashboard, and click "Create Event". Fill in the details, set your ticket price, and publish — it takes less than 5 minutes.</div>
+            </div>
+            <div class="hw-faq-item">
+              <button class="hw-faq-q">What payment methods are supported?</button>
+              <div class="hw-faq-a">We support UPI (Google Pay, PhonePe, Paytm), QR code scan, debit/credit cards, and digital wallets.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-wrap">
+        <div class="footer-branding">
+          <div class="footer-brand">cityvibe</div>
+          <p>Events, workshops, and restaurant bookings in one smooth flow.</p>
+          <span class="footer-tag">Developed by Srisanth Boddu</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="features.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="how-it-works.html">How It Works</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <a href="tel:+916305183601">6305183601</a>
+          <span>Contact details will be updated from the admin panel.</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 cityvibe. All rights reserved.</span>
+        <span>Built for events, workshops, and restaurant reservations.</span>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll(".hw-tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".hw-tab").forEach(t => t.classList.remove("active"));
+          document.querySelectorAll(".hw-steps-panel").forEach(p => p.classList.remove("active"));
+          tab.classList.add("active");
+          document.getElementById("tab-" + tab.dataset.tab).classList.add("active");
+        });
+      });
+
+      document.querySelectorAll(".hw-faq-q").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const ans = btn.nextElementSibling;
+          const isOpen = btn.classList.contains("open");
+          document.querySelectorAll(".hw-faq-q").forEach(b => { b.classList.remove("open"); b.nextElementSibling.classList.remove("open"); });
+          if (!isOpen) { btn.classList.add("open"); ans.classList.add("open"); }
+        });
+      });
+    </script>
+  </body>
+</html>
