@@ -31,9 +31,7 @@ const mimeTypes = {
 
 const dashboardFiles = {
   admin: "admin-dashboard.html",
-  customer: "customer-dashboard.html",
   client: "client-dashboard.html",
-  manager: "client-dashboard.html",
 };
 
 const clientPages = {
@@ -140,7 +138,7 @@ function createSession(user) {
     phoneNumber: user.phoneNumber || "",
     emailVerified: Boolean(user.emailVerified ?? true),
     admin: user.role === "admin",
-    role: user.role || "customer",
+    role: user.role === "admin" ? "admin" : "client",
     provider: user.provider || "password",
     createdAt: Date.now(),
   };
@@ -204,7 +202,7 @@ const server = http.createServer(async (req, res) => {
   if (req.method === "POST" && url.pathname === "/api/auth/verify") {
     try {
       const body = await readBody(req);
-      const { idToken, role = "customer", onboardingComplete = false } = body;
+      const { idToken, role = "client", onboardingComplete = false } = body;
       if (!idToken) return send(res, 400, { success: false, error: "Missing idToken" });
 
       const decoded = await admin.auth().verifyIdToken(idToken);
@@ -217,7 +215,7 @@ const server = http.createServer(async (req, res) => {
         phoneNumber: decoded.phone_number || "",
         emailVerified: Boolean(decoded.email_verified),
         admin: Boolean(decoded.admin),
-        role,
+        role: role === "admin" ? "admin" : "client",
         onboardingComplete: Boolean(onboardingComplete),
         provider: decoded.firebase?.sign_in_provider || "",
         createdAt: Date.now(),
@@ -256,7 +254,6 @@ const server = http.createServer(async (req, res) => {
       const username = String(body.username || "").trim();
       const fullName = String(body.name || "").trim();
       const password = String(body.password || "");
-      const role = String(body.role || "customer").toLowerCase();
       if (!username || !fullName || !password) {
         return send(res, 400, { success: false, error: "Missing username, name, or password" });
       }
@@ -266,7 +263,7 @@ const server = http.createServer(async (req, res) => {
       const account = {
         username,
         password,
-        role: role === "admin" ? "admin" : role === "client" || role === "manager" ? "client" : "customer",
+        role: "client",
         name: fullName,
         email: `${username.toLowerCase()}@cityvibe.local`,
       };
@@ -492,10 +489,10 @@ const server = http.createServer(async (req, res) => {
   if (req.method === "GET" && url.pathname === "/dashboard") {
     const session = requireSession(req);
     if (!session) return send(res, 401, "Unauthorized");
-    if ((session.role === "client" || session.role === "manager") && !session.onboardingComplete) {
+    if (session.role === "client" && !session.onboardingComplete) {
       return send(res, 302, "", { Location: "/onboarding/client" });
     }
-    return send(res, 302, "", { Location: `/dashboard/${session.role || "customer"}` });
+    return send(res, 302, "", { Location: `/dashboard/${session.role || "client"}` });
   }
 
   if (req.method === "GET" && url.pathname === "/onboarding") {
@@ -521,20 +518,18 @@ const server = http.createServer(async (req, res) => {
       return send(res, 401, html, { "Content-Type": "text/html; charset=utf-8" });
     }
     const parts = url.pathname.split("/").filter(Boolean);
-    const requestedRole = parts[1] || "customer";
+    const requestedRole = parts[1] || "client";
     const requestedPage = parts[2] || "";
-    if (requestedRole !== session.role && requestedRole !== "customer" && requestedRole !== "client" && requestedRole !== "manager" && requestedRole !== "admin") {
+    if (requestedRole !== session.role && requestedRole !== "client" && requestedRole !== "admin") {
       return send(res, 404, "Not found");
     }
     if (requestedRole !== session.role) {
-      return send(res, 302, "", { Location: `/dashboard/${session.role || "customer"}` });
+      return send(res, 302, "", { Location: `/dashboard/${session.role || "client"}` });
     }
     const fileName =
       requestedRole === "admin"
         ? adminPages[requestedPage] || adminPages[""]
-        : requestedRole === "client" || requestedRole === "manager"
-          ? clientPages[requestedPage] || clientPages[""]
-          : dashboardFiles[requestedRole] || dashboardFiles.customer;
+        : clientPages[requestedPage] || clientPages[""];
     const html = await readFile(join(publicDir, fileName), "utf8");
     return send(res, 200, html, { "Content-Type": "text/html; charset=utf-8" });
   }

@@ -123,105 +123,109 @@
       }
       .hw-step p { margin: 0; color: #6b7280; font-size: 0.82rem; line-height: 1.6; }
       .hw-organizer-hero {
-        max-width: 1320px;
-        margin: 0 auto 2.5rem;
-        padding: 0 1rem;
+        max-width: 1400px;
+        margin: 0 auto 3rem;
+        padding: 0 1.2rem;
       }
       .hw-organizer-graphic {
-        margin-bottom: 2.2rem;
+        margin-bottom: 2.4rem;
       }
       .hw-organizer-top {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 1rem;
+        gap: 0.8rem;
         position: relative;
-        padding-top: 1.5rem;
+        padding-top: 1.1rem;
       }
       .hw-organizer-top::before {
         content: "";
         position: absolute;
-        left: 8.5%;
-        right: 8.5%;
-        top: 4.1rem;
-        height: 3px;
-        background: linear-gradient(90deg, rgba(18,66,197,0.18), #1242c5, rgba(18,66,197,0.18));
+        left: 11%;
+        right: 11%;
+        top: 4rem;
+        height: 2px;
+        background: linear-gradient(90deg, rgba(18,66,197,0.22), #1242c5, rgba(18,66,197,0.22));
       }
       .hw-org-step {
         text-align: center;
         position: relative;
         z-index: 1;
+        padding: 0 0.8rem;
       }
       .hw-org-num {
-        width: 86px;
-        height: 86px;
+        width: 56px;
+        height: 56px;
         border-radius: 999px;
-        margin: 0 auto 2.3rem;
+        margin: 0 auto 1.15rem;
         display: grid;
         place-items: center;
         background: linear-gradient(180deg, #2f6bff, #1242c5);
         color: #fff;
-        border: 5px solid #fff;
-        box-shadow: 0 12px 28px rgba(18,66,197,0.26), 0 0 0 10px rgba(18,66,197,0.08);
+        border: 3px solid #fff;
+        box-shadow: 0 6px 20px rgba(18,66,197,0.3);
         font-weight: 800;
-        font-size: 1.3rem;
+        font-size: 1.1rem;
       }
       .hw-org-icon {
-        font-size: 2.1rem;
+        font-size: 1.6rem;
         line-height: 1;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.6rem;
       }
       .hw-org-step h3 {
-        margin: 0 0 0.45rem;
-        font-size: clamp(1.05rem, 1.4vw, 1.7rem);
+        margin: 0 0 0.4rem;
+        font-size: 0.95rem;
         font-weight: 800;
         color: #111827;
       }
       .hw-org-step p {
         margin: 0;
         color: #6b7280;
-        font-size: clamp(0.93rem, 1.05vw, 1.1rem);
-        line-height: 1.55;
+        font-size: 0.82rem;
+        line-height: 1.6;
       }
       .hw-org-cards {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.2rem;
-        margin-top: 2.2rem;
+        gap: 1.3rem;
+        margin-top: 1.6rem;
       }
       .hw-org-card {
-        border: 2px solid #e1e8fb;
-        border-radius: 26px;
+        border: 1.5px solid #e8edf8;
+        border-radius: 22px;
         background: #fff;
-        padding: 1.8rem 2rem;
-        min-height: 196px;
+        padding: 1.6rem;
+        min-height: 0;
         display: flex;
         align-items: flex-start;
         gap: 1.2rem;
-        box-shadow: 0 10px 30px rgba(18,66,197,0.05);
+        box-shadow: 0 4px 20px rgba(18,66,197,0.05);
       }
       .hw-org-card-icon {
-        width: 68px;
-        height: 68px;
-        border-radius: 18px;
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
         flex: none;
         display: grid;
         place-items: center;
         background: linear-gradient(180deg, #eef4ff, #dce8ff);
         color: #1242c5;
-        font-size: 1.8rem;
+        font-size: 1.7rem;
         font-weight: 800;
       }
       .hw-org-card h4 {
         margin: 0 0 0.35rem;
-        font-size: 1.02rem;
+        font-size: 1rem;
         font-weight: 800;
         color: #111827;
       }
       .hw-org-card p {
         margin: 0;
         color: #6b7280;
-        font-size: 0.94rem;
+        font-size: 0.92rem;
         line-height: 1.65;
+      }
+      .organizer-block-gap {
+        height: 4.5rem;
       }
       @media (max-width: 900px) {
         .hw-organizer-top,
@@ -232,14 +236,13 @@
           display: none;
         }
         .hw-org-num {
-          margin-bottom: 1.2rem;
+          margin-bottom: 1rem;
         }
         .hw-org-card {
           min-height: auto;
           padding: 1.4rem;
         }
       }
-
       /* DETAIL CARDS */
       .hw-detail-grid {
         display: grid;
@@ -472,6 +475,18 @@
         margin: 0 0 1.4rem;
       }
       .hw-faq-list { display: grid; gap: 0.8rem; }
+      .hw-faq-tab-label {
+        display: inline-flex;
+        margin: 0 0 1rem;
+        padding: 0.35rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(18,66,197,0.08);
+        color: #1242c5;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
       .hw-faq-item { border: 1.5px solid #e8edf8; border-radius: 16px; overflow: hidden; }
       .hw-faq-q {
         width: 100%;
@@ -674,171 +689,166 @@
 
           </div>
 
-          <!-- ORGANIZER STEPS -->
           <div class="hw-steps-panel" id="tab-organizer">
-            <div class="hw-organizer-hero">
-              <div class="hw-organizer-graphic">
-                <div class="hw-organizer-top">
-                  <div class="hw-org-step">
-                    <div class="hw-org-num">1</div>
-                    <div class="hw-org-icon">🔐</div>
-                    <h3>Create Account</h3>
-                    <p>Sign up with Google or email. OGSHOOTS LUXE members get instant access with 0% fees.</p>
-                  </div>
-                  <div class="hw-org-step">
-                    <div class="hw-org-num">2</div>
-                    <div class="hw-org-icon">📋</div>
-                    <h3>List Your Event</h3>
-                    <p>Add event name, venue, date, ticket tiers, capacity, and payment details in minutes.</p>
-                  </div>
-                  <div class="hw-org-step">
-                    <div class="hw-org-num">3</div>
-                    <div class="hw-org-icon">📣</div>
-                    <h3>Share &amp; Sell</h3>
-                    <p>Share your event link. Guests book and pay directly no third-party redirects.</p>
-                  </div>
-                  <div class="hw-org-step">
-                    <div class="hw-org-num">4</div>
-                    <div class="hw-org-icon">📊</div>
-                    <h3>Track &amp; Manage</h3>
-                    <p>Monitor bookings, revenue, and attendees live from your dashboard.</p>
-                  </div>
-                </div>
+            <div class="hw-steps">
+              <div class="hw-step">
+                <div class="hw-step-num">1</div>
+                <span class="hw-step-icon">🔐</span>
+                <h3>Create Account</h3>
+                <p>Sign up with Google or email. OGSHOOTS LUXE members get instant access with 0% fees.</p>
+              </div>
+              <div class="hw-step">
+                <div class="hw-step-num">2</div>
+                <span class="hw-step-icon">📋</span>
+                <h3>List Your Event</h3>
+                <p>Add event name, venue, date, ticket tiers, capacity, and payment details in minutes.</p>
+              </div>
+              <div class="hw-step">
+                <div class="hw-step-num">3</div>
+                <span class="hw-step-icon">📣</span>
+                <h3>Share &amp; Sell</h3>
+                <p>Share your event link. Guests book and pay directly with no third-party redirects.</p>
+              </div>
+              <div class="hw-step">
+                <div class="hw-step-num">4</div>
+                <span class="hw-step-icon">📊</span>
+                <h3>Track &amp; Manage</h3>
+                <p>Monitor bookings, revenue, and attendees live from your dashboard.</p>
+              </div>
+            </div>
 
-                <div class="hw-org-cards">
-                  <article class="hw-org-card">
-                    <div class="hw-org-card-icon">🎛</div>
-                    <div>
-                      <h4>Powerful dashboard</h4>
-                      <p>See all bookings, payment statuses, and attendee data in one clean view. Export reports with a single click.</p>
-                    </div>
-                  </article>
-                  <article class="hw-org-card">
-                    <div class="hw-org-card-icon">💰</div>
-                    <div>
-                      <h4>Transparent pricing</h4>
-                      <p>Starter plan charges just 2% per ticket. OGSHOOTS LUXE members pay 0% forever. No hidden fees, no surprises.</p>
-                    </div>
-                  </article>
-                  <article class="hw-org-card">
-                    <div class="hw-org-card-icon">👥</div>
-                    <div>
-                      <h4>Team management</h4>
-                      <p>Add co-organizers and volunteers with custom roles. Keep your team in sync without sharing your login credentials.</p>
-                    </div>
-                  </article>
-                  <article class="hw-org-card">
-                    <div class="hw-org-card-icon">🔒</div>
-                    <div>
-                      <h4>Secure &amp; verified</h4>
-                      <p>Firebase-powered authentication with email verification and session management keeps your account and data safe.</p>
-                    </div>
-                  </article>
+            <div class="hw-detail-grid">
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">🎛️</div>
+                <div>
+                  <h3>Powerful dashboard</h3>
+                  <p>See all bookings, payment statuses, and attendee data in one clean view. Export reports with a single click.</p>
+                </div>
+              </div>
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">💰</div>
+                <div>
+                  <h3>Transparent pricing</h3>
+                  <p>Starter plan charges just 2% per ticket. OGSHOOTS LUXE members pay 0% forever. No hidden fees, no surprises.</p>
+                </div>
+              </div>
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">👥</div>
+                <div>
+                  <h3>Team management</h3>
+                  <p>Add co-organizers and volunteers with custom roles. Keep your team in sync without sharing your login credentials.</p>
+                </div>
+              </div>
+              <div class="hw-detail-card">
+                <div class="hw-detail-icon">🔒</div>
+                <div>
+                  <h3>Secure &amp; verified</h3>
+                  <p>Firebase-powered authentication with email verification and session management keeps your account and data safe.</p>
                 </div>
               </div>
             </div>
-            <!-- ORGANIZER TIMELINE -->
-            <div class="hw-timeline organizer-timeline" style="max-width:860px;margin:2rem auto 0;">
-            <div class="hw-tl-left"><div class="hw-tl-phase">"Create your event"</div></div>
-            <div class="hw-tl-center"><div class="hw-tl-num">01</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right hw-tl-empty"></div>
-            <div class="hw-tl-left hw-tl-empty"></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128203;</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right">
-              <div class="hw-tl-feature">
-                <h4>Your event page is live <span class="tl-check">&#10003;</span></h4>
-                <p>Add title, venue, date, ticket tiers, and capacity. Publish in under 5 minutes.</p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">No Code</span><span class="hw-tl-tag">Instant Publish</span></div>
+
+            <div class="hw-timeline organizer-timeline" style="margin-top: 3rem;">
+              <div class="hw-tl-left"><div class="hw-tl-phase">"Create your event"</div></div>
+              <div class="hw-tl-center"><div class="hw-tl-num">01</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right hw-tl-empty"></div>
+              <div class="hw-tl-left hw-tl-empty"></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128203;</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right">
+                <div class="hw-tl-feature">
+                  <h4>Your event page is live <span class="tl-check">&#10003;</span></h4>
+                  <p>Add title, venue, date, ticket tiers, and capacity. Publish in under 5 minutes.</p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">No Code</span><span class="hw-tl-tag">Instant Publish</span></div>
+                </div>
+                <hr class="hw-tl-divider" />
+                <div class="hw-tl-feature">
+                  <h4>Share your link <span class="tl-check">&#10003;</span></h4>
+                  <p>One link - share on WhatsApp, Instagram, or email. Guests book directly.</p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">One Link</span><span class="hw-tl-tag">Mobile Ready</span></div>
+                </div>
               </div>
-              <hr class="hw-tl-divider" />
-              <div class="hw-tl-feature">
-                <h4>Share your link <span class="tl-check">&#10003;</span></h4>
-                <p>One link - share on WhatsApp, Instagram, or email. Guests book directly.</p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">One Link</span><span class="hw-tl-tag">Mobile Ready</span></div>
+              <div class="hw-tl-left"><div class="hw-tl-phase">"Guests book &amp; pay"</div></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-num">02</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right hw-tl-empty"></div>
+              <div class="hw-tl-left hw-tl-empty"></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128179;</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right">
+                <div class="hw-tl-feature">
+                  <h4>Payment in seconds <span class="tl-check">&#10003;</span></h4>
+                  <p>UPI, QR scan, card, or wallet - guests pay instantly without leaving your page.</p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">UPI</span><span class="hw-tl-tag">QR Scan</span><span class="hw-tl-tag">Card</span></div>
+                </div>
+                <hr class="hw-tl-divider" />
+                <div class="hw-tl-feature">
+                  <h4>Auto confirmation <span class="tl-check">&#10003;</span></h4>
+                  <p>Guests get an instant booking confirmation with a unique code - no manual follow-up needed.</p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">Instant</span><span class="hw-tl-tag">Booking Code</span></div>
+                </div>
+              </div>
+              <div class="hw-tl-left"><div class="hw-tl-phase">"On your Event Day!"</div></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-num">03</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right hw-tl-empty"></div>
+              <div class="hw-tl-left hw-tl-empty"></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128276;</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right">
+                <div class="hw-tl-feature">
+                  <h4>Nobody forgets to show up <span class="tl-check">&#10003;</span></h4>
+                  <p>Auto reminders sent - 1 week, 1 day, 1 hour before the event.</p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">Email</span><span class="hw-tl-tag">Auto Reminders</span></div>
+                </div>
+              </div>
+              <div class="hw-tl-left hw-tl-empty"></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128247;</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right">
+                <div class="hw-tl-feature">
+                  <h4>Check-in takes 2 seconds <span class="tl-check">&#10003;</span></h4>
+                  <p>Scan QR on their ticket, done. <strong>Duplicate ticket? Instant alert.</strong></p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">QR Scan</span><span class="hw-tl-tag">Fraud-Proof</span></div>
+                </div>
+              </div>
+              <div class="hw-tl-left hw-tl-empty"></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128101;</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right">
+                <div class="hw-tl-feature">
+                  <h4>You know who's here <span class="tl-check">&#10003;</span></h4>
+                  <p><strong>Live dashboard</strong> - who checked in, who hasn't, real-time headcount.</p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">Real-Time</span><span class="hw-tl-tag">Export</span></div>
+                </div>
+              </div>
+              <div class="hw-tl-left"><div class="hw-tl-phase">"How do I get my money?"</div></div>
+              <div class="hw-tl-center"><div class="hw-tl-num">04</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right hw-tl-empty"></div>
+              <div class="hw-tl-left hw-tl-empty"></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#127963;</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right">
+                <div class="hw-tl-feature">
+                  <h4>Add your bank details <span class="tl-check">&#10003;</span></h4>
+                  <p>Link your bank account in settings - <mark class="hw-highlight">one-time setup</mark>, takes 30 seconds.</p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">One-Time Setup</span><span class="hw-tl-tag">Secure</span></div>
+                </div>
+              </div>
+              <div class="hw-tl-left hw-tl-empty"></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128179;</div></div>
+              <div class="hw-tl-right">
+                <div class="hw-tl-feature">
+                  <h4>Get paid in 3-4 days <span class="tl-check">&#10003;</span></h4>
+                  <p>After each event, your earnings are <mark class="hw-highlight">automatically settled to your bank</mark>. No invoices, no chasing.</p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">Auto Payout</span><span class="hw-tl-tag">3-4 Days</span></div>
+                </div>
+              </div>
+              <div class="hw-tl-left"><div class="hw-tl-phase">"Keep growing"</div></div>
+              <div class="hw-tl-center"><div class="hw-tl-num">05</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right hw-tl-empty"></div>
+              <div class="hw-tl-left hw-tl-empty"></div>
+              <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128200;</div><div class="hw-tl-line"></div></div>
+              <div class="hw-tl-right">
+                <div class="hw-tl-feature">
+                  <h4>Track performance <span class="tl-check">&#10003;</span></h4>
+                  <p>Review bookings, revenue, and audience trends after every event so you can improve the next one.</p>
+                  <div class="hw-tl-tags"><span class="hw-tl-tag">Analytics</span><span class="hw-tl-tag">Insights</span></div>
+                </div>
               </div>
             </div>
-            <div class="hw-tl-left"><div class="hw-tl-phase">"Guests book &amp; pay"</div></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-num">02</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right hw-tl-empty"></div>
-            <div class="hw-tl-left hw-tl-empty"></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128179;</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right">
-              <div class="hw-tl-feature">
-                <h4>Payment in seconds <span class="tl-check">&#10003;</span></h4>
-                <p>UPI, QR scan, card, or wallet - guests pay instantly without leaving your page.</p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">UPI</span><span class="hw-tl-tag">QR Scan</span><span class="hw-tl-tag">Card</span></div>
-              </div>
-              <hr class="hw-tl-divider" />
-              <div class="hw-tl-feature">
-                <h4>Auto confirmation <span class="tl-check">&#10003;</span></h4>
-                <p>Guests get an instant booking confirmation with a unique code - no manual follow-up needed.</p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">Instant</span><span class="hw-tl-tag">Booking Code</span></div>
-              </div>
-            </div>
-            <div class="hw-tl-left"><div class="hw-tl-phase">"On your Event Day!"</div></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-num">03</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right hw-tl-empty"></div>
-            <div class="hw-tl-left hw-tl-empty"></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128276;</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right">
-              <div class="hw-tl-feature">
-                <h4>Nobody forgets to show up <span class="tl-check">&#10003;</span></h4>
-                <p>Auto reminders sent - 1 week, 1 day, 1 hour before the event.</p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">Email</span><span class="hw-tl-tag">Auto Reminders</span></div>
-              </div>
-            </div>
-            <div class="hw-tl-left hw-tl-empty"></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128247;</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right">
-              <div class="hw-tl-feature">
-                <h4>Check-in takes 2 seconds <span class="tl-check">&#10003;</span></h4>
-                <p>Scan QR on their ticket, done. <strong>Duplicate ticket? Instant alert.</strong></p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">QR Scan</span><span class="hw-tl-tag">Fraud-Proof</span></div>
-              </div>
-            </div>
-            <div class="hw-tl-left hw-tl-empty"></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128101;</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right">
-              <div class="hw-tl-feature">
-                <h4>You know who's here <span class="tl-check">&#10003;</span></h4>
-                <p><strong>Live dashboard</strong> - who checked in, who hasn't, real-time headcount.</p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">Real-Time</span><span class="hw-tl-tag">Export</span></div>
-              </div>
-            </div>
-            <div class="hw-tl-left"><div class="hw-tl-phase">"How do I get my money?"</div></div>
-            <div class="hw-tl-center"><div class="hw-tl-num">04</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right hw-tl-empty"></div>
-            <div class="hw-tl-left hw-tl-empty"></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#127963;</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right">
-              <div class="hw-tl-feature">
-                <h4>Add your bank details <span class="tl-check">&#10003;</span></h4>
-                <p>Link your bank account in settings - <mark class="hw-highlight">one-time setup</mark>, takes 30 seconds.</p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">One-Time Setup</span><span class="hw-tl-tag">Secure</span></div>
-              </div>
-            </div>
-            <div class="hw-tl-left hw-tl-empty"></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128179;</div></div>
-            <div class="hw-tl-right">
-              <div class="hw-tl-feature">
-                <h4>Get paid in 3-4 days <span class="tl-check">&#10003;</span></h4>
-                <p>After each event, your earnings are <mark class="hw-highlight">automatically settled to your bank</mark>. No invoices, no chasing.</p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">Auto Payout</span><span class="hw-tl-tag">3-4 Days</span></div>
-              </div>
-            </div>
-            <div class="hw-tl-left"><div class="hw-tl-phase">"Keep growing"</div></div>
-            <div class="hw-tl-center"><div class="hw-tl-num">05</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right hw-tl-empty"></div>
-            <div class="hw-tl-left hw-tl-empty"></div>
-            <div class="hw-tl-center"><div class="hw-tl-line"></div><div class="hw-tl-icon-circle">&#128200;</div><div class="hw-tl-line"></div></div>
-            <div class="hw-tl-right">
-              <div class="hw-tl-feature">
-                <h4>Track performance <span class="tl-check">&#10003;</span></h4>
-                <p>Review bookings, revenue, and audience trends after every event so you can improve the next one.</p>
-                <div class="hw-tl-tags"><span class="hw-tl-tag">Analytics</span><span class="hw-tl-tag">Insights</span></div>
-              </div>
-            </div>
-          </div>
           </div>
 
         </div>
@@ -862,26 +872,27 @@
       <section class="hw-faq">
         <div class="hw-wrap">
           <h2>Common questions</h2>
+          <div class="hw-faq-tab-label" id="faqTabLabel">For Guests</div>
           <div class="hw-faq-list">
             <div class="hw-faq-item">
-              <button class="hw-faq-q">Do I need an account to book a ticket?</button>
-              <div class="hw-faq-a">For free events, no account is needed. For paid events, you'll need to sign in so we can send your confirmation and receipt securely.</div>
+              <button class="hw-faq-q"></button>
+              <div class="hw-faq-a"></div>
             </div>
             <div class="hw-faq-item">
-              <button class="hw-faq-q">How long does payment take to confirm?</button>
-              <div class="hw-faq-a">Payments via UPI and QR confirm instantly — usually within 5 seconds. Card payments may take up to 30 seconds depending on your bank.</div>
+              <button class="hw-faq-q"></button>
+              <div class="hw-faq-a"></div>
             </div>
             <div class="hw-faq-item">
-              <button class="hw-faq-q">Can I get a refund if I cancel?</button>
-              <div class="hw-faq-a">Refund policies are set by each event organizer. You can view the refund policy on the event listing page before booking.</div>
+              <button class="hw-faq-q"></button>
+              <div class="hw-faq-a"></div>
             </div>
             <div class="hw-faq-item">
-              <button class="hw-faq-q">How do I list my event on cityvibe?</button>
-              <div class="hw-faq-a">Sign up or log in, go to your dashboard, and click "Create Event". Fill in the details, set your ticket price, and publish — it takes less than 5 minutes.</div>
+              <button class="hw-faq-q"></button>
+              <div class="hw-faq-a"></div>
             </div>
             <div class="hw-faq-item">
-              <button class="hw-faq-q">What payment methods are supported?</button>
-              <div class="hw-faq-a">We support UPI (Google Pay, PhonePe, Paytm), QR code scan, debit/credit cards, and digital wallets.</div>
+              <button class="hw-faq-q"></button>
+              <div class="hw-faq-a"></div>
             </div>
           </div>
         </div>
@@ -925,6 +936,39 @@
 
       const tabButtons = Array.from(document.querySelectorAll(".hw-tab"));
       const tabPanels = Array.from(document.querySelectorAll(".hw-steps-panel"));
+      const faqTabLabel = document.getElementById("faqTabLabel");
+      const faqButtons = Array.from(document.querySelectorAll(".hw-faq-q"));
+      const faqAnswers = Array.from(document.querySelectorAll(".hw-faq-a"));
+
+      const faqContent = {
+        guest: [
+          ["Do I need an account to book a ticket?", "For free events, no account is needed. For paid events, you'll need to sign in so we can send your confirmation and receipt securely."],
+          ["How long does payment take to confirm?", "Payments via UPI and QR confirm instantly, usually within 5 seconds. Card payments may take up to 30 seconds depending on your bank."],
+          ["Can I get a refund if I cancel?", "Refund policies are set by each event organizer. You can view the refund policy on the event listing page before booking."],
+          ["What payment methods are supported?", "We support UPI, QR code scan, debit or credit cards, and digital wallets."],
+          ["How do I find events near me?", "Use the search, category, or location filters on the events page to discover listings in your city."]
+        ],
+        organizer: [
+          ["How do I create my first event?", "Log in, open your dashboard, and click Create Event. Add the event title, venue, date, ticket tiers, and capacity, then publish."],
+          ["How do I receive payouts?", "Connect your bank account in settings once. After each event, earnings are settled automatically to your bank."],
+          ["Can I share one link with guests?", "Yes. Each event gets a shareable link that you can post on WhatsApp, Instagram, email, or anywhere else."],
+          ["Can my team help manage events?", "Yes. You can add co-organizers and volunteers with custom roles so everyone stays in sync."],
+          ["How do I track bookings and check-ins?", "Your dashboard shows bookings, payment status, attendee data, and live check-in activity in one place."]
+        ]
+      };
+
+      function renderFaq(tabName) {
+        const safeTab = tabName === "organizer" ? "organizer" : "guest";
+        const items = faqContent[safeTab];
+        faqTabLabel.textContent = safeTab === "organizer" ? "For Organizers" : "For Guests";
+        faqButtons.forEach((btn, index) => {
+          const [question, answer] = items[index];
+          btn.textContent = question;
+          btn.classList.remove("open");
+          faqAnswers[index].textContent = answer;
+          faqAnswers[index].classList.remove("open");
+        });
+      }
 
       function setActiveTab(tabName) {
         const safeTab = tabName === "organizer" ? "organizer" : "guest";
@@ -941,6 +985,7 @@
         } catch {
           // Ignore storage issues and keep the UI usable.
         }
+        renderFaq(safeTab);
       }
 
       tabButtons.forEach((tab) => {
@@ -962,11 +1007,14 @@
       setActiveTab(initialTab);
       window.scrollTo(0, 0);
 
-      document.querySelectorAll(".hw-faq-q").forEach(btn => {
+      faqButtons.forEach(btn => {
         btn.addEventListener("click", () => {
           const ans = btn.nextElementSibling;
           const isOpen = btn.classList.contains("open");
-          document.querySelectorAll(".hw-faq-q").forEach(b => { b.classList.remove("open"); b.nextElementSibling.classList.remove("open"); });
+          faqButtons.forEach((b, index) => {
+            b.classList.remove("open");
+            faqAnswers[index].classList.remove("open");
+          });
           if (!isOpen) { btn.classList.add("open"); ans.classList.add("open"); }
         });
       });

@@ -319,7 +319,6 @@
           <a href="#refunds">Refunds</a>
         </nav>
         <div class="nav">
-          <a class="btn secondary" href="/dashboard/customer">Customer dashboard</a>
           <a class="btn secondary" href="/dashboard/client">Client dashboard</a>
           <a class="btn secondary" href="/index.html">Home</a>
           <button class="btn primary" id="refreshBtn" type="button">Refresh</button>
@@ -436,9 +435,8 @@
             <label>
               Role
               <select id="userRole">
-                <option value="customer">Customer</option>
                 <option value="client">Client</option>
-                <option value="manager">Manager</option>
+                <option value="client">Client</option>
                 <option value="admin">Admin</option>
               </select>
             </label>
@@ -629,7 +627,7 @@
               <tr>
                 <td><strong>${escapeHtml(user.name || "Unnamed")}</strong></td>
                 <td>${escapeHtml(user.email || "-")}</td>
-                <td>${escapeHtml(user.role || "customer")}</td>
+                <td>${escapeHtml(user.role || "client")}</td>
                 <td><span class="status ${status}">${user.emailVerified ? "Verified" : "Pending"}</span></td>
                 <td>
                   <div class="mini-actions">
@@ -715,7 +713,7 @@
         if (!user) return;
         currentSelections.userId = user.id;
         els.userSelect.value = user.id;
-        els.userRole.value = user.role || "customer";
+        els.userRole.value = user.role || "client";
         els.userName.value = user.name || "";
         els.userVerified.value = user.emailVerified ? "true" : "false";
         openModal(userModal);

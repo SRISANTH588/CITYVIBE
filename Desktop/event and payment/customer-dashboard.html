@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cityvibe | Customer Dashboard</title>
+    <title>cityvibe | Client Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
@@ -42,8 +42,8 @@
   <body>
     <main class="shell">
       <aside class="sidebar">
-        <div class="brand"><span class="pill">cityvibe</span><strong>Customer Area</strong><span id="welcome">Manage your bookings</span></div>
-        <div class="pill">customer</div>
+        <div class="brand"><span class="pill">cityvibe</span><strong>Client Area</strong><span id="welcome">Manage your bookings</span></div>
+        <div class="pill">client</div>
         <nav class="nav">
           <a href="#overview">Overview</a>
           <a href="#bookings">Bookings</a>
@@ -59,7 +59,7 @@
       </aside>
       <section class="content">
         <header class="hero" id="overview">
-          <div><span class="pill">Customer Dashboard</span><h1>Your events and payments</h1><p>See upcoming bookings, payment history, and account status.</p></div>
+          <div><span class="pill">Client Dashboard</span><h1>Your events and payments</h1><p>See upcoming bookings, payment history, and account status.</p></div>
           <div><button class="btn secondary">Book event</button> <button class="btn secondary">Download receipt</button></div>
         </header>
         <section class="panel">
@@ -182,7 +182,7 @@
         const response = await fetch("/api/auth/me", { credentials: "include" });
         if (!response.ok) return (window.location.href = "/login.html");
         const payload = await response.json();
-        document.getElementById("welcome").textContent = `Welcome back, ${payload.user.name || "Customer"}`;
+        document.getElementById("welcome").textContent = `Welcome back, ${payload.user.name || "Client"}`;
         attachLiveData(payload.user.uid);
       }
 

@@ -85,14 +85,7 @@
           </form>
 
           <form class="auth-form auth-form-signup" data-auth-form="signup" hidden>
-            <label>
-              <span class="field-label">Account Type</span>
-              <div class="role-grid">
-                <button class="role-chip active" type="button" data-role="client">Client</button>
-                <button class="role-chip" type="button" data-role="customer">Customer</button>
-                <button class="role-chip" type="button" data-role="admin">Admin</button>
-              </div>
-            </label>
+            <div class="signup-note" style="margin-bottom: 1rem;">New signups are for client accounts only. Admin access is reserved.</div>
 
             <label>
               <span class="field-label">Username</span>
@@ -125,7 +118,7 @@
           </form>
 
           <div class="signup-footer">
-            <span>New customer?</span>
+            <span>New client?</span>
             <a href="#" id="signupCta">Sign Up</a>
           </div>
 
@@ -143,7 +136,7 @@
         </div>
         <div class="footer-links">
           <a href="index.html">Home</a>
-          <a href="customer-dashboard.html">Dashboard</a>
+          <a href="client-dashboard.html">Dashboard</a>
           <a href="#loginPhone">Login</a>
           <a href="#signupName">Sign Up</a>
         </div>
@@ -180,8 +173,6 @@
       const signupName = document.getElementById("signupName");
       const signupPassword = document.getElementById("signupPassword");
       const signupUsername = document.getElementById("signupUsername");
-      const roleChips = document.querySelectorAll("[data-role]");
-
       let selectedRole = "client";
 
       function setStatus(message, kind = "info") {
@@ -189,11 +180,10 @@
         authStatus.dataset.kind = kind;
       }
 
-      function getDashboardUrl(role = "customer") {
-        const normalizedRole = String(role || "customer").toLowerCase();
+      function getDashboardUrl(role = "client") {
+        const normalizedRole = String(role || "client").toLowerCase();
         if (normalizedRole === "admin") return "admin-dashboard.html";
-        if (normalizedRole === "client" || normalizedRole === "manager") return "client-dashboard.html";
-        return "customer-dashboard.html";
+        return "client-dashboard.html";
       }
 
       function goHome(role = selectedRole) {
@@ -251,12 +241,6 @@
       authTabs.forEach((tab) => {
         tab.addEventListener("click", () => setMode(tab.dataset.authTab));
       });
-      roleChips.forEach((chip) => {
-        chip.addEventListener("click", () => {
-          selectedRole = chip.dataset.role || "customer";
-          roleChips.forEach((item) => item.classList.toggle("active", item === chip));
-        });
-      });
       signupCta.addEventListener("click", (event) => {
         event.preventDefault();
         setMode("signup");
@@ -272,9 +256,9 @@
         }
         try {
           const result = await signInLocalAccount(loginValue, password);
-          selectedRole = result.user?.role || "customer";
+          selectedRole = result.user?.role === "admin" ? "admin" : "client";
           setStatus("Login successful. Redirecting...", "success");
-          if ((selectedRole === "client" || selectedRole === "manager") && !result.user?.onboardingComplete) {
+          if (selectedRole === "client" && !result.user?.onboardingComplete) {
             goOnboarding();
             return;
           }
@@ -302,16 +286,16 @@
               username,
               name: fullName,
               password,
-              role: selectedRole,
+              role: "client",
             }),
           });
           const data = await response.json().catch(() => ({}));
           if (!response.ok) {
             throw new Error(data.error || "Registration failed");
           }
-          selectedRole = data.user?.role || selectedRole;
+          selectedRole = "client";
           setStatus("Account created. Redirecting...", "success");
-          if ((selectedRole === "client" || selectedRole === "manager") && !data.user?.onboardingComplete) {
+          if (selectedRole === "client" && !data.user?.onboardingComplete) {
             goOnboarding();
             return;
           }
