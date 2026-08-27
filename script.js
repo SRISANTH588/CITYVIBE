@@ -163,7 +163,7 @@ async function openPaymentFlow() {
   const order = await createOrder();
   bookingCode.textContent = order.paymentId;
   paidAmount.textContent = currency.format(order.amount / 100);
-  confirmationText.textContent = "Scan the QR code or open your UPI app to complete the payment.";
+  confirmationText.textContent = "Scan the QR code or open your UPI app to complete the Cashfree payment.";
   paymentHeading.textContent = "Complete payment";
   liveStatus.textContent = "Pending";
   qrPreview.style.backgroundImage = `url("data:image/svg+xml;charset=UTF-8,${encodeURIComponent(order.qrSvg)}")`;

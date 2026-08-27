@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Admin Users</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>body{margin:0;font-family:Manrope,sans-serif;background:linear-gradient(180deg,#eff4ff,#f7faff 48%,#eef3fb);color:#0f172a}.shell{max-width:1440px;margin:0 auto;padding:1.25rem;display:grid;grid-template-columns:280px 1fr;gap:1rem;min-height:100vh}.sidebar,.panel,.modal-card{background:rgba(255,255,255,.9);border:1px solid rgba(18,66,197,.12);box-shadow:0 24px 60px rgba(15,23,42,.08);backdrop-filter:blur(14px)}.sidebar{border-radius:28px;padding:1.2rem;position:sticky;top:1.25rem;height:fit-content;display:grid;gap:1rem}.pill{display:inline-flex;width:fit-content;padding:.35rem .7rem;border-radius:999px;background:#dbe6ff;color:#1242c5;font-size:.76rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.nav{display:grid;gap:.55rem}.nav a,.nav button,.btn,.inline-btn{border:0;border-radius:16px;padding:.9rem 1rem;font-weight:800;cursor:pointer;text-decoration:none}.nav a,.nav button{background:#f8fbff;color:#13203a;text-align:left}.btn.primary,.inline-btn.primary{background:linear-gradient(180deg,#2f6bff,#1242c5);color:#fff}.btn.secondary,.inline-btn.secondary{background:#fff;color:#1242c5;border:1px solid rgba(18,66,197,.16)}.content{display:grid;gap:1rem}.hero,.panel{border-radius:28px;padding:1.15rem}.hero{background:linear-gradient(135deg,rgba(18,66,197,.98),rgba(24,108,255,.9));color:#fff;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.9rem}.metric{background:#fff;border:1px solid rgba(18,66,197,.1);border-radius:22px;padding:1rem}.table-wrap{overflow-x:auto;margin-top:1rem}table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:.9rem .75rem;border-bottom:1px solid rgba(18,66,197,.08);text-align:left}.status{padding:.3rem .6rem;border-radius:999px;font-size:.76rem;font-weight:900}.live{background:#dcfce7;color:#166534}.pending{background:#fef3c7;color:#92400e}.mini-actions{display:flex;gap:.5rem;flex-wrap:wrap}.inline-btn{padding:.6rem .8rem;font-size:.84rem}.card,.item{padding:.95rem 1rem;border-radius:18px;background:#f8fbff;border:1px solid rgba(18,66,197,.08)}.stack{display:grid;gap:.85rem;margin-top:1rem}.muted{color:#64748b}@media (max-width:1100px){.shell,.grid{grid-template-columns:1fr}.sidebar{position:static}}</style>
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <div><span class="pill">cityvibe</span><strong style="display:block;font-size:1.6rem;letter-spacing:-.05em">Admin Control</strong><span class="muted" id="welcome">Manage users</span></div>
+        <nav class="nav">
+          <a href="/dashboard/admin">Overview</a>
+          <a href="/dashboard/admin/users">Users</a>
+          <a href="/dashboard/admin/events">Events</a>
+          <a href="/dashboard/admin/refunds">Refunds</a>
+        </nav>
+        <div class="nav">
+          <a class="btn secondary" href="/dashboard/customer">Customer dashboard</a>
+          <a class="btn secondary" href="/dashboard/client">Client dashboard</a>
+          <a class="btn secondary" href="/index.html">Home</a>
+          <button class="btn primary" id="refreshBtn" type="button">Refresh</button>
+          <button class="btn secondary" id="logoutBtn" type="button">Logout</button>
+        </div>
+      </aside>
+      <section class="content">
+        <header class="hero"><div><span class="pill">Users</span><h1 style="margin:0;letter-spacing:-.05em">User management</h1><p>Roles and verification in one place.</p></div></header>
+        <section class="panel">
+          <div class="row" style="display:flex;justify-content:space-between;gap:1rem;align-items:center;flex-wrap:wrap"><div><h2 style="margin:0">Live users</h2><p class="muted">Edit the selected account or archive it.</p></div><button class="btn secondary" id="newUserBtn" type="button">Edit selected</button></div>
+          <div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th>Actions</th></tr></thead><tbody id="usersTable"></tbody></table></div>
+        </section>
+      </section>
+    </main>
+    <div class="modal" id="userModal" aria-hidden="true"><div class="modal-card"><header><div><span class="pill">Edit user</span><h3>Update a user record</h3></div><button class="close-btn" type="button" data-close="userModal">x</button></header><form id="userForm"><div class="form-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem;margin-top:1rem"><label>Select user<select id="userSelect"></select></label><label>Role<select id="userRole"><option value="customer">Customer</option><option value="client">Client</option><option value="manager">Manager</option><option value="admin">Admin</option></select></label><label>Display name<input id="userName" type="text"></label><label>Verification<select id="userVerified"><option value="true">Verified</option><option value="false">Unverified</option></select></label></div><div class="form-actions" style="display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem"><button class="btn primary" type="submit">Save user</button><button class="btn secondary" type="button" data-close="userModal">Cancel</button></div></form></div></div>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+      import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+      import { getFirestore, collection, doc, updateDoc, deleteDoc, query, orderBy, limit, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+      const app = initializeApp({ apiKey: "AIzaSyBCgNQy8EJLg7E-SA1cMePGetWLOR7WWMI", authDomain: "ogshootsluxe-36740.firebaseapp.com", projectId: "ogshootsluxe-36740", storageBucket: "ogshootsluxe-36740.firebasestorage.app", messagingSenderId: "5471814825", appId: "1:5471814825:web:07e84f2f88486da817d5b8" });
+      const auth = getAuth(app), db = getFirestore(app);
+      const usersTable = document.getElementById("usersTable"), userSelect = document.getElementById("userSelect"), userRole = document.getElementById("userRole"), userName = document.getElementById("userName"), userVerified = document.getElementById("userVerified"), userModal = document.getElementById("userModal");
+      let latestUsers = [];
+      const esc = (v) => String(v || "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;");
+      const open = () => { userModal.classList.add("open"); userModal.setAttribute("aria-hidden","false"); };
+      const close = () => { userModal.classList.remove("open"); userModal.setAttribute("aria-hidden","true"); };
+      function render(users){ latestUsers = users; usersTable.innerHTML = users.map((u)=>`<tr><td><strong>${esc(u.name||"Unnamed")}</strong></td><td>${esc(u.email||"-")}</td><td>${esc(u.role||"customer")}</td><td><span class="status ${u.emailVerified?"live":"pending"}">${u.emailVerified?"Verified":"Pending"}</span></td><td><div class="mini-actions"><button class="inline-btn secondary" data-user-edit="${u.id}">Edit</button><button class="inline-btn secondary" data-user-archive="${u.id}">Archive</button><button class="inline-btn secondary" data-user-delete="${u.id}">Delete</button></div></td></tr>`).join(""); userSelect.innerHTML = users.map((u)=>`<option value="${u.id}">${esc(u.name||u.email||u.id)}</option>`).join(""); }
+      function edit(id){ const u=latestUsers.find((x)=>x.id===id)||latestUsers[0]; if(!u)return; userSelect.value=u.id; userRole.value=u.role||"customer"; userName.value=u.name||""; userVerified.value=u.emailVerified?"true":"false"; open(); }
+      function bind(){ document.querySelectorAll("[data-user-edit]").forEach((b)=>b.onclick=()=>edit(b.dataset.userEdit)); document.querySelectorAll("[data-user-archive]").forEach((b)=>b.onclick=async()=>{ if(confirm("Archive this user?")) await updateDoc(doc(db,"users",b.dataset.userArchive),{archived:true,updatedAt:serverTimestamp()});}); document.querySelectorAll("[data-user-delete]").forEach((b)=>b.onclick=async()=>{ if(confirm("Delete this user permanently?")) await deleteDoc(doc(db,"users",b.dataset.userDelete));}); }
+      onSnapshot(query(collection(db,"users"),orderBy("createdAt","desc"),limit(50)),(snap)=>{ render(snap.docs.map((d)=>({id:d.id,...d.data()})).filter((u)=>!u.archived)); bind(); });
+      document.getElementById("userForm").addEventListener("submit", async (e)=>{ e.preventDefault(); await updateDoc(doc(db,"users",userSelect.value), { name: userName.value.trim(), role: userRole.value, emailVerified: userVerified.value === "true", updatedAt: serverTimestamp() }); close(); });
+      document.querySelectorAll("[data-close]").forEach((b)=>b.onclick=()=>close());
+      document.getElementById("newUserBtn").onclick=()=>edit(userSelect.value);
+      document.getElementById("logoutBtn").onclick=async()=>{ await fetch("/api/auth/logout",{method:"POST",credentials:"include"}); try{await signOut(auth);}catch{} window.location.href="/login.html"; };
+      document.getElementById("refreshBtn").onclick=async()=>{ const r=await fetch("/api/auth/me",{credentials:"include"}); if(!r.ok) return window.location.href="/login.html"; const p=await r.json(); document.getElementById("welcome").textContent=`Welcome back, ${p.user.name || "Admin"}`; };
+      (async()=>{ const r=await fetch("/api/auth/me",{credentials:"include"}); if(!r.ok) return window.location.href="/login.html"; const p=await r.json(); document.getElementById("welcome").textContent=`Welcome back, ${p.user.name || "Admin"}`; })();
+    </script>
+  </body>
+</html>

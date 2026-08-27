@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Client Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body { margin:0; font-family: Manrope, sans-serif; background: linear-gradient(180deg,#f4f8ff,#eef3fb); color:#0f172a; }
+      .shell { max-width: 1400px; margin:0 auto; padding:1.25rem; display:grid; grid-template-columns: 280px 1fr; gap:1rem; min-height:100vh; }
+      .sidebar, .panel { background: rgba(255,255,255,.92); border:1px solid rgba(18,66,197,.12); box-shadow:0 24px 60px rgba(15,23,42,.08); backdrop-filter: blur(14px); }
+      .sidebar { border-radius:28px; padding:1.2rem; position:sticky; top:1.25rem; height:fit-content; display:grid; gap:1rem; }
+      .brand strong { display:block; font-size:1.6rem; letter-spacing:-.05em; }
+      .pill { display:inline-flex; width:fit-content; padding:.35rem .7rem; border-radius:999px; background:#dbe6ff; color:var(--blue); font-size:.76rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+      .nav { display:grid; gap:.55rem; }
+      .nav a, .nav button, .btn { border:0; border-radius:16px; padding:.9rem 1rem; font-weight:800; cursor:pointer; text-decoration:none; }
+      .nav a, .nav button { background:#f8fbff; color:#13203a; text-align:left; }
+      .btn.primary { background: linear-gradient(180deg, #2f6bff, var(--blue)); color:#fff; }
+      .btn.secondary { background:#fff; color:var(--blue); border:1px solid rgba(18,66,197,.16); }
+      .content { display:grid; gap:1rem; }
+      .hero, .panel { border-radius:28px; padding:1.15rem; }
+      .hero { background: linear-gradient(135deg, #0f2c6f, #1242c5); color:#fff; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+      .hero h1, .panel h2, .panel h3 { margin:0; letter-spacing:-.05em; }
+      .hero p, .panel p { color: rgba(255,255,255,.88); }
+      .panel p { color:#64748b; }
+      .grid { display:grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap:.9rem; }
+      .metric { background:#fff; border:1px solid rgba(18,66,197,.1); border-radius:22px; padding:1rem; }
+      .metric small { color:#64748b; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+      .metric strong { display:block; margin-top:.4rem; font-size:1.7rem; }
+      .two { display:grid; grid-template-columns: 1.15fr .85fr; gap:1rem; }
+      .list { display:grid; gap:.8rem; margin-top:1rem; }
+      .item { padding:.95rem 1rem; border-radius:18px; background:#f8fbff; border:1px solid rgba(18,66,197,.08); }
+      .item strong { display:block; }
+      .card-grid { display:grid; gap:.8rem; margin-top:1rem; }
+      .card { padding:1rem; border-radius:20px; background:#f8fbff; border:1px solid rgba(18,66,197,.08); }
+      @media (max-width: 1100px) { .shell, .grid, .two { grid-template-columns: 1fr; } .sidebar { position: static; } }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="pill">cityvibe</span><strong>Client Dashboard</strong><span id="welcome">Manage event clients</span></div>
+        <div class="pill">client</div>
+        <nav class="nav">
+          <a href="/dashboard/client">Overview</a>
+          <a href="/dashboard/client/projects">Projects</a>
+          <a href="/dashboard/client/bookings">Bookings</a>
+          <a href="/dashboard/client/activity">Activity</a>
+        </nav>
+        <div class="nav">
+          <a class="btn secondary" href="/dashboard/admin">Admin dashboard</a>
+          <a class="btn secondary" href="/dashboard/customer">Customer dashboard</a>
+          <a class="btn secondary" href="/index.html">Home</a>
+          <button class="btn primary" id="refreshBtn" type="button">Refresh</button>
+          <button class="btn secondary" id="logoutBtn" type="button">Logout</button>
+        </div>
+      </aside>
+      <section class="content">
+        <header class="hero" id="overview">
+          <div><span class="pill">Client Workspace</span><h1>Operations for your clients</h1><p>Track campaigns, bookings, and follow-ups for clients you manage.</p></div>
+          <div><button class="btn secondary">New client</button> <button class="btn secondary">Send update</button></div>
+        </header>
+        <section class="panel">
+          <h2>Workspace snapshot</h2>
+          <div class="grid">
+            <div class="metric"><small>Clients</small><strong>26</strong><span>Active accounts</span></div>
+            <div class="metric"><small>Projects</small><strong>9</strong><span>In motion</span></div>
+            <div class="metric"><small>Bookings</small><strong>134</strong><span>Handled this month</span></div>
+            <div class="metric"><small>Status</small><strong>100%</strong><span>Session verified</span></div>
+          </div>
+        </section>
+        <section class="two" id="projects">
+          <article class="panel">
+            <h2>Client work</h2>
+            <div class="card-grid" id="cards"></div>
+          </article>
+          <article class="panel" id="activity">
+            <h3>Recent activity</h3>
+            <div class="list" id="activityList"></div>
+          </article>
+        </section>
+      </section>
+    </main>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+      import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+      import { getFirestore, collection, query, where, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+      initializeApp({
+        apiKey: "AIzaSyBCgNQy8EJLg7E-SA1cMePGetWLOR7WWMI",
+        authDomain: "ogshootsluxe-36740.firebaseapp.com",
+        projectId: "ogshootsluxe-36740",
+        storageBucket: "ogshootsluxe-36740.firebasestorage.app",
+        messagingSenderId: "5471814825",
+        appId: "1:5471814825:web:07e84f2f88486da817d5b8",
+      });
+
+      const auth = getAuth();
+      const db = getFirestore();
+      const cardsEl = document.getElementById("cards");
+      const activityEl = document.getElementById("activityList");
+      const clientsMetric = document.querySelector(".grid .metric:nth-child(1) strong");
+      const projectsMetric = document.querySelector(".grid .metric:nth-child(2) strong");
+      const bookingsMetric = document.querySelector(".grid .metric:nth-child(3) strong");
+      const statusMetric = document.querySelector(".grid .metric:nth-child(4) strong");
+      let unsubProjects = null;
+      let unsubBookings = null;
+
+      function renderFallback() {
+        cardsEl.innerHTML = `<div class="card"><strong>No client projects yet</strong><span>Projects assigned to you will appear here.</span></div>`;
+        activityEl.innerHTML = `<div class="item"><strong>No live activity</strong><span>Bookings and updates will show here.</span></div>`;
+      }
+
+      function attachLiveData(uid) {
+        if (unsubProjects) unsubProjects();
+        if (unsubBookings) unsubBookings();
+
+        const projectsQuery = query(collection(db, "clientProjects"), where("ownerId", "==", uid), orderBy("updatedAt", "desc"), limit(20));
+        const bookingsQuery = query(collection(db, "bookings"), where("clientId", "==", uid), orderBy("createdAt", "desc"), limit(20));
+
+        unsubProjects = onSnapshot(projectsQuery, (snapshot) => {
+          const projects = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+          clientsMetric.textContent = String(projects.length || 0);
+          projectsMetric.textContent = String(projects.length || 0);
+          cardsEl.innerHTML = projects.length
+            ? projects
+                .map(
+                  (project) => `
+                    <div class="card">
+                      <strong>${project.name || "Project"}</strong>
+                      <span>${project.status || "active"} | ${project.category || "general"}</span>
+                      <span>${project.summary || project.notes || "No notes yet"}</span>
+                    </div>`
+                )
+                .join("")
+            : `<div class="card"><strong>No client projects yet</strong><span>Projects assigned to you will appear here.</span></div>`;
+        });
+
+        unsubBookings = onSnapshot(bookingsQuery, (snapshot) => {
+          const bookings = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+          bookingsMetric.textContent = String(bookings.length);
+          statusMetric.textContent = bookings.length ? "100%" : "0%";
+          activityEl.innerHTML = bookings.length
+            ? bookings
+                .map(
+                  (booking) => `
+                    <div class="item">
+                      <strong>${booking.status === "paid" ? "Payment verified" : "Booking update"}</strong>
+                      <span>${booking.eventName || booking.name || booking.id} | ${booking.status || "pending"}</span>
+                    </div>`
+                )
+                .join("")
+            : `<div class="item"><strong>No live activity</strong><span>Bookings and updates will show here.</span></div>`;
+        });
+      }
+
+      async function logout() {
+        await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+        try {
+          await signOut(auth);
+        } catch {}
+        window.location.href = "/login.html";
+      }
+
+      async function refresh() {
+        const response = await fetch("/api/auth/me", { credentials: "include" });
+        if (!response.ok) return (window.location.href = "/login.html");
+        const payload = await response.json();
+        document.getElementById("welcome").textContent = `Welcome back, ${payload.user.name || "Client"}`;
+        attachLiveData(payload.user.uid);
+      }
+
+      document.getElementById("logoutBtn").addEventListener("click", logout);
+      document.getElementById("refreshBtn").addEventListener("click", refresh);
+      refresh();
+    </script>
+  </body>
+</html>

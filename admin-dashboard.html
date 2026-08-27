@@ -1,0 +1,909 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body {
+        margin: 0;
+        font-family: Manrope, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(18, 66, 197, 0.16), transparent 30%),
+          radial-gradient(circle at top right, rgba(15, 23, 42, 0.08), transparent 22%),
+          linear-gradient(180deg, #eff4ff, #f7faff 48%, #eef3fb);
+        color: #0f172a;
+      }
+      .shell {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 1.25rem;
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 1rem;
+        min-height: 100vh;
+      }
+      .sidebar,
+      .panel,
+      .modal-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(18, 66, 197, 0.12);
+        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+        backdrop-filter: blur(14px);
+      }
+      .sidebar {
+        border-radius: 28px;
+        padding: 1.2rem;
+        position: sticky;
+        top: 1.25rem;
+        height: fit-content;
+        display: grid;
+        gap: 1rem;
+      }
+      .brand strong {
+        display: block;
+        font-size: 1.6rem;
+        letter-spacing: -0.05em;
+      }
+      .pill {
+        display: inline-flex;
+        width: fit-content;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        background: #dbe6ff;
+        color: var(--blue);
+        font-size: 0.76rem;
+        font-weight: 900;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .nav {
+        display: grid;
+        gap: 0.55rem;
+      }
+      .nav a,
+      .nav button,
+      .btn,
+      .inline-btn {
+        border: 0;
+        border-radius: 16px;
+        padding: 0.9rem 1rem;
+        font-weight: 800;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .nav a,
+      .nav button {
+        background: #f8fbff;
+        color: #13203a;
+        text-align: left;
+      }
+      .btn.primary,
+      .inline-btn.primary {
+        background: linear-gradient(180deg, #2f6bff, var(--blue));
+        color: #fff;
+      }
+      .btn.secondary,
+      .inline-btn.secondary {
+        background: #fff;
+        color: var(--blue);
+        border: 1px solid rgba(18, 66, 197, 0.16);
+      }
+      .content {
+        display: grid;
+        gap: 1rem;
+      }
+      .hero,
+      .panel {
+        border-radius: 28px;
+        padding: 1.15rem;
+      }
+      .hero {
+        background: linear-gradient(135deg, rgba(18, 66, 197, 0.98), rgba(24, 108, 255, 0.9));
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .hero h1,
+      .panel h2,
+      .panel h3 {
+        margin: 0;
+        letter-spacing: -0.05em;
+      }
+      .hero p,
+      .panel p {
+        color: rgba(255, 255, 255, 0.88);
+      }
+      .panel p {
+        color: #64748b;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.9rem;
+      }
+      .metric {
+        background: #fff;
+        border: 1px solid rgba(18, 66, 197, 0.1);
+        border-radius: 22px;
+        padding: 1rem;
+      }
+      .metric small {
+        color: #64748b;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .metric strong {
+        display: block;
+        margin-top: 0.4rem;
+        font-size: 1.7rem;
+      }
+      .two {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 1rem;
+      }
+      .three {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+      .stack {
+        display: grid;
+        gap: 0.85rem;
+        margin-top: 1rem;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin-top: 1rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 720px;
+      }
+      th,
+      td {
+        padding: 0.9rem 0.75rem;
+        border-bottom: 1px solid rgba(18, 66, 197, 0.08);
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        color: #64748b;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 0.78rem;
+      }
+      .status {
+        padding: 0.3rem 0.6rem;
+        border-radius: 999px;
+        font-size: 0.76rem;
+        font-weight: 900;
+      }
+      .live { background: #dcfce7; color: #166534; }
+      .pending { background: #fef3c7; color: #92400e; }
+      .alert { background: #fee2e2; color: #991b1b; }
+      .item,
+      .card {
+        padding: 0.95rem 1rem;
+        border-radius: 18px;
+        background: #f8fbff;
+        border: 1px solid rgba(18, 66, 197, 0.08);
+      }
+      .item strong,
+      .card strong {
+        display: block;
+      }
+      .item span,
+      .card span,
+      .muted {
+        color: #64748b;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+      label {
+        display: grid;
+        gap: 0.35rem;
+        font-weight: 800;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid rgba(18, 66, 197, 0.16);
+        background: #fff;
+        padding: 0.9rem 1rem;
+        font: inherit;
+      }
+      textarea {
+        min-height: 110px;
+        resize: vertical;
+      }
+      .form-actions {
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+      .mini-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .inline-btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.84rem;
+      }
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.54);
+        display: none;
+        place-items: center;
+        padding: 1rem;
+        z-index: 50;
+      }
+      .modal.open {
+        display: grid;
+      }
+      .modal-card {
+        width: min(760px, 100%);
+        border-radius: 28px;
+        padding: 1.2rem;
+      }
+      .modal-card header {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        align-items: start;
+      }
+      .modal-card h3 {
+        margin: 0;
+      }
+      .close-btn {
+        border: 0;
+        background: #eef4ff;
+        color: var(--blue);
+        border-radius: 999px;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+      }
+      @media (max-width: 1100px) {
+        .shell,
+        .grid,
+        .two,
+        .three,
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="pill">cityvibe</span>
+          <strong>Admin Control</strong>
+          <span class="muted" id="welcome">Manage the full platform</span>
+        </div>
+        <div class="pill">admin</div>
+        <nav class="nav">
+          <a href="#overview">Overview</a>
+          <a href="#users">Users</a>
+          <a href="#events">Events</a>
+          <a href="#refunds">Refunds</a>
+        </nav>
+        <div class="nav">
+          <a class="btn secondary" href="/dashboard/customer">Customer dashboard</a>
+          <a class="btn secondary" href="/dashboard/client">Client dashboard</a>
+          <a class="btn secondary" href="/index.html">Home</a>
+          <button class="btn primary" id="refreshBtn" type="button">Refresh</button>
+          <button class="btn secondary" id="logoutBtn" type="button">Logout</button>
+        </div>
+      </aside>
+
+      <section class="content">
+        <header class="hero" id="overview">
+          <div>
+            <span class="pill">Admin Console</span>
+            <h1>Everything you need to manage</h1>
+            <p>Users, events, payments, approvals, and platform settings in one place.</p>
+          </div>
+          <div class="mini-actions">
+            <button class="btn secondary" id="openPublish">Publish event</button>
+            <button class="btn secondary" id="openUser">Edit user</button>
+            <button class="btn secondary" id="openRefund">Refund control</button>
+          </div>
+        </header>
+
+        <section class="panel">
+          <div class="row">
+            <div>
+              <h2>Live performance</h2>
+              <p>Numbers come from Firestore snapshots and update as data changes.</p>
+            </div>
+            <span class="pill" id="sessionBadge">live session</span>
+          </div>
+          <div class="grid">
+            <div class="metric"><small>Users</small><strong id="metricUsers">0</strong><span>Active accounts</span></div>
+            <div class="metric"><small>Revenue</small><strong id="metricRevenue">₹0</strong><span>This month</span></div>
+            <div class="metric"><small>Events</small><strong id="metricEvents">0</strong><span>Published listings</span></div>
+            <div class="metric"><small>Refunds</small><strong id="metricRefunds">0</strong><span>Pending actions</span></div>
+          </div>
+        </section>
+
+        <section class="two" id="users">
+          <article class="panel">
+            <div class="row">
+              <div>
+                <h2>User management</h2>
+                <p>Edit roles and verification status from live user records.</p>
+              </div>
+              <button class="btn secondary" id="newUserBtn" type="button">Edit selected</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="usersTable"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <h3>Recent activity</h3>
+            <div class="stack" id="activityList"></div>
+          </article>
+        </section>
+
+        <section class="three" id="events">
+          <article class="panel">
+            <div class="row">
+              <div>
+                <h2>Publish event</h2>
+                <p>Create or update event listings in Firestore.</p>
+              </div>
+            </div>
+            <div class="stack" id="eventCards"></div>
+          </article>
+
+          <article class="panel" id="refunds">
+            <div class="row">
+              <div>
+                <h3>Refund controls</h3>
+                <p>Review payment records and mark refund outcomes.</p>
+              </div>
+            </div>
+            <div class="stack" id="refundCards"></div>
+          </article>
+
+          <article class="panel">
+            <h3>System notes</h3>
+            <div class="stack" id="notesList"></div>
+          </article>
+        </section>
+      </section>
+    </main>
+
+    <div class="modal" id="userModal" aria-hidden="true">
+      <div class="modal-card">
+        <header>
+          <div>
+            <span class="pill">Edit user</span>
+            <h3>Update a user record</h3>
+            <p class="muted">Choose a user from the live table, then update role or verification status.</p>
+          </div>
+          <button class="close-btn" type="button" data-close="userModal">x</button>
+        </header>
+        <form id="userForm">
+          <div class="form-grid">
+            <label>
+              Select user
+              <select id="userSelect"></select>
+            </label>
+            <label>
+              Role
+              <select id="userRole">
+                <option value="customer">Customer</option>
+                <option value="client">Client</option>
+                <option value="manager">Manager</option>
+                <option value="admin">Admin</option>
+              </select>
+            </label>
+            <label>
+              Display name
+              <input id="userName" type="text" placeholder="Full name" />
+            </label>
+            <label>
+              Verification
+              <select id="userVerified">
+                <option value="true">Verified</option>
+                <option value="false">Unverified</option>
+              </select>
+            </label>
+          </div>
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Save user</button>
+            <button class="btn secondary" type="button" data-close="userModal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="eventModal" aria-hidden="true">
+      <div class="modal-card">
+        <header>
+          <div>
+            <span class="pill">Publish event</span>
+            <h3>Create a live event listing</h3>
+            <p class="muted">This writes to the events collection and appears in the admin table.</p>
+          </div>
+          <button class="close-btn" type="button" data-close="eventModal">x</button>
+        </header>
+        <form id="eventForm">
+          <div class="form-grid">
+            <label>
+              Event name
+              <input id="eventName" type="text" placeholder="Design Democracy 2026" />
+            </label>
+            <label>
+              City
+              <input id="eventCity" type="text" placeholder="Bengaluru" />
+            </label>
+            <label>
+              Price
+              <input id="eventPrice" type="number" min="0" step="1" placeholder="2499" />
+            </label>
+            <label>
+              Category
+              <select id="eventCategory">
+                <option value="music">Music</option>
+                <option value="business">Business</option>
+                <option value="food">Food</option>
+                <option value="community">Community</option>
+              </select>
+            </label>
+          </div>
+          <label style="margin-top: 0.8rem;">
+            Notes
+            <textarea id="eventNotes" placeholder="Short description or internal notes"></textarea>
+          </label>
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Publish event</button>
+            <button class="btn secondary" type="button" data-close="eventModal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="refundModal" aria-hidden="true">
+      <div class="modal-card">
+        <header>
+          <div>
+            <span class="pill">Refund control</span>
+            <h3>Process a refund</h3>
+            <p class="muted">Select a payment record and move it through refund states.</p>
+          </div>
+          <button class="close-btn" type="button" data-close="refundModal">x</button>
+        </header>
+        <form id="refundForm">
+          <div class="form-grid">
+            <label>
+              Payment
+              <select id="refundPayment"></select>
+            </label>
+            <label>
+              Outcome
+              <select id="refundStatus">
+                <option value="refund_pending">Refund pending</option>
+                <option value="refunded">Refunded</option>
+                <option value="review">Needs review</option>
+              </select>
+            </label>
+          </div>
+          <label style="margin-top: 0.8rem;">
+            Reason
+            <textarea id="refundReason" placeholder="Why this refund is being processed"></textarea>
+          </label>
+          <div class="form-actions">
+            <button class="btn primary" type="submit">Update refund</button>
+            <button class="btn secondary" type="button" data-close="refundModal">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+      import {
+        getAuth,
+        signOut,
+      } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        doc,
+        addDoc,
+        updateDoc,
+        deleteDoc,
+        query,
+        orderBy,
+        limit,
+        onSnapshot,
+        serverTimestamp,
+        where,
+      } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBCgNQy8EJLg7E-SA1cMePGetWLOR7WWMI",
+        authDomain: "ogshootsluxe-36740.firebaseapp.com",
+        projectId: "ogshootsluxe-36740",
+        storageBucket: "ogshootsluxe-36740.firebasestorage.app",
+        messagingSenderId: "5471814825",
+        appId: "1:5471814825:web:07e84f2f88486da817d5b8",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
+      const els = {
+        welcome: document.getElementById("welcome"),
+        metricUsers: document.getElementById("metricUsers"),
+        metricRevenue: document.getElementById("metricRevenue"),
+        metricEvents: document.getElementById("metricEvents"),
+        metricRefunds: document.getElementById("metricRefunds"),
+        usersTable: document.getElementById("usersTable"),
+        activityList: document.getElementById("activityList"),
+        eventCards: document.getElementById("eventCards"),
+        refundCards: document.getElementById("refundCards"),
+        notesList: document.getElementById("notesList"),
+        userSelect: document.getElementById("userSelect"),
+        userRole: document.getElementById("userRole"),
+        userName: document.getElementById("userName"),
+        userVerified: document.getElementById("userVerified"),
+        refundPayment: document.getElementById("refundPayment"),
+        refundStatus: document.getElementById("refundStatus"),
+        refundReason: document.getElementById("refundReason"),
+      };
+
+      const userModal = document.getElementById("userModal");
+      const eventModal = document.getElementById("eventModal");
+      const refundModal = document.getElementById("refundModal");
+      const currentSelections = { userId: "", paymentId: "" };
+      let latestUsers = [];
+      let latestEvents = [];
+      let latestPayments = [];
+
+      function openModal(modal) {
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeModal(modal) {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      function escapeHtml(value) {
+        return String(value || "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+      }
+
+      function renderUsers(users) {
+        els.usersTable.innerHTML = users
+          .map((user) => {
+            const status = user.emailVerified ? "live" : "pending";
+            return `
+              <tr>
+                <td><strong>${escapeHtml(user.name || "Unnamed")}</strong></td>
+                <td>${escapeHtml(user.email || "-")}</td>
+                <td>${escapeHtml(user.role || "customer")}</td>
+                <td><span class="status ${status}">${user.emailVerified ? "Verified" : "Pending"}</span></td>
+                <td>
+                  <div class="mini-actions">
+                    <button class="inline-btn secondary" data-user-edit="${user.id}">Edit</button>
+                    <button class="inline-btn secondary" data-user-archive="${user.id}">Archive</button>
+                    <button class="inline-btn secondary" data-user-delete="${user.id}">Delete</button>
+                  </div>
+                </td>
+              </tr>`;
+          })
+          .join("");
+
+        els.userSelect.innerHTML = users
+          .map((user) => `<option value="${user.id}">${escapeHtml(user.name || user.email || user.id)}</option>`)
+          .join("");
+      }
+
+      function renderEvents(events) {
+        els.eventCards.innerHTML = events
+          .map(
+            (event) => `
+              <div class="card">
+                <strong>${escapeHtml(event.name || "Untitled event")}</strong>
+                <span>${escapeHtml(event.city || "Unknown city")} | ${escapeHtml(event.category || "general")}</span>
+                <span>${escapeHtml(event.status || "draft")} | ₹${Number(event.price || 0).toLocaleString("en-IN")}</span>
+                <div class="mini-actions" style="margin-top:.65rem;">
+                  <button class="inline-btn secondary" data-event-edit="${event.id}">Publish / edit</button>
+                  <button class="inline-btn secondary" data-event-archive="${event.id}">Archive</button>
+                  <button class="inline-btn secondary" data-event-delete="${event.id}">Delete</button>
+                </div>
+              </div>`
+          )
+          .join("");
+      }
+
+      function renderRefunds(payments) {
+        els.refundCards.innerHTML = payments
+          .map(
+            (payment) => `
+              <div class="card">
+                <strong>${escapeHtml(payment.receipt || payment.id)}</strong>
+                <span>${escapeHtml(payment.eventName || payment.event?.name || "Event payment")}</span>
+                <span>Status: ${escapeHtml(payment.status || "created")} | ₹${Number(payment.amount || 0).toLocaleString("en-IN")}</span>
+                <div class="mini-actions" style="margin-top:.65rem;">
+                  <button class="inline-btn secondary" data-refund-edit="${payment.id}">Refund control</button>
+                  <button class="inline-btn secondary" data-payment-archive="${payment.id}">Archive</button>
+                </div>
+              </div>`
+          )
+          .join("");
+
+        els.refundPayment.innerHTML = payments
+          .map((payment) => `<option value="${payment.id}">${escapeHtml(payment.receipt || payment.id)} - ${escapeHtml(payment.status || "created")}</option>`)
+          .join("");
+      }
+
+      function renderActivity(items) {
+        els.activityList.innerHTML = items
+          .map((item) => `<div class="item"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.text)}</span></div>`)
+          .join("");
+      }
+
+      function renderNotes(items) {
+        els.notesList.innerHTML = items
+          .map((item) => `<div class="item"><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.text)}</span></div>`)
+          .join("");
+      }
+
+      function setMetrics(users, events, payments) {
+        const revenue = payments.reduce((sum, payment) => {
+          const amount = Number(payment.amount || 0);
+          return payment.status === "paid" ? sum + amount : sum;
+        }, 0);
+        const refundCount = payments.filter((payment) => String(payment.status || "").includes("refund") || payment.status === "review").length;
+        els.metricUsers.textContent = users.length;
+        els.metricRevenue.textContent = `₹${revenue.toLocaleString("en-IN")}`;
+        els.metricEvents.textContent = events.length;
+        els.metricRefunds.textContent = refundCount;
+      }
+
+      function fillSelectedUser(userId) {
+        const user = latestUsers.find((entry) => entry.id === userId) || latestUsers[0];
+        if (!user) return;
+        currentSelections.userId = user.id;
+        els.userSelect.value = user.id;
+        els.userRole.value = user.role || "customer";
+        els.userName.value = user.name || "";
+        els.userVerified.value = user.emailVerified ? "true" : "false";
+        openModal(userModal);
+      }
+
+      function fillSelectedPayment(paymentId) {
+        const payment = latestPayments.find((entry) => entry.id === paymentId) || latestPayments[0];
+        if (!payment) return;
+        currentSelections.paymentId = payment.id;
+        els.refundPayment.value = payment.id;
+        els.refundStatus.value = payment.status === "refunded" ? "refunded" : payment.status === "review" ? "review" : "refund_pending";
+        els.refundReason.value = payment.refundReason || "";
+        openModal(refundModal);
+      }
+
+      function bindTableActions() {
+        function confirmAction(message) {
+          return window.confirm(message);
+        }
+
+        document.querySelectorAll("[data-user-edit]").forEach((button) => {
+          button.addEventListener("click", () => fillSelectedUser(button.dataset.userEdit));
+        });
+        document.querySelectorAll("[data-user-archive]").forEach((button) => {
+          button.addEventListener("click", async () => {
+            if (!confirmAction("Archive this user? They will be hidden from the default admin view.")) return;
+            await updateDoc(doc(db, "users", button.dataset.userArchive), { archived: true, updatedAt: serverTimestamp() });
+          });
+        });
+        document.querySelectorAll("[data-user-delete]").forEach((button) => {
+          button.addEventListener("click", async () => {
+            if (!confirmAction("Delete this user permanently? This cannot be undone.")) return;
+            await deleteDoc(doc(db, "users", button.dataset.userDelete));
+          });
+        });
+        document.querySelectorAll("[data-event-edit]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const event = latestEvents.find((entry) => entry.id === button.dataset.eventEdit);
+            if (!event) return;
+            document.getElementById("eventName").value = event.name || "";
+            document.getElementById("eventCity").value = event.city || "";
+            document.getElementById("eventPrice").value = event.price || 0;
+            document.getElementById("eventCategory").value = event.category || "music";
+            document.getElementById("eventNotes").value = event.notes || "";
+            openModal(eventModal);
+          });
+        });
+        document.querySelectorAll("[data-event-archive]").forEach((button) => {
+          button.addEventListener("click", async () => {
+            if (!confirmAction("Archive this event? It will be hidden from the default admin view.")) return;
+            await updateDoc(doc(db, "events", button.dataset.eventArchive), { archived: true, updatedAt: serverTimestamp(), status: "archived" });
+          });
+        });
+        document.querySelectorAll("[data-event-delete]").forEach((button) => {
+          button.addEventListener("click", async () => {
+            if (!confirmAction("Delete this event permanently? This cannot be undone.")) return;
+            await deleteDoc(doc(db, "events", button.dataset.eventDelete));
+          });
+        });
+        document.querySelectorAll("[data-refund-edit]").forEach((button) => {
+          button.addEventListener("click", () => fillSelectedPayment(button.dataset.refundEdit));
+        });
+        document.querySelectorAll("[data-payment-archive]").forEach((button) => {
+          button.addEventListener("click", async () => {
+            if (!confirmAction("Archive this payment record? It will be hidden from the default admin view.")) return;
+            await updateDoc(doc(db, "payments", button.dataset.paymentArchive), { archived: true, updatedAt: serverTimestamp() });
+          });
+        });
+      }
+
+      const activityFallback = [
+        { title: "Role assigned", text: "Manager access granted to new account" },
+        { title: "Event published", text: "Design Democracy 2026 is live" },
+        { title: "Security", text: "Firebase auth session active" },
+      ];
+      const notesFallback = [
+        { title: "Moderation", text: "Review flagged listings daily" },
+        { title: "Payments", text: "Monitor settlement and refunds" },
+        { title: "Security", text: "2FA and auth checks enabled" },
+      ];
+
+      const qUsers = query(collection(db, "users"), orderBy("createdAt", "desc"), limit(50));
+      const qEvents = query(collection(db, "events"), orderBy("createdAt", "desc"), limit(50));
+      const qPayments = query(collection(db, "payments"), orderBy("createdAt", "desc"), limit(50));
+
+      onSnapshot(qUsers, (snapshot) => {
+        latestUsers = snapshot.docs.map((snap) => ({ id: snap.id, ...snap.data() })).filter((item) => !item.archived);
+        renderUsers(latestUsers);
+        setMetrics(latestUsers, latestEvents, latestPayments);
+        bindTableActions();
+      });
+
+      onSnapshot(qEvents, (snapshot) => {
+        latestEvents = snapshot.docs.map((snap) => ({ id: snap.id, ...snap.data() })).filter((item) => !item.archived);
+        renderEvents(latestEvents);
+        setMetrics(latestUsers, latestEvents, latestPayments);
+        bindTableActions();
+      });
+
+      onSnapshot(qPayments, (snapshot) => {
+        latestPayments = snapshot.docs.map((snap) => ({ id: snap.id, ...snap.data() })).filter((item) => !item.archived);
+        renderRefunds(latestPayments);
+        setMetrics(latestUsers, latestEvents, latestPayments);
+        bindTableActions();
+      });
+
+      renderActivity(activityFallback);
+      renderNotes(notesFallback);
+
+      document.getElementById("openUser").addEventListener("click", () => fillSelectedUser(els.userSelect.value));
+      document.getElementById("newUserBtn").addEventListener("click", () => fillSelectedUser(els.userSelect.value));
+      document.getElementById("openPublish").addEventListener("click", () => openModal(eventModal));
+      document.getElementById("openRefund").addEventListener("click", () => fillSelectedPayment(els.refundPayment.value));
+
+      document.getElementById("userForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const userId = els.userSelect.value || currentSelections.userId;
+        if (!userId) return;
+        await updateDoc(doc(db, "users", userId), {
+          name: els.userName.value.trim(),
+          role: els.userRole.value,
+          emailVerified: els.userVerified.value === "true",
+          updatedAt: serverTimestamp(),
+        });
+        closeModal(userModal);
+      });
+
+      document.getElementById("eventForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const payload = {
+          name: document.getElementById("eventName").value.trim(),
+          city: document.getElementById("eventCity").value.trim(),
+          price: Number(document.getElementById("eventPrice").value || 0),
+          category: document.getElementById("eventCategory").value,
+          notes: document.getElementById("eventNotes").value.trim(),
+          status: "published",
+          updatedAt: serverTimestamp(),
+          createdAt: serverTimestamp(),
+        };
+        if (!payload.name) return;
+        await addDoc(collection(db, "events"), payload);
+        closeModal(eventModal);
+      });
+
+      document.getElementById("refundForm").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const paymentId = els.refundPayment.value || currentSelections.paymentId;
+        if (!paymentId) return;
+        await updateDoc(doc(db, "payments", paymentId), {
+          status: els.refundStatus.value,
+          refundReason: els.refundReason.value.trim(),
+          updatedAt: serverTimestamp(),
+        });
+        closeModal(refundModal);
+      });
+
+      document.querySelectorAll("[data-close]").forEach((button) => {
+        button.addEventListener("click", () => closeModal(document.getElementById(button.dataset.close)));
+      });
+
+      document.getElementById("logoutBtn").addEventListener("click", async () => {
+        await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+        try {
+          await signOut(auth);
+        } catch {
+        }
+        window.location.href = "/login.html";
+      });
+
+      document.getElementById("refreshBtn").addEventListener("click", async () => {
+        const response = await fetch("/api/auth/me", { credentials: "include" });
+        if (!response.ok) {
+          window.location.href = "/login.html";
+          return;
+        }
+        const payload = await response.json();
+        els.welcome.textContent = `Welcome back, ${payload.user.name || "Admin"}`;
+      });
+
+      (async function bootstrap() {
+        const response = await fetch("/api/auth/me", { credentials: "include" });
+        if (!response.ok) {
+          window.location.href = "/login.html";
+          return;
+        }
+        const payload = await response.json();
+        els.welcome.textContent = `Welcome back, ${payload.user.name || "Admin"}`;
+      })();
+    </script>
+  </body>
+</html>

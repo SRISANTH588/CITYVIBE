@@ -125,8 +125,29 @@
       /* ── MAIN FEATURE GRID ── */
       .ft-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.4rem;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.2rem;
+        align-items: start;
+      }
+      .ft-column {
+        border-left: 1px solid #edf1fb;
+        padding-left: 1rem;
+      }
+      .ft-column:first-child {
+        border-left: 0;
+        padding-left: 0;
+      }
+      .ft-column-label {
+        margin: 0 0 1rem;
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #9ca3af;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .ft-column-group {
+        display: grid;
+        gap: 1rem;
       }
       .ft-card {
         border: 1.5px solid #e8edf8;
@@ -435,6 +456,48 @@
       .ft-coupon-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; border-radius: 12px; border: 1.5px dashed #dce8ff; background: #f7faff; }
       .ft-coupon-code { font-size: 0.95rem; font-weight: 800; color: #1242c5; letter-spacing: 0.08em; }
       .ft-coupon-off { font-size: 0.82rem; font-weight: 800; color: #16a34a; }
+      /* ── FAQ ── */
+      .ft-faq {
+        padding: 0 0 4rem;
+      }
+      .ft-faq-list {
+        display: grid;
+        gap: 0.8rem;
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .ft-faq-item {
+        border: 1.5px solid #e8edf8;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.04);
+      }
+      .ft-faq-q {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.2rem;
+        background: #fff;
+        border: 0;
+        font-weight: 800;
+        font-size: 0.92rem;
+        color: #0a0f1e;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: inherit;
+      }
+      .ft-faq-q::after { content: "+"; font-size: 1.2rem; color: #1242c5; }
+      .ft-faq-q.open::after { content: "−"; }
+      .ft-faq-a {
+        display: none;
+        padding: 0 1.2rem 1rem;
+        color: #6b7280;
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+      .ft-faq-a.open { display: block; }
       @media (max-width: 860px) {
         .ft-showcase-panel.active { grid-template-columns: 1fr; }
       }
@@ -459,7 +522,6 @@
 
       /* ── RESPONSIVE ── */
       @media (max-width: 960px) {
-        .ft-grid { grid-template-columns: repeat(2, 1fr); }
         .ft-highlight { grid-template-columns: 1fr; }
         .ft-steps { grid-template-columns: repeat(2, 1fr); }
         .ft-steps::before { display: none; }
@@ -497,10 +559,10 @@
 
       <!-- HERO -->
       <section class="ft-hero">
-        <div class="ft-hero-inner">
+          <div class="ft-hero-inner">
           <div class="ft-badge">✦ Platform Features</div>
           <h1>Everything you need to<br><span>run great events</span></h1>
-          <p>From listing creation to instant payments — cityvibe gives organizers and guests a seamless experience in one place.</p>
+          <p>From listing creation to instant payments — cityvibe gives organizers and guests across India a seamless experience in one place.</p>
           <div class="ft-hero-actions">
             <a class="ft-btn-primary" href="login.html">Start for Free</a>
             <a class="ft-btn-secondary" href="events.html">Browse Events</a>
@@ -513,74 +575,165 @@
         <div class="ft-wrap">
           <div class="ft-section-head">
             <span class="ft-eyebrow">Core Features</span>
-            <h2>Built for organizers & guests</h2>
-            <p>Every tool you need to create, manage, and monetize events without the complexity.</p>
+            <h2>Built for ticketing, growth, and operations</h2>
+            <p>Everything you need to ticket events, reach guests, and keep operations running smoothly.</p>
           </div>
           <div class="ft-grid">
-
-            <div class="ft-card">
-              <div class="ft-icon">🎟️</div>
-              <h3>Smart Ticketing</h3>
-              <p>Create tiered tickets — free, paid, or invite-only. Set capacity limits and let the system handle waitlists automatically.</p>
-              <span class="ft-card-tag">All Plans</span>
+            <div class="ft-column">
+              <div class="ft-column-group">
+                <div class="ft-card">
+                  <div class="ft-icon">🎟️</div>
+                  <h3>Smart Ticketing</h3>
+                  <p>QR-coded tickets with instant delivery for smooth entry and easy guest access.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">💳</div>
+                  <h3>Seamless Payments</h3>
+                  <p>UPI, card, wallet, net banking, EMI, and QR payments with auto-receipts for a smooth checkout.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">📋</div>
+                  <h3>QR Check-in Scanner</h3>
+                  <p>Verify guests in real time at the door with a fast scan flow for smooth check-ins.</p>
+                  <span class="ft-card-tag">Pro & Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">🔔</div>
+                  <h3>Custom Brand Pages</h3>
+                  <p>Beautiful event pages with your branding so every listing feels like your own space.</p>
+                  <span class="ft-card-tag">Pro & Business</span>
+                </div>
+              </div>
             </div>
 
-            <div class="ft-card">
-              <div class="ft-icon">💳</div>
-              <h3>Instant Payments</h3>
-              <p>Accept UPI, QR codes, cards, and wallets. Payments confirm in real time with live status updates for both organizer and guest.</p>
-              <span class="ft-card-tag">All Plans</span>
+            <div class="ft-column">
+              <div class="ft-column-group">
+                <div class="ft-card">
+                  <div class="ft-icon">🗺️</div>
+                  <h3>WhatsApp Broadcasts</h3>
+                  <p>Send tickets and reminders on WhatsApp to keep guests informed without extra steps.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">👥</div>
+                  <h3>Instagram Auto DMs</h3>
+                  <p>Auto-respond to story mentions and comments so engagement turns into bookings faster.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">📱</div>
+                  <h3>Email Campaigns</h3>
+                  <p>Automated invites, confirmations, and follow-ups that keep attendance moving.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">🔒</div>
+                  <h3>Referral & Promo Codes</h3>
+                  <p>Drive signups with discount codes and referral links that help events spread quickly.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+              </div>
             </div>
 
-            <div class="ft-card">
-              <div class="ft-icon">📋</div>
-              <h3>Event Dashboard</h3>
-              <p>Track bookings, revenue, and attendee data from one clean dashboard. Export reports with a single click.</p>
-              <span class="ft-card-tag">Pro & Business</span>
+            <div class="ft-column">
+              <div class="ft-column-group">
+                <div class="ft-card">
+                  <div class="ft-icon">📊</div>
+                  <h3>Analytics Dashboard</h3>
+                  <p>Track sales, attendance, and engagement from one clear dashboard.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">👤</div>
+                  <h3>Attendee Management</h3>
+                  <p>Manage guest lists, filters, and exports so you always know who’s coming.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">🛡️</div>
+                  <h3>Team & Permissions</h3>
+                  <p>Add volunteers with role-based access to keep operations secure and organized.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">⚡</div>
+                  <h3>Instant Payouts</h3>
+                  <p>Get your money within 24 hours after bookings are completed.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+              </div>
             </div>
 
-            <div class="ft-card">
-              <div class="ft-icon">🔔</div>
-              <h3>Automated Reminders</h3>
-              <p>Send booking confirmations, event reminders, and follow-ups automatically via email and SMS — no manual work needed.</p>
-              <span class="ft-card-tag">Pro & Business</span>
-            </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="ft-card">
-              <div class="ft-icon">🗺️</div>
-              <h3>Venue & Map Integration</h3>
-              <p>Attach venue details, Google Maps links, and parking info directly to your event listing so guests always know where to go.</p>
-              <span class="ft-card-tag">All Plans</span>
+      <section class="ft-section" style="padding-top: 0;">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">Payments</span>
+            <h2>Supported payment methods.</h2>
+            <p>Cashfree-powered checkout with the payment methods your guests already trust.</p>
+          </div>
+          <div class="trust-grid pricing-trust-grid" aria-label="Payment methods and trust signals">
+            <div class="trust-item">
+              <span class="trust-icon">₹</span>
+              <div>
+                <strong>UPI</strong>
+                <p>Fast India-first payments</p>
+              </div>
             </div>
-
-            <div class="ft-card">
-              <div class="ft-icon">👥</div>
-              <h3>Team & Role Management</h3>
-              <p>Add co-organizers, volunteers, and admins with custom permissions. Keep your team in sync without sharing credentials.</p>
-              <span class="ft-card-tag">Business</span>
+            <div class="trust-item">
+              <span class="trust-icon">▣</span>
+              <div>
+                <strong>Card</strong>
+                <p>Credit and debit support</p>
+              </div>
             </div>
-
-            <div class="ft-card">
-              <div class="ft-icon">📱</div>
-              <h3>Mobile-First Design</h3>
-              <p>Every page — from listing to checkout — is optimized for mobile. Guests book in seconds from any device.</p>
-              <span class="ft-card-tag">All Plans</span>
+            <div class="trust-item">
+              <span class="trust-icon">◉</span>
+              <div>
+                <strong>Wallet</strong>
+                <p>Popular digital wallets</p>
+              </div>
             </div>
-
-            <div class="ft-card">
-              <div class="ft-icon">🔒</div>
-              <h3>Secure Authentication</h3>
-              <p>Firebase-powered login with Google sign-in, email verification, and session management. Your data stays protected.</p>
-              <span class="ft-card-tag">All Plans</span>
+            <div class="trust-item">
+              <span class="trust-icon">↯</span>
+              <div>
+                <strong>Net Banking</strong>
+                <p>Trusted bank transfers</p>
+              </div>
             </div>
-
-            <div class="ft-card">
-              <div class="ft-icon">📊</div>
-              <h3>Analytics & Insights</h3>
-              <p>See which events perform best, where guests drop off, and how revenue trends over time — all in visual charts.</p>
-              <span class="ft-card-tag">Business</span>
+            <div class="trust-item">
+              <span class="trust-icon">EMI</span>
+              <div>
+                <strong>EMI</strong>
+                <p>Flexible payment options</p>
+              </div>
             </div>
-
+            <div class="trust-item">
+              <span class="trust-icon">▣</span>
+              <div>
+                <strong>QR</strong>
+                <p>Scan and pay instantly</p>
+              </div>
+            </div>
+            <div class="trust-item trust-feature">
+              <span class="trust-icon">✓</span>
+              <div>
+                <strong>Secure checkout</strong>
+                <p>Powered by Cashfree</p>
+              </div>
+            </div>
+            <div class="trust-item trust-feature">
+              <span class="trust-icon">↗</span>
+              <div>
+                <strong>Instant confirmation</strong>
+                <p>Clear success status right away</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -589,13 +742,13 @@
       <div class="ft-wrap">
         <div class="ft-highlight">
           <div>
-            <h2>Trusted by event organizers across Hyderabad</h2>
+            <h2>Trusted by event organizers across India</h2>
             <p>From small workshops to large exhibitions — cityvibe handles the booking and payment flow so you can focus on the event itself.</p>
           </div>
           <div class="ft-highlight-stats">
             <div class="ft-stat"><strong>5+</strong><span>Live Events</span></div>
             <div class="ft-stat"><strong>100%</strong><span>Uptime</span></div>
-            <div class="ft-stat"><strong>3</strong><span>Payment Methods</span></div>
+            <div class="ft-stat"><strong>6</strong><span>Payment Methods</span></div>
             <div class="ft-stat"><strong>∞</strong><span>Bookings</span></div>
           </div>
         </div>
@@ -655,7 +808,7 @@
               <tbody>
                 <tr>
                   <td>Event listings</td>
-                  <td>Up to 3</td>
+                  <td>Up to 4</td>
                   <td class="highlight-col">Unlimited</td>
                   <td>Unlimited</td>
                 </tr>
@@ -667,13 +820,13 @@
                 </tr>
                 <tr>
                   <td>Card payments</td>
-                  <td><span class="ft-cross">✗</span></td>
+                  <td><span class="ft-check">✓</span></td>
                   <td class="highlight-col"><span class="ft-check">✓</span></td>
                   <td><span class="ft-check">✓</span></td>
                 </tr>
                 <tr>
                   <td>Booking dashboard</td>
-                  <td><span class="ft-cross">✗</span></td>
+                  <td><span class="ft-check">✓</span></td>
                   <td class="highlight-col"><span class="ft-check">✓</span></td>
                   <td><span class="ft-check">✓</span></td>
                 </tr>
@@ -832,6 +985,46 @@
       </section>
 
       <!-- CTA -->
+      <section class="ft-faq">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">Questions</span>
+            <h2>Common questions</h2>
+            <p>Quick answers about payments, tickets, and event management.</p>
+          </div>
+          <div class="ft-faq-list">
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Which payment methods are supported?</button>
+              <div class="ft-faq-a">cityvibe supports UPI, card, wallet, net banking, EMI, and QR payments.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Can I create free and paid tickets together?</button>
+              <div class="ft-faq-a">Yes. You can mix free, paid, VIP, and invite-only ticket types in the same event.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Do guests get tickets instantly?</button>
+              <div class="ft-faq-a">Yes. Tickets are delivered instantly after booking, with confirmation details sent right away.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Can I track attendance?</button>
+              <div class="ft-faq-a">Business users can track sales, attendance, and engagement from the analytics dashboard.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Is there a ticket limit on plans?</button>
+              <div class="ft-faq-a">Yes. Plan limits vary by tier, and you can upgrade whenever you need more event listings or higher usage.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">How do refunds work?</button>
+              <div class="ft-faq-a">Refund rules are set by the organizer for each event, so guests can review the policy before booking.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Can I add team members?</button>
+              <div class="ft-faq-a">Yes. Business plans support team permissions so you can add volunteers or staff with role-based access.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div class="ft-wrap">
         <div class="ft-cta">
           <h2>Ready to launch your event?</h2>
@@ -857,6 +1050,9 @@
           <a href="events.html">Events</a>
           <a href="features.html">Features</a>
           <a href="index.html#pricing">Pricing</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="refund-policy.html">Refund Policy</a>
         </div>
         <div class="footer-contact">
           <h3>Contact</h3>
@@ -876,6 +1072,21 @@
           document.querySelectorAll(".ft-showcase-panel").forEach(p => p.classList.remove("active"));
           tab.classList.add("active");
           document.getElementById("panel-" + tab.dataset.panel).classList.add("active");
+        });
+      });
+
+      document.querySelectorAll(".ft-faq-q").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const answer = btn.nextElementSibling;
+          const isOpen = btn.classList.contains("open");
+          document.querySelectorAll(".ft-faq-q").forEach(q => {
+            q.classList.remove("open");
+            q.nextElementSibling.classList.remove("open");
+          });
+          if (!isOpen) {
+            btn.classList.add("open");
+            answer.classList.add("open");
+          }
         });
       });
     </script>

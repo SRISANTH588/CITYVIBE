@@ -35,7 +35,7 @@
       }
       .pr-hero h1 {
         margin: 0 0 0.8rem;
-        font-size: clamp(2.4rem, 5vw, 4rem);
+        font-size: clamp(3rem, 6.8vw, 5.2rem);
         font-weight: 800;
         letter-spacing: -0.06em;
         color: #0a0f1e;
@@ -50,7 +50,7 @@
       /* PLANS */
       .pr-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 1.4rem;
         margin-top: 0;
       }
@@ -355,7 +355,6 @@
         <div class="pr-hero-inner">
           <div class="pr-badge">✦ Pricing</div>
           <h1>Simple fees,<br><span>zero surprises</span></h1>
-          <p>We charge a small 2% platform fee per ticket. OGSHOOTS LUXE customers pay nothing — completely free forever.</p>
         </div>
       </section>
 
@@ -372,7 +371,7 @@
               <div class="pr-fee">2% per ticket sold</div>
               <hr class="pr-divider" />
               <div class="pr-features">
-                <div class="pr-feature">Up to 3 event listings</div>
+                <div class="pr-feature">Up to 4 event listings</div>
                 <div class="pr-feature">UPI & QR payments</div>
                 <div class="pr-feature">Basic booking page</div>
                 <div class="pr-feature">Email confirmations</div>
@@ -381,6 +380,25 @@
                 <div class="pr-feature muted">No priority support</div>
               </div>
               <a class="pr-btn outline" href="login.html">Get Started Free</a>
+            </div>
+
+            <!-- OGSHOOTS LUXE -->
+            <div class="pr-card">
+              <div class="pr-plan-name">OGSHOOTS LUXE</div>
+              <div class="pr-price"><sup>₹</sup>0</div>
+              <div class="pr-price-note">forever free</div>
+              <div class="pr-fee free">✦ 0% — Completely Free</div>
+              <hr class="pr-divider" />
+              <div class="pr-features">
+                <div class="pr-feature">6 events per month</div>
+                <div class="pr-feature">All payment methods</div>
+                <div class="pr-feature">Full booking dashboard</div>
+                <div class="pr-feature muted">No automated reminders</div>
+                <div class="pr-feature">Analytics & reports</div>
+                <div class="pr-feature muted">No team & role management</div>
+                <div class="pr-feature muted">No priority support</div>
+              </div>
+              <a class="pr-btn solid" href="login.html">Join OGSHOOTS LUXE</a>
             </div>
 
             <!-- PRO -->
@@ -398,28 +416,29 @@
                 <div class="pr-feature">Automated reminders</div>
                 <div class="pr-feature">Analytics & reports</div>
                 <div class="pr-feature muted">No team management</div>
-                <div class="pr-feature muted">No white-label</div>
+                <div class="pr-feature">Priority support</div>
               </div>
               <a class="pr-btn solid" href="login.html">Start Pro Plan</a>
             </div>
 
-            <!-- OGSHOOTS LUXE -->
+            <!-- BUSINESS -->
             <div class="pr-card">
-              <div class="pr-plan-name">OGSHOOTS LUXE</div>
-              <div class="pr-price"><sup>₹</sup>0</div>
-              <div class="pr-price-note">forever free</div>
-              <div class="pr-fee free">✦ 0% — Completely Free</div>
+              <div class="pr-plan-name">Business</div>
+              <div class="pr-price"><sup>₹</sup>2,499</div>
+              <div class="pr-price-note">per month</div>
+              <div class="pr-fee">0.5% per ticket sold</div>
               <hr class="pr-divider" />
               <div class="pr-features">
                 <div class="pr-feature">Unlimited event listings</div>
-                <div class="pr-feature">All payment methods</div>
-                <div class="pr-feature">Full booking dashboard</div>
+                <div class="pr-feature">UPI, QR, Card & Wallet</div>
+                <div class="pr-feature">Advanced booking dashboard</div>
                 <div class="pr-feature">Automated reminders</div>
                 <div class="pr-feature">Analytics & reports</div>
                 <div class="pr-feature">Team & role management</div>
                 <div class="pr-feature">Priority support</div>
+                <div class="pr-feature">White-label branding</div>
               </div>
-              <a class="pr-btn solid" href="login.html">Join OGSHOOTS LUXE</a>
+              <a class="pr-btn outline" href="login.html">Start Business Plan</a>
             </div>
 
           </div>
@@ -463,7 +482,7 @@
       <div class="pr-wrap">
         <div class="pr-calc">
           <h2>Fee Calculator</h2>
-          <p>See exactly how much you keep per event based on your plan.</p>
+          <p>See how each plan affects the booking charge and organizer payout.</p>
           <div class="pr-calc-grid">
             <div class="pr-calc-label">
               <span>Ticket Price (₹)</span>
@@ -478,6 +497,7 @@
               <select class="pr-calc-select" id="calcPlan">
                 <option value="2">Starter (2% fee)</option>
                 <option value="1">Pro (1% fee)</option>
+                <option value="0.5">Business (0.5% fee)</option>
                 <option value="0">OGSHOOTS LUXE (0% fee)</option>
               </select>
             </div>
@@ -488,11 +508,11 @@
               <strong id="calcGross">₹50,000</strong>
             </div>
             <div class="pr-calc-result-item">
-              <span>Platform Fee</span>
+              <span>Booking Charge</span>
               <strong id="calcFee" class="blue-val">₹1,000</strong>
             </div>
             <div class="pr-calc-result-item">
-              <span>You Receive</span>
+              <span>Organizer Receives</span>
               <strong id="calcNet" class="blue-val">₹49,000</strong>
             </div>
             <div class="pr-calc-result-item">
@@ -509,20 +529,20 @@
           <h2>Frequently asked questions</h2>
           <div class="pr-faq-list">
             <div class="pr-faq-item">
-              <button class="pr-faq-q">What is the 2% platform fee?</button>
-              <div class="pr-faq-a">For Starter plan users, cityvibe charges 2% of each ticket's price as a platform fee. This covers payment processing, hosting, and support.</div>
+              <button class="pr-faq-q">What is the booking charge?</button>
+              <div class="pr-faq-a">For Starter plan users, a 2% booking and payment charge applies. The organizer still receives the full ticket amount.</div>
             </div>
             <div class="pr-faq-item">
               <button class="pr-faq-q">How do OGSHOOTS LUXE customers get 0% fee?</button>
               <div class="pr-faq-a">OGSHOOTS LUXE is our exclusive partner program. Members get full access to cityvibe with zero platform fees on all ticket sales — forever, with no conditions.</div>
             </div>
             <div class="pr-faq-item">
-              <button class="pr-faq-q">When is the fee charged?</button>
-              <div class="pr-faq-a">The fee is deducted automatically at the time of each successful ticket payment. You receive the net amount directly to your linked account.</div>
+              <button class="pr-faq-q">When is the charge applied?</button>
+              <div class="pr-faq-a">The booking charge is applied automatically at checkout. The organizer receives the full ticket amount directly to the linked account.</div>
             </div>
             <div class="pr-faq-item">
               <button class="pr-faq-q">Are free events charged a fee?</button>
-              <div class="pr-faq-a">No. If your event is free (₹0 ticket price), there is no platform fee regardless of your plan.</div>
+              <div class="pr-faq-a">No. If your event is free (₹0 ticket price), there is no booking charge regardless of your plan.</div>
             </div>
             <div class="pr-faq-item">
               <button class="pr-faq-q">Can I upgrade or downgrade my plan?</button>
@@ -546,6 +566,9 @@
           <a href="events.html">Events</a>
           <a href="features.html">Features</a>
           <a href="pricing.html">Pricing</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="refund-policy.html">Refund Policy</a>
         </div>
         <div class="footer-contact">
           <h3>Contact</h3>
@@ -578,7 +601,7 @@
         const gross   = price * tickets;
         const fee     = gross * feeRate;
         const net     = gross - fee;
-        const save    = gross * 0.02; // what luxe saves vs starter
+        const save    = fee; // what Luxe saves compared with the selected plan
 
         calcGross.textContent = fmt(gross);
         calcFee.textContent   = fmt(fee);

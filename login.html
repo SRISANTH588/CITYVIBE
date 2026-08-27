@@ -42,10 +42,10 @@
 
           <form class="auth-form auth-form-login auth-form-active" data-auth-form="login">
             <label>
-              <span class="field-label">Username / Phone</span>
+              <span class="field-label">Username</span>
               <div class="field-shell">
                 <span class="field-icon">📱</span>
-                <input id="loginPhone" type="tel" placeholder="Enter phone number" inputmode="numeric" autocomplete="tel" />
+                <input id="loginPhone" type="text" placeholder="Enter username" autocomplete="username" />
               </div>
             </label>
 
@@ -86,26 +86,27 @@
 
           <form class="auth-form auth-form-signup" data-auth-form="signup" hidden>
             <label>
+              <span class="field-label">Account Type</span>
+              <div class="role-grid">
+                <button class="role-chip active" type="button" data-role="client">Client</button>
+                <button class="role-chip" type="button" data-role="customer">Customer</button>
+                <button class="role-chip" type="button" data-role="admin">Admin</button>
+              </div>
+            </label>
+
+            <label>
+              <span class="field-label">Username</span>
+              <div class="field-shell">
+                <span class="field-icon">👤</span>
+                <input id="signupUsername" type="text" placeholder="Choose a username" autocomplete="username" />
+              </div>
+            </label>
+
+            <label>
               <span class="field-label">Full Name</span>
               <div class="field-shell">
                 <span class="field-icon">👤</span>
                 <input id="signupName" type="text" placeholder="Your full name" autocomplete="name" />
-              </div>
-            </label>
-
-            <label>
-              <span class="field-label">Email</span>
-              <div class="field-shell">
-                <span class="field-icon">✉</span>
-                <input id="signupEmail" type="email" placeholder="you@example.com" autocomplete="email" />
-              </div>
-            </label>
-
-            <label>
-              <span class="field-label">Phone Number</span>
-              <div class="field-shell">
-                <span class="field-icon">📱</span>
-                <input id="signupPhone" type="tel" placeholder="Enter phone number" autocomplete="tel" />
               </div>
             </label>
 
@@ -120,7 +121,7 @@
 
             <button class="btn premium-btn full" type="submit">Create Account →</button>
 
-            <div class="signup-note">You will verify your email after signup.</div>
+            <div class="signup-note">Your account will use your username and password only.</div>
           </form>
 
           <div class="signup-footer">
@@ -142,7 +143,7 @@
         </div>
         <div class="footer-links">
           <a href="index.html">Home</a>
-          <a href="dashboard.html">Dashboard</a>
+          <a href="customer-dashboard.html">Dashboard</a>
           <a href="#loginPhone">Login</a>
           <a href="#signupName">Sign Up</a>
         </div>
@@ -159,33 +160,12 @@
     </footer>
 
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
-      import {
-        getAuth,
-        createUserWithEmailAndPassword,
-        signInWithEmailAndPassword,
-        sendEmailVerification,
-        onAuthStateChanged,
-        signOut,
-        GoogleAuthProvider,
-        signInWithPopup,
-        updateProfile,
-      } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
-      import { getFirestore, doc, setDoc, getDoc, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
-
-      const firebaseConfig = {
-        apiKey: "AIzaSyBCgNQy8EJLg7E-SA1cMePGetWLOR7WWMI",
-        authDomain: "ogshootsluxe-36740.firebaseapp.com",
-        projectId: "ogshootsluxe-36740",
-        storageBucket: "ogshootsluxe-36740.firebasestorage.app",
-        messagingSenderId: "5471814825",
-        appId: "1:5471814825:web:07e84f2f88486da817d5b8",
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const db = getFirestore(app);
-      const googleProvider = new GoogleAuthProvider();
+      const apiBase =
+        window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+          ? window.location.origin
+          : window.location.origin && window.location.origin !== "null"
+            ? window.location.origin
+            : "http://localhost:3000";
 
       const authTabs = document.querySelectorAll("[data-auth-tab]");
       const authForms = document.querySelectorAll("[data-auth-form]");
@@ -198,24 +178,30 @@
       const loginPhone = document.getElementById("loginPhone");
       const loginPassword = document.getElementById("loginPassword");
       const signupName = document.getElementById("signupName");
-      const signupEmail = document.getElementById("signupEmail");
-      const signupPhone = document.getElementById("signupPhone");
       const signupPassword = document.getElementById("signupPassword");
+      const signupUsername = document.getElementById("signupUsername");
+      const roleChips = document.querySelectorAll("[data-role]");
 
-      let selectedRole = "customer";
+      let selectedRole = "client";
 
       function setStatus(message, kind = "info") {
         authStatus.textContent = message;
         authStatus.dataset.kind = kind;
       }
 
-      function goHome() {
-        window.location.href = "/dashboard";
+      function getDashboardUrl(role = "customer") {
+        const normalizedRole = String(role || "customer").toLowerCase();
+        if (normalizedRole === "admin") return "admin-dashboard.html";
+        if (normalizedRole === "client" || normalizedRole === "manager") return "client-dashboard.html";
+        return "customer-dashboard.html";
       }
 
-      function isVerifiedUser(user) {
-        const providerIds = user.providerData.map((provider) => provider.providerId);
-        return user.emailVerified || providerIds.includes("phone") || providerIds.includes("google.com");
+      function goHome(role = selectedRole) {
+        window.location.href = getDashboardUrl(role);
+      }
+
+      function goOnboarding() {
+        window.location.href = "client-onboarding.html";
       }
 
       function setMode(mode) {
@@ -232,17 +218,16 @@
           signupFooterLink.textContent = "Sign Up";
         } else {
           copyTitle.textContent = "Create your account";
-          copySubtitle.textContent = "New users must verify email or phone";
+          copySubtitle.textContent = "New users sign up with a username and password";
           signupFooterLink.textContent = "Login";
         }
       }
 
-      async function syncBackendSession(user) {
-        const idToken = await user.getIdToken();
-        const response = await fetch("/api/auth/verify", {
+      async function syncBackendSession(payload) {
+        const response = await fetch(`${apiBase}/api/auth/verify`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ idToken, role: selectedRole }),
+          body: JSON.stringify(payload),
         });
         if (!response.ok) {
           throw new Error("Backend session could not be created");
@@ -250,8 +235,27 @@
         return response.json();
       }
 
+      async function signInLocalAccount(username, password) {
+        const response = await fetch(`${apiBase}/api/auth/local-login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}));
+          throw new Error(error.error || "Local login failed");
+        }
+        return response.json();
+      }
+
       authTabs.forEach((tab) => {
         tab.addEventListener("click", () => setMode(tab.dataset.authTab));
+      });
+      roleChips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          selectedRole = chip.dataset.role || "customer";
+          roleChips.forEach((item) => item.classList.toggle("active", item === chip));
+        });
       });
       signupCta.addEventListener("click", (event) => {
         event.preventDefault();
@@ -260,111 +264,67 @@
 
       document.querySelector(".auth-form-login")?.addEventListener("submit", async (event) => {
         event.preventDefault();
-        const phone = loginPhone.value.trim();
+        const loginValue = loginPhone.value.trim();
         const password = loginPassword.value;
-        if (!phone || !password) {
-          setStatus("Enter your phone number and password.", "warning");
+        if (!loginValue || !password) {
+          setStatus("Enter your username and password.", "warning");
           return;
         }
-        const q = query(collection(db, "users"), where("phone", "==", phone));
-        const snap = await getDocs(q);
-        if (snap.empty) {
-          setStatus("No account found for that phone number.", "warning");
-          return;
+        try {
+          const result = await signInLocalAccount(loginValue, password);
+          selectedRole = result.user?.role || "customer";
+          setStatus("Login successful. Redirecting...", "success");
+          if ((selectedRole === "client" || selectedRole === "manager") && !result.user?.onboardingComplete) {
+            goOnboarding();
+            return;
+          }
+          goHome(selectedRole);
+        } catch (error) {
+          console.error("Login error:", error);
+          setStatus(error.message || "Login failed. Try again.", "warning");
         }
-        const userDoc = snap.docs[0].data();
-        const email = userDoc.email;
-        const credential = await signInWithEmailAndPassword(auth, email, password);
-        if (!credential.user.emailVerified && !credential.user.providerData.some((p) => p.providerId === "google.com")) {
-          await sendEmailVerification(credential.user);
-          await signOut(auth);
-          setStatus("Please verify your email before signing in.", "warning");
-          return;
-        }
-        selectedRole = userDoc.role || "customer";
-        await syncBackendSession(credential.user);
-        goHome();
       });
 
       document.querySelector(".auth-form-signup")?.addEventListener("submit", async (event) => {
         event.preventDefault();
+        const username = signupUsername.value.trim();
         const fullName = signupName.value.trim();
-        const email = signupEmail.value.trim();
-        const phone = signupPhone.value.trim();
         const password = signupPassword.value;
-        if (!fullName || !email || !phone || !password) {
-          setStatus("Fill in name, email, phone, and password.", "warning");
+        if (!username || !fullName || !password) {
+          setStatus("Fill in username, name, and password.", "warning");
           return;
         }
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        await updateProfile(userCredential.user, { displayName: fullName });
-        await sendEmailVerification(userCredential.user);
-        await setDoc(doc(db, "users", userCredential.user.uid), {
-          uid: userCredential.user.uid,
-          name: fullName,
-          email,
-          phone,
-          role: selectedRole,
-          emailVerified: false,
-          createdAt: Date.now(),
-        });
-        selectedRole = "customer";
-        await syncBackendSession(userCredential.user);
-        await signOut(auth);
-        setStatus("Account created. Please verify your email, then log in.", "warning");
-        setMode("login");
+        try {
+          const response = await fetch(`${apiBase}/api/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username,
+              name: fullName,
+              password,
+              role: selectedRole,
+            }),
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            throw new Error(data.error || "Registration failed");
+          }
+          selectedRole = data.user?.role || selectedRole;
+          setStatus("Account created. Redirecting...", "success");
+          if ((selectedRole === "client" || selectedRole === "manager") && !data.user?.onboardingComplete) {
+            goOnboarding();
+            return;
+          }
+          goHome(selectedRole);
+        } catch (error) {
+          setStatus(error.message || "Registration failed. Try again.", "warning");
+        }
       });
 
       googleLoginBtn.addEventListener("click", async () => {
-        try {
-          googleLoginBtn.disabled = true;
-          googleLoginBtn.textContent = "Signing in...";
-          const credential = await signInWithPopup(auth, googleProvider);
-          if (credential?.user) {
-            const userRef = doc(db, "users", credential.user.uid);
-            const existing = await getDoc(userRef);
-            if (!existing.exists()) {
-              await setDoc(userRef, {
-                uid: credential.user.uid,
-                name: credential.user.displayName || "Guest",
-                email: credential.user.email || "",
-                phone: "",
-                role: selectedRole,
-                emailVerified: true,
-                createdAt: Date.now(),
-              });
-            }
-            await syncBackendSession(credential.user);
-            setStatus("Google sign-in successful. Redirecting...", "success");
-            goHome();
-          }
-        } catch (err) {
-          console.error("Google sign-in error:", err);
-          if (err.code === "auth/popup-closed-by-user") {
-            setStatus("Sign-in cancelled.", "info");
-          } else if (err.code === "auth/popup-blocked") {
-            setStatus("Popup was blocked. Please allow popups for this site.", "warning");
-          } else if (err.code === "auth/unauthorized-domain") {
-            setStatus("This domain is not authorised in Firebase. Add it in the Firebase Console.", "warning");
-          } else {
-            setStatus(err.message || "Google sign-in failed. Try again.", "warning");
-          }
-        } finally {
-          googleLoginBtn.disabled = false;
-          googleLoginBtn.innerHTML = `<span class="google-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24"><path fill="#EA4335" d="M12 10.2v3.95h5.62c-.25 1.48-1.68 4.33-5.62 4.33-3.38 0-6.13-2.8-6.13-6.25S8.62 6 12 6c1.93 0 3.22.82 3.96 1.52l2.7-2.6C16.93 3.32 14.71 2.33 12 2.33 6.49 2.33 2 6.77 2 12.08S6.49 21.83 12 21.83c5.76 0 9.58-4.05 9.58-9.76 0-.66-.07-1.16-.15-1.65H12Z"/><path fill="#4285F4" d="M21.18 12.08c0-.66-.07-1.16-.15-1.65H12v3.95h5.17c-.22 1.31-1.01 3.04-2.88 4.2l2.78 2.15c1.63-1.51 2.71-3.73 2.71-6.65Z"/><path fill="#FBBC05" d="M5.87 14.11c-.21-.64-.34-1.31-.34-2.03s.12-1.39.34-2.03L3.02 7.88A9.6 9.6 0 0 0 2 12.08c0 1.51.36 2.94 1.02 4.2l2.85-2.17Z"/><path fill="#34A853" d="M12 21.83c2.71 0 4.99-.89 6.65-2.43l-2.78-2.15c-.74.5-1.74 1.06-3.87 1.06-3.06 0-5.65-2.07-6.58-4.98L2.57 15.5C4.2 19.05 7.73 21.83 12 21.83Z"/></svg></span><span>Continue with Google</span>`;
-        }
+        setStatus("Google sign-in is not configured in this local build yet. Use username and password.", "info");
       });
 
-      onAuthStateChanged(auth, async (user) => {
-        if (!user) return;
-        try {
-          await syncBackendSession(user);
-          goHome();
-        } catch {
-          await signOut(auth);
-          setStatus("Session error. Please sign in again.", "warning");
-        }
-      });
       setMode("login");
     </script>
   </body>
