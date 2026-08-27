@@ -1,0 +1,13 @@
+{
+  "name": "cityvibe",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "seed:firestore": "node seed-firestore.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^14.3.0"
+  }
+}

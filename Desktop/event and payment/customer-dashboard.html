@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Customer Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body { margin:0; font-family: Manrope, sans-serif; background: linear-gradient(180deg,#f7fbff,#eef3fb); color:#0f172a; }
+      .shell { max-width: 1400px; margin:0 auto; padding:1.25rem; display:grid; grid-template-columns: 280px 1fr; gap:1rem; min-height:100vh; }
+      .sidebar, .panel { background: rgba(255,255,255,.92); border:1px solid rgba(18,66,197,.12); box-shadow:0 24px 60px rgba(15,23,42,.08); backdrop-filter: blur(14px); }
+      .sidebar { border-radius:28px; padding:1.2rem; position:sticky; top:1.25rem; height:fit-content; display:grid; gap:1rem; }
+      .brand strong { display:block; font-size:1.6rem; letter-spacing:-.05em; }
+      .pill { display:inline-flex; width:fit-content; padding:.35rem .7rem; border-radius:999px; background:#dbe6ff; color:var(--blue); font-size:.76rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; }
+      .nav { display:grid; gap:.55rem; }
+      .nav a, .nav button, .btn { border:0; border-radius:16px; padding:.9rem 1rem; font-weight:800; cursor:pointer; text-decoration:none; }
+      .nav a, .nav button { background:#f8fbff; color:#13203a; text-align:left; }
+      .btn.primary { background: linear-gradient(180deg, #2f6bff, var(--blue)); color:#fff; }
+      .btn.secondary { background:#fff; color:var(--blue); border:1px solid rgba(18,66,197,.16); }
+      .content { display:grid; gap:1rem; }
+      .hero, .panel { border-radius:28px; padding:1.15rem; }
+      .hero { background: radial-gradient(circle at top right, rgba(255,255,255,.16), transparent 28%), linear-gradient(135deg, #1242c5, #186cff); color:#fff; display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+      .hero h1, .panel h2, .panel h3 { margin:0; letter-spacing:-.05em; }
+      .hero p, .panel p { color: rgba(255,255,255,.88); }
+      .panel p { color:#64748b; }
+      .grid { display:grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap:.9rem; }
+      .metric { background:#fff; border:1px solid rgba(18,66,197,.1); border-radius:22px; padding:1rem; }
+      .metric small { color:#64748b; font-weight:800; text-transform:uppercase; letter-spacing:.08em; }
+      .metric strong { display:block; margin-top:.4rem; font-size:1.7rem; }
+      .two { display:grid; grid-template-columns: 1.15fr .85fr; gap:1rem; }
+      .list { display:grid; gap:.8rem; margin-top:1rem; }
+      .item { padding:.95rem 1rem; border-radius:18px; background:#f8fbff; border:1px solid rgba(18,66,197,.08); }
+      .item strong { display:block; }
+      .card-grid { display:grid; gap:.8rem; margin-top:1rem; }
+      .card { padding:1rem; border-radius:20px; background:#f8fbff; border:1px solid rgba(18,66,197,.08); }
+      @media (max-width: 1100px) { .shell, .grid, .two { grid-template-columns: 1fr; } .sidebar { position: static; } }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <div class="brand"><span class="pill">cityvibe</span><strong>Customer Area</strong><span id="welcome">Manage your bookings</span></div>
+        <div class="pill">customer</div>
+        <nav class="nav">
+          <a href="#overview">Overview</a>
+          <a href="#bookings">Bookings</a>
+          <a href="#payments">Payments</a>
+        </nav>
+        <div class="nav">
+          <a class="btn secondary" href="/dashboard/admin">Admin dashboard</a>
+          <a class="btn secondary" href="/dashboard/client">Client dashboard</a>
+          <a class="btn secondary" href="/index.html">Home</a>
+          <button class="btn primary" id="refreshBtn" type="button">Refresh</button>
+          <button class="btn secondary" id="logoutBtn" type="button">Logout</button>
+        </div>
+      </aside>
+      <section class="content">
+        <header class="hero" id="overview">
+          <div><span class="pill">Customer Dashboard</span><h1>Your events and payments</h1><p>See upcoming bookings, payment history, and account status.</p></div>
+          <div><button class="btn secondary">Book event</button> <button class="btn secondary">Download receipt</button></div>
+        </header>
+        <section class="panel">
+          <h2>Account snapshot</h2>
+          <div class="grid">
+            <div class="metric"><small>Bookings</small><strong>12</strong><span>Upcoming and past</span></div>
+            <div class="metric"><small>Payments</small><strong>₹42K</strong><span>Completed total</span></div>
+            <div class="metric"><small>Tickets</small><strong>31</strong><span>Confirmed seats</span></div>
+            <div class="metric"><small>Status</small><strong>98%</strong><span>Verified</span></div>
+          </div>
+        </section>
+        <section class="two" id="bookings">
+          <article class="panel">
+            <h2>Upcoming bookings</h2>
+            <div class="card-grid" id="cards"></div>
+          </article>
+          <article class="panel" id="payments">
+            <h3>Payment history</h3>
+            <div class="list" id="activity"></div>
+          </article>
+        </section>
+      </section>
+    </main>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+      import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+      import { getFirestore, collection, query, where, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+      initializeApp({
+        apiKey: "AIzaSyBCgNQy8EJLg7E-SA1cMePGetWLOR7WWMI",
+        authDomain: "ogshootsluxe-36740.firebaseapp.com",
+        projectId: "ogshootsluxe-36740",
+        storageBucket: "ogshootsluxe-36740.firebasestorage.app",
+        messagingSenderId: "5471814825",
+        appId: "1:5471814825:web:07e84f2f88486da817d5b8",
+      });
+
+      const auth = getAuth();
+      const db = getFirestore();
+      const cardsEl = document.getElementById("cards");
+      const activityEl = document.getElementById("activity");
+      const bookingCount = document.querySelector(".grid .metric:nth-child(1) strong");
+      const paymentTotal = document.querySelector(".grid .metric:nth-child(2) strong");
+      const ticketCount = document.querySelector(".grid .metric:nth-child(3) strong");
+      const statusValue = document.querySelector(".grid .metric:nth-child(4) strong");
+      let unsubBookings = null;
+      let unsubPayments = null;
+
+      function money(value) {
+        return `₹${Number(value || 0).toLocaleString("en-IN")}`;
+      }
+
+      function renderFallback() {
+        cardsEl.innerHTML = `<div class="card"><strong>No bookings yet</strong><span>Your confirmed events will appear here.</span></div>`;
+        activityEl.innerHTML = `<div class="item"><strong>No payment activity</strong><span>Recent confirmations will show once they are recorded.</span></div>`;
+      }
+
+      function attachLiveData(uid) {
+        if (unsubBookings) unsubBookings();
+        if (unsubPayments) unsubPayments();
+
+        const bookingsQuery = query(collection(db, "bookings"), where("userId", "==", uid), orderBy("createdAt", "desc"), limit(20));
+        const paymentsQuery = query(collection(db, "payments"), where("userId", "==", uid), orderBy("createdAt", "desc"), limit(20));
+
+        unsubBookings = onSnapshot(
+          bookingsQuery,
+          (snapshot) => {
+            const bookings = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            bookingCount.textContent = String(bookings.length);
+            ticketCount.textContent = String(bookings.reduce((sum, item) => sum + Number(item.tickets || 0), 0) || bookings.length);
+            cardsEl.innerHTML = bookings.length
+              ? bookings
+                  .map(
+                    (booking) => `
+                      <div class="card">
+                        <strong>${booking.eventName || booking.name || "Booking"}</strong>
+                        <span>${booking.city || booking.venue || "Venue pending"}</span>
+                        <span>${booking.status || "confirmed"} | ${booking.tickets || 1} ticket(s)</span>
+                      </div>`
+                  )
+                  .join("")
+              : `<div class="card"><strong>No bookings yet</strong><span>Your confirmed events will appear here.</span></div>`;
+          },
+          () => renderFallback()
+        );
+
+        unsubPayments = onSnapshot(
+          paymentsQuery,
+          (snapshot) => {
+            const payments = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            paymentTotal.textContent = money(
+              payments.reduce((sum, item) => sum + (String(item.status) === "paid" ? Number(item.amount || 0) : 0), 0)
+            );
+            statusValue.textContent = payments.some((item) => String(item.status).includes("verified")) ? "100%" : "97%";
+            activityEl.innerHTML = payments.length
+              ? payments
+                  .map(
+                    (payment) => `
+                      <div class="item">
+                        <strong>${payment.status === "paid" ? "Payment received" : "Payment status"}</strong>
+                        <span>${payment.receipt || payment.id} | ${money(payment.amount)}</span>
+                      </div>`
+                  )
+                  .join("")
+              : `<div class="item"><strong>No payment activity</strong><span>Recent confirmations will show once they are recorded.</span></div>`;
+          },
+          () => renderFallback()
+        );
+      }
+
+      async function logout() {
+        await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+        try {
+          await signOut(auth);
+        } catch {}
+        window.location.href = "/login.html";
+      }
+
+      async function refresh() {
+        const response = await fetch("/api/auth/me", { credentials: "include" });
+        if (!response.ok) return (window.location.href = "/login.html");
+        const payload = await response.json();
+        document.getElementById("welcome").textContent = `Welcome back, ${payload.user.name || "Customer"}`;
+        attachLiveData(payload.user.uid);
+      }
+
+      document.getElementById("logoutBtn").addEventListener("click", logout);
+      document.getElementById("refreshBtn").addEventListener("click", refresh);
+      refresh();
+    </script>
+  </body>
+</html>

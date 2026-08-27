@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Growezy | Client Onboarding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f4f7ff;
+        --surface: rgba(255, 255, 255, 0.88);
+        --surface-2: #ffffff;
+        --text: #132238;
+        --muted: #66738a;
+        --border: #dbe4f2;
+        --blue: #2f66ea;
+        --blue-2: #1748cf;
+        --green: #16b36a;
+        --orange: #e87d12;
+        --shadow: 0 24px 70px rgba(26, 46, 88, 0.12);
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Manrope, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(47, 102, 234, 0.16), transparent 30%),
+          radial-gradient(circle at right top, rgba(23, 72, 207, 0.14), transparent 24%),
+          linear-gradient(180deg, #f8faff 0%, #eef3ff 100%);
+      }
+      button, input { font: inherit; }
+      .shell {
+        min-height: 100vh;
+        padding: 20px;
+      }
+      .card {
+        max-width: 1440px;
+        margin: 0 auto;
+        background: var(--surface);
+        border: 1px solid rgba(150, 172, 216, 0.24);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        border-radius: 28px;
+        overflow: hidden;
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 320px minmax(0, 1fr);
+        min-height: calc(100vh - 40px);
+      }
+      .rail {
+        background: linear-gradient(180deg, #08142c 0%, #0b1d40 100%);
+        color: #eef4ff;
+        padding: 28px 22px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .brand h1 {
+        margin: 0;
+        font-size: 26px;
+        letter-spacing: -0.04em;
+      }
+      .sub {
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(238, 244, 255, 0.7);
+      }
+      .rail-copy {
+        color: rgba(238, 244, 255, 0.8);
+        line-height: 1.65;
+      }
+      .steps {
+        display: grid;
+        gap: 10px;
+        margin-top: 6px;
+      }
+      .step {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 15px 14px;
+        border-radius: 18px;
+        border: 1px solid rgba(238, 244, 255, 0.08);
+        background: rgba(255, 255, 255, 0.05);
+        cursor: pointer;
+        color: inherit;
+        text-align: left;
+      }
+      .step.active {
+        background: linear-gradient(135deg, rgba(73, 122, 255, 0.38), rgba(53, 95, 239, 0.26));
+        border-color: rgba(136, 173, 255, 0.46);
+        box-shadow: 0 12px 30px rgba(47, 102, 234, 0.2);
+      }
+      .step.done .idx {
+        background: rgba(22, 179, 106, 0.18);
+        color: #9ef0ca;
+      }
+      .idx {
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        font-weight: 800;
+        flex: none;
+      }
+      .step small {
+        display: block;
+        margin-top: 2px;
+        color: rgba(238, 244, 255, 0.72);
+      }
+      .rail-footer {
+        margin-top: auto;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: rgba(238, 244, 255, 0.72);
+        font-size: 14px;
+      }
+      .content {
+        padding: 30px;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+      .title h2 {
+        margin: 0 0 6px;
+        font-size: clamp(30px, 3vw, 44px);
+        letter-spacing: -0.05em;
+      }
+      .title p {
+        margin: 0;
+        color: var(--muted);
+      }
+      .progress {
+        min-width: 290px;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 16px 18px;
+      }
+      .bar {
+        height: 11px;
+        border-radius: 999px;
+        background: #e8eef8;
+        overflow: hidden;
+        margin-top: 10px;
+      }
+      .bar span {
+        display: block;
+        height: 100%;
+        width: 20%;
+        background: linear-gradient(90deg, var(--blue), #00b3a6);
+        border-radius: inherit;
+        transition: width 0.2s ease;
+      }
+      .notice-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      .notice {
+        flex: 1 1 280px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: #fff;
+        padding: 16px 18px;
+        box-shadow: 0 10px 24px rgba(17, 44, 88, 0.04);
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+      .notice .icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+        flex: none;
+      }
+      .notice.bank .icon { background: #fff3d8; color: #dd8600; }
+      .notice.pan .icon { background: #fff0df; color: #d86e00; }
+      .notice.ig .icon { background: #edf2ff; color: var(--blue); }
+      .notice strong { display: block; margin-bottom: 3px; }
+      .notice span { color: var(--muted); font-size: 14px; }
+      .step-card {
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        box-shadow: 0 12px 30px rgba(20, 41, 77, 0.05);
+        padding: 24px;
+        animation: fadeIn 220ms ease;
+      }
+      .step-card h3 {
+        margin: 0 0 6px;
+        font-size: 24px;
+        letter-spacing: -0.04em;
+      }
+      .step-card p {
+        margin: 0 0 18px;
+        color: var(--muted);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+      .field label {
+        font-size: 13px;
+        font-weight: 800;
+        color: #36455d;
+      }
+      .control {
+        border: 1px solid var(--border);
+        background: #fbfdff;
+        border-radius: 16px;
+        padding: 14px 16px;
+        min-height: 52px;
+        width: 100%;
+        outline: none;
+        color: var(--text);
+        transition: border-color 0.18s ease, box-shadow 0.18s ease;
+      }
+      .control:focus {
+        border-color: rgba(47, 102, 234, 0.5);
+        box-shadow: 0 0 0 4px rgba(47, 102, 234, 0.08);
+      }
+      .stack {
+        display: grid;
+        gap: 14px;
+      }
+      .toggle-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 18px;
+        border: 1px solid var(--border);
+        background: #fbfdff;
+        border-radius: 18px;
+      }
+      .toggle-row strong {
+        display: block;
+        margin-bottom: 4px;
+      }
+      .toggle-row span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .switch {
+        width: 58px;
+        height: 34px;
+        border-radius: 999px;
+        background: #d8e1f0;
+        position: relative;
+        border: 0;
+        cursor: pointer;
+        transition: background 0.18s ease;
+        flex: none;
+      }
+      .switch::after {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        transition: transform 0.18s ease;
+      }
+      .switch.on {
+        background: var(--blue);
+      }
+      .switch.on::after {
+        transform: translateX(24px);
+      }
+      .footer-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        margin-top: 18px;
+      }
+      .status {
+        min-height: 22px;
+        color: var(--muted);
+        font-weight: 700;
+      }
+      .status.error { color: #c75f00; }
+      .status.success { color: var(--green); }
+      .btn {
+        border: 0;
+        border-radius: 16px;
+        padding: 14px 18px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+      .btn-secondary {
+        background: #fff;
+        border: 1px solid var(--border);
+        color: #1c2b44;
+      }
+      .btn-primary {
+        background: linear-gradient(180deg, #3570f0, var(--blue-2));
+        color: #fff;
+        box-shadow: 0 14px 30px rgba(47, 102, 234, 0.2);
+      }
+      .inline-tabs {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin: 2px 0 16px;
+      }
+      .inline-tabs button {
+        border: 1px solid var(--border);
+        background: #fff;
+        color: #415168;
+        padding: 10px 14px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-weight: 800;
+      }
+      .inline-tabs button.active {
+        background: #eef4ff;
+        border-color: rgba(47, 102, 234, 0.24);
+        color: var(--blue);
+      }
+      .hidden { display: none !important; }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @media (max-width: 1100px) {
+        .layout { grid-template-columns: 1fr; }
+        .rail { min-height: auto; }
+      }
+      @media (max-width: 760px) {
+        .shell { padding: 12px; }
+        .content { padding: 18px; }
+        .topbar { flex-direction: column; align-items: stretch; }
+        .progress { min-width: 0; }
+        .grid { grid-template-columns: 1fr; }
+        .footer-actions { flex-direction: column; align-items: stretch; }
+        .footer-actions .btn { width: 100%; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <div class="card">
+        <div class="layout">
+          <aside class="rail">
+            <div class="brand">
+              <div>
+                <div class="sub">Growezy</div>
+                <h1>Client Setup</h1>
+              </div>
+              <span style="padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);font-weight:800;">First time</span>
+            </div>
+            <div class="rail-copy">
+              Match your dashboard with the essentials from the screenshots. Save your brand, payouts, and Instagram setup in one pass.
+            </div>
+            <div class="steps" id="stepNav">
+              <button class="step active" type="button" data-step="brand">
+                <span class="idx">1</span>
+                <span><strong>Brand details</strong><small>Business profile and contact info</small></span>
+              </button>
+              <button class="step" type="button" data-step="bank">
+                <span class="idx">2</span>
+                <span><strong>Bank details</strong><small>Payout account for bookings</small></span>
+              </button>
+              <button class="step" type="button" data-step="pan">
+                <span class="idx">3</span>
+                <span><strong>PAN details</strong><small>Tax verification for payouts</small></span>
+              </button>
+              <button class="step" type="button" data-step="instagram">
+                <span class="idx">4</span>
+                <span><strong>Instagram</strong><small>Connect account and handle</small></span>
+              </button>
+              <button class="step" type="button" data-step="review">
+                <span class="idx">5</span>
+                <span><strong>Review</strong><small>Check everything before launch</small></span>
+              </button>
+            </div>
+            <div class="rail-footer">
+              This onboarding writes into your `users/{uid}` document and marks `onboardingComplete` when finished.
+            </div>
+          </aside>
+
+          <main class="content">
+            <div class="topbar">
+              <div class="title">
+                <h2>Welcome, let’s finish your workspace</h2>
+                <p>Complete the steps below and we’ll open your dashboard automatically.</p>
+              </div>
+              <div class="progress">
+                <strong id="progressLabel">Step 1 of 5</strong>
+                <div class="bar"><span id="progressBar"></span></div>
+                <div style="margin-top:8px;color:var(--muted);font-size:14px;" id="progressText">Brand details</div>
+              </div>
+            </div>
+
+            <div class="notice-row">
+              <div class="notice bank">
+                <div class="icon">🏦</div>
+                <div><strong>Bank details</strong><span>Set up payouts like the dashboard screenshots.</span></div>
+              </div>
+              <div class="notice pan">
+                <div class="icon">🪪</div>
+                <div><strong>PAN verification</strong><span>Required for payouts and finance sections.</span></div>
+              </div>
+              <div class="notice ig">
+                <div class="icon">📸</div>
+                <div><strong>Instagram</strong><span>Use this for automation and creator workflows.</span></div>
+              </div>
+            </div>
+
+            <form id="onboardingForm" class="step-card">
+              <section class="step-pane" data-pane="brand">
+                <h3>Brand details</h3>
+                <p>Set your public brand information and contact details.</p>
+                <div class="grid">
+                  <div class="field">
+                    <label for="brandName">Brand / Company name</label>
+                    <input class="control" id="brandName" type="text" placeholder="OGSHOOTS LUXE" />
+                  </div>
+                  <div class="field">
+                    <label for="brandWebsite">Website</label>
+                    <input class="control" id="brandWebsite" type="url" placeholder="https://yourbrand.com" />
+                  </div>
+                  <div class="field">
+                    <label for="brandCategory">Business category</label>
+                    <input class="control" id="brandCategory" type="text" placeholder="Events, Photography, Tours" />
+                  </div>
+                  <div class="field">
+                    <label for="brandTagline">Tagline</label>
+                    <input class="control" id="brandTagline" type="text" placeholder="Premium experiences that convert" />
+                  </div>
+                  <div class="field" style="grid-column: 1 / -1;">
+                    <label for="brandDescription">Short description</label>
+                    <input class="control" id="brandDescription" type="text" placeholder="Tell people what your brand does" />
+                  </div>
+                  <div class="field">
+                    <label for="brandEmail">Contact email</label>
+                    <input class="control" id="brandEmail" type="email" placeholder="hello@brand.com" />
+                  </div>
+                  <div class="field">
+                    <label for="brandPhone">Contact phone</label>
+                    <input class="control" id="brandPhone" type="text" placeholder="+91 98765 43210" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="step-pane hidden" data-pane="bank">
+                <h3>Bank details</h3>
+                <p>These details are saved for payouts and sales settlements.</p>
+                <div class="grid">
+                  <div class="field">
+                    <label for="accountHolderName">Account holder name</label>
+                    <input class="control" id="accountHolderName" type="text" placeholder="Srisanth Bhushan" />
+                  </div>
+                  <div class="field">
+                    <label for="bankName">Bank name</label>
+                    <input class="control" id="bankName" type="text" placeholder="HDFC Bank" />
+                  </div>
+                  <div class="field">
+                    <label for="accountNumber">Account number</label>
+                    <input class="control" id="accountNumber" type="text" inputmode="numeric" placeholder="123456789012" />
+                  </div>
+                  <div class="field">
+                    <label for="ifsc">IFSC code</label>
+                    <input class="control" id="ifsc" type="text" placeholder="HDFC0001234" />
+                  </div>
+                  <div class="field" style="grid-column: 1 / -1;">
+                    <label for="branch">Branch</label>
+                    <input class="control" id="branch" type="text" placeholder="Gachibowli" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="step-pane hidden" data-pane="pan">
+                <h3>PAN details</h3>
+                <p>Needed for verification, payouts, and financial compliance.</p>
+                <div class="grid">
+                  <div class="field">
+                    <label for="panNumber">PAN number</label>
+                    <input class="control" id="panNumber" type="text" placeholder="ABCDE1234F" />
+                  </div>
+                  <div class="field">
+                    <label for="panHolderName">PAN holder name</label>
+                    <input class="control" id="panHolderName" type="text" placeholder="Srisanth Bhushan" />
+                  </div>
+                  <div class="field">
+                    <label for="dateOfBirth">Date of birth</label>
+                    <input class="control" id="dateOfBirth" type="date" />
+                  </div>
+                </div>
+              </section>
+
+              <section class="step-pane hidden" data-pane="instagram">
+                <h3>Instagram connection</h3>
+                <p>Capture the social account you want tied to this client workspace.</p>
+                <div class="stack">
+                  <div class="toggle-row">
+                    <div>
+                      <strong>Connect Instagram account</strong>
+                      <span>Mark this once the account is approved or linked.</span>
+                    </div>
+                    <button class="switch" id="instagramConnected" type="button" aria-pressed="false"></button>
+                  </div>
+                  <div class="grid">
+                    <div class="field">
+                      <label for="instagramHandle">Instagram handle</label>
+                      <input class="control" id="instagramHandle" type="text" placeholder="@ogshootsluxe" />
+                    </div>
+                    <div class="field">
+                      <label for="instagramPageName">Instagram page name</label>
+                      <input class="control" id="instagramPageName" type="text" placeholder="OGSHOOTS LUXE" />
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="step-pane hidden" data-pane="review">
+                <h3>Review and finish</h3>
+                <p>Double check the details below before we save everything to Firestore.</p>
+                <div class="stack">
+                  <div class="notice bank" style="margin:0;">
+                    <div class="icon">1</div>
+                    <div><strong>Brand and contact</strong><span>Company name, website, category, phone, and email.</span></div>
+                  </div>
+                  <div class="notice pan" style="margin:0;">
+                    <div class="icon">2</div>
+                    <div><strong>Bank and PAN</strong><span>Payout and verification data for your client workspace.</span></div>
+                  </div>
+                  <div class="notice ig" style="margin:0;">
+                    <div class="icon">3</div>
+                    <div><strong>Instagram ready</strong><span>Connected account details stored in your profile.</span></div>
+                  </div>
+                </div>
+              </section>
+
+              <div class="footer-actions">
+                <div class="status" id="onboardingStatus"></div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                  <button class="btn btn-secondary" id="backBtn" type="button">Back</button>
+                  <button class="btn btn-primary" id="nextBtn" type="button">Continue</button>
+                  <button class="btn btn-primary hidden" id="finishBtn" type="submit">Finish onboarding</button>
+                </div>
+              </div>
+            </form>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+      import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+      import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyBCgNQy8EJLg7E-SA1cMePGetWLOR7WWMI",
+        authDomain: "ogshootsluxe-36740.firebaseapp.com",
+        projectId: "ogshootsluxe-36740",
+        storageBucket: "ogshootsluxe-36740.firebasestorage.app",
+        messagingSenderId: "5471814825",
+        appId: "1:5471814825:web:07e84f2f88486da817d5b8",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+      const apiBase = window.location.origin && window.location.origin !== "null" ? window.location.origin : "http://localhost:3000";
+
+      const panes = Array.from(document.querySelectorAll(".step-pane"));
+      const navButtons = Array.from(document.querySelectorAll(".step"));
+      const progressBar = document.getElementById("progressBar");
+      const progressLabel = document.getElementById("progressLabel");
+      const progressText = document.getElementById("progressText");
+      const onboardingStatus = document.getElementById("onboardingStatus");
+      const onboardingForm = document.getElementById("onboardingForm");
+      const backBtn = document.getElementById("backBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const finishBtn = document.getElementById("finishBtn");
+      const instagramConnectedBtn = document.getElementById("instagramConnected");
+      const inputs = {
+        brandName: document.getElementById("brandName"),
+        brandWebsite: document.getElementById("brandWebsite"),
+        brandCategory: document.getElementById("brandCategory"),
+        brandTagline: document.getElementById("brandTagline"),
+        brandDescription: document.getElementById("brandDescription"),
+        brandEmail: document.getElementById("brandEmail"),
+        brandPhone: document.getElementById("brandPhone"),
+        accountHolderName: document.getElementById("accountHolderName"),
+        bankName: document.getElementById("bankName"),
+        accountNumber: document.getElementById("accountNumber"),
+        ifsc: document.getElementById("ifsc"),
+        branch: document.getElementById("branch"),
+        panNumber: document.getElementById("panNumber"),
+        panHolderName: document.getElementById("panHolderName"),
+        dateOfBirth: document.getElementById("dateOfBirth"),
+        instagramHandle: document.getElementById("instagramHandle"),
+        instagramPageName: document.getElementById("instagramPageName"),
+      };
+
+      const steps = ["brand", "bank", "pan", "instagram", "review"];
+      const stepLabels = {
+        brand: "Brand details",
+        bank: "Bank details",
+        pan: "PAN details",
+        instagram: "Instagram",
+        review: "Review",
+      };
+
+      let currentUser = null;
+      let currentStepIndex = 0;
+      let instagramConnected = false;
+
+      function setStatus(message, kind = "") {
+        onboardingStatus.textContent = message;
+        onboardingStatus.className = `status ${kind}`.trim();
+      }
+
+      function setStep(stepName) {
+        const nextIndex = Math.max(0, steps.indexOf(stepName));
+        currentStepIndex = nextIndex;
+        panes.forEach((pane) => pane.classList.toggle("hidden", pane.dataset.pane !== stepName));
+        navButtons.forEach((button) => {
+          const active = button.dataset.step === stepName;
+          const idx = steps.indexOf(button.dataset.step);
+          button.classList.toggle("active", active);
+          button.classList.toggle("done", idx < nextIndex);
+        });
+        progressBar.style.width = `${Math.round(((nextIndex + 1) / steps.length) * 100)}%`;
+        progressLabel.textContent = `Step ${nextIndex + 1} of ${steps.length}`;
+        progressText.textContent = stepLabels[stepName] || stepName;
+        backBtn.disabled = nextIndex === 0;
+        nextBtn.classList.toggle("hidden", nextIndex === steps.length - 1);
+        finishBtn.classList.toggle("hidden", nextIndex !== steps.length - 1);
+      }
+
+      function currentStepName() {
+        return steps[currentStepIndex];
+      }
+
+      function populateFromUserData(data = {}) {
+        const onboarding = data.onboarding || {};
+        const brand = onboarding.brandDetails || {};
+        const bank = onboarding.bankDetails || {};
+        const pan = onboarding.panDetails || {};
+        const instagram = onboarding.instagramDetails || {};
+        inputs.brandName.value = brand.brandName || data.companyName || data.name || "";
+        inputs.brandWebsite.value = brand.website || data.website || "";
+        inputs.brandCategory.value = brand.category || "";
+        inputs.brandTagline.value = brand.tagline || "";
+        inputs.brandDescription.value = brand.description || "";
+        inputs.brandEmail.value = brand.email || data.email || "";
+        inputs.brandPhone.value = brand.phone || data.phoneNumber || "";
+        inputs.accountHolderName.value = bank.accountHolderName || "";
+        inputs.bankName.value = bank.bankName || "";
+        inputs.accountNumber.value = bank.accountNumber || "";
+        inputs.ifsc.value = bank.ifsc || "";
+        inputs.branch.value = bank.branch || "";
+        inputs.panNumber.value = pan.panNumber || "";
+        inputs.panHolderName.value = pan.panHolderName || "";
+        inputs.dateOfBirth.value = pan.dateOfBirth || "";
+        inputs.instagramHandle.value = instagram.handle || "";
+        inputs.instagramPageName.value = instagram.pageName || "";
+        instagramConnected = Boolean(instagram.connected);
+        instagramConnectedBtn.classList.toggle("on", instagramConnected);
+        instagramConnectedBtn.setAttribute("aria-pressed", instagramConnected ? "true" : "false");
+      }
+
+      function collectPayload() {
+        return {
+          brandDetails: {
+            brandName: inputs.brandName.value.trim(),
+            website: inputs.brandWebsite.value.trim(),
+            category: inputs.brandCategory.value.trim(),
+            tagline: inputs.brandTagline.value.trim(),
+            description: inputs.brandDescription.value.trim(),
+            email: inputs.brandEmail.value.trim(),
+            phone: inputs.brandPhone.value.trim(),
+          },
+          bankDetails: {
+            accountHolderName: inputs.accountHolderName.value.trim(),
+            bankName: inputs.bankName.value.trim(),
+            accountNumber: inputs.accountNumber.value.trim(),
+            ifsc: inputs.ifsc.value.trim(),
+            branch: inputs.branch.value.trim(),
+          },
+          panDetails: {
+            panNumber: inputs.panNumber.value.trim(),
+            panHolderName: inputs.panHolderName.value.trim(),
+            dateOfBirth: inputs.dateOfBirth.value,
+          },
+          instagramDetails: {
+            handle: inputs.instagramHandle.value.trim(),
+            pageName: inputs.instagramPageName.value.trim(),
+            connected: instagramConnected,
+            connectedAt: instagramConnected ? Date.now() : null,
+          },
+          onboardingComplete: true,
+        };
+      }
+
+      async function loadState() {
+        if (!currentUser) return;
+        const snap = await getDoc(doc(db, "users", currentUser.uid));
+        if (snap.exists()) {
+          const data = snap.data();
+          populateFromUserData(data);
+          if (data.onboardingComplete || data.onboarding?.onboardingComplete) {
+            window.location.href = `/dashboard/${data.role || "client"}`;
+            return;
+          }
+        }
+      }
+
+      async function saveProgress(complete = false) {
+        if (!currentUser) throw new Error("Please sign in again.");
+        const payload = collectPayload();
+        const merged = {
+          uid: currentUser.uid,
+          role: "client",
+          name: payload.brandDetails.brandName || currentUser.displayName || "",
+          email: payload.brandDetails.email || currentUser.email || "",
+          phoneNumber: payload.brandDetails.phone || currentUser.phoneNumber || "",
+          companyName: payload.brandDetails.brandName,
+          website: payload.brandDetails.website,
+          onboarding: {
+            ...payload,
+            onboardingComplete: complete,
+            updatedAt: Date.now(),
+          },
+          onboardingComplete: complete,
+          updatedAt: Date.now(),
+        };
+        await setDoc(doc(db, "users", currentUser.uid), merged, { merge: true });
+
+        const idToken = await currentUser.getIdToken();
+        const response = await fetch(`${apiBase}/api/onboarding/client`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) {
+          const fallback = await fetch(`${apiBase}/api/auth/verify`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              idToken,
+              role: "client",
+              onboardingComplete: complete,
+            }),
+          });
+          if (!fallback.ok) {
+            throw new Error("Could not update your session.");
+          }
+        }
+      }
+
+      instagramConnectedBtn.addEventListener("click", () => {
+        instagramConnected = !instagramConnected;
+        instagramConnectedBtn.classList.toggle("on", instagramConnected);
+        instagramConnectedBtn.setAttribute("aria-pressed", instagramConnected ? "true" : "false");
+      });
+
+      navButtons.forEach((button) => button.addEventListener("click", () => setStep(button.dataset.step)));
+      backBtn.addEventListener("click", () => setStep(steps[Math.max(0, currentStepIndex - 1)]));
+      nextBtn.addEventListener("click", () => setStep(steps[Math.min(steps.length - 1, currentStepIndex + 1)]));
+
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+          window.location.href = "/login.html";
+          return;
+        }
+        currentUser = user;
+        try {
+          await loadState();
+          setStep("brand");
+        } catch (error) {
+          console.error(error);
+          setStatus(error.message || "Could not load onboarding.", "error");
+        }
+      });
+
+      onboardingForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        try {
+          setStatus("Saving onboarding to Firestore and backend...", "");
+          await saveProgress(true);
+          setStatus("Onboarding complete. Redirecting...", "success");
+          window.location.href = "/dashboard/client";
+        } catch (error) {
+          console.error(error);
+          setStatus(error.message || "Could not finish onboarding.", "error");
+        }
+      });
+    </script>
+  </body>
+</html>

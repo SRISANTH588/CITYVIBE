@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Client Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <style>
+      body{margin:0;font-family:Manrope,sans-serif;background:linear-gradient(180deg,#f4f8ff,#eef3fb);color:#0f172a}.shell{max-width:1400px;margin:0 auto;padding:1.25rem;display:grid;grid-template-columns:280px 1fr;gap:1rem;min-height:100vh}.sidebar,.panel{background:rgba(255,255,255,.92);border:1px solid rgba(18,66,197,.12);box-shadow:0 24px 60px rgba(15,23,42,.08);backdrop-filter:blur(14px)}.sidebar{border-radius:28px;padding:1.2rem;position:sticky;top:1.25rem;height:fit-content;display:grid;gap:1rem}.pill{display:inline-flex;width:fit-content;padding:.35rem .7rem;border-radius:999px;background:#dbe6ff;color:var(--blue);font-size:.76rem;font-weight:900;letter-spacing:.12em;text-transform:uppercase}.nav{display:grid;gap:.55rem}.nav a,.nav button,.btn{border:0;border-radius:16px;padding:.9rem 1rem;font-weight:800;cursor:pointer;text-decoration:none}.nav a,.nav button{background:#f8fbff;color:#13203a;text-align:left}.btn.primary{background:linear-gradient(180deg,#2f6bff,var(--blue));color:#fff}.btn.secondary{background:#fff;color:var(--blue);border:1px solid rgba(18,66,197,.16)}.content{display:grid;gap:1rem}.hero,.panel{border-radius:28px;padding:1.15rem}.hero{background:linear-gradient(135deg,#0f2c6f,#1242c5);color:#fff;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}.card-grid{display:grid;gap:.8rem;margin-top:1rem}.card{padding:1rem;border-radius:20px;background:#f8fbff;border:1px solid rgba(18,66,197,.08)}.muted{color:#64748b}@media (max-width:1100px){.shell{grid-template-columns:1fr}.sidebar{position:static}}
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <div><span class="pill">cityvibe</span><strong style="display:block;font-size:1.6rem;letter-spacing:-.05em">Client Dashboard</strong><span class="muted" id="welcome">Manage client projects</span></div>
+        <div class="pill">client</div>
+        <nav class="nav">
+          <a href="/dashboard/client">Overview</a>
+          <a href="/dashboard/client/projects">Projects</a>
+          <a href="/dashboard/client/bookings">Bookings</a>
+          <a href="/dashboard/client/activity">Activity</a>
+        </nav>
+        <div class="nav">
+          <a class="btn secondary" href="/dashboard/admin">Admin dashboard</a>
+          <a class="btn secondary" href="/dashboard/customer">Customer dashboard</a>
+          <a class="btn secondary" href="/index.html">Home</a>
+          <button class="btn primary" id="refreshBtn" type="button">Refresh</button>
+          <button class="btn secondary" id="logoutBtn" type="button">Logout</button>
+        </div>
+      </aside>
+      <section class="content">
+        <header class="hero"><div><span class="pill">Projects</span><h1 style="margin:0;letter-spacing:-.05em">Client work</h1><p>Track campaigns and deliverables.</p></div></header>
+        <section class="panel">
+          <h2 style="margin:0">Projects</h2>
+          <div class="card-grid" id="cards"></div>
+        </section>
+      </section>
+    </main>
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-app.js";
+      import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-auth.js";
+      import { getFirestore, collection, query, where, orderBy, limit, onSnapshot } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+      initializeApp({ apiKey:"AIzaSyBCgNQy8EJLg7E-SA1cMePGetWLOR7WWMI", authDomain:"ogshootsluxe-36740.firebaseapp.com", projectId:"ogshootsluxe-36740", storageBucket:"ogshootsluxe-36740.firebasestorage.app", messagingSenderId:"5471814825", appId:"1:5471814825:web:07e84f2f88486da817d5b8" });
+      const auth=getAuth(), db=getFirestore(), cards=document.getElementById("cards");
+      function render(items){ cards.innerHTML = items.length ? items.map((item)=>`<div class="card"><strong>${item.name || "Project"}</strong><span>${item.status || "active"} | ${item.category || "general"}</span><span>${item.summary || item.notes || "No notes yet"}</span></div>`).join("") : `<div class="card"><strong>No client projects yet</strong><span>Projects assigned to you will appear here.</span></div>`; }
+      async function refresh(){ const r=await fetch("/api/auth/me",{credentials:"include"}); if(!r.ok) return window.location.href="/login.html"; const p=await r.json(); document.getElementById("welcome").textContent = `Welcome back, ${p.user.name || "Client"}`; onSnapshot(query(collection(db,"clientProjects"), where("ownerId","==",p.user.uid), orderBy("updatedAt","desc"), limit(20)), (snap)=>render(snap.docs.map((d)=>({id:d.id,...d.data()})))); }
+      document.getElementById("logoutBtn").onclick=async()=>{ await fetch("/api/auth/logout",{method:"POST",credentials:"include"}); try{await signOut(auth);}catch{} window.location.href="/login.html"; };
+      document.getElementById("refreshBtn").onclick=refresh; refresh();
+    </script>
+  </body>
+</html>

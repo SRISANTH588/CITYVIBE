@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="nav-wrap">
+        <div class="brand-block">
+          <div class="logo">cityvibe</div>
+          <div class="brand-sub">by OGSHOOTS LUXE</div>
+        </div>
+        <div class="auth-actions">
+          <a class="nav-link" href="index.html">Back to Home</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="login-page">
+        <div class="login-frame">
+          <div class="login-tabs" role="tablist" aria-label="Authentication tabs">
+            <button class="login-tab active" type="button" data-auth-tab="login">Login</button>
+            <button class="login-tab" type="button" data-auth-tab="signup">Sign Up</button>
+          </div>
+
+          <div class="login-copy">
+            <h1>Sign in to your account</h1>
+            <p>Access your event dashboard</p>
+          </div>
+
+          <div class="auth-status" id="authStatus" aria-live="polite"></div>
+
+          <form class="auth-form auth-form-login auth-form-active" data-auth-form="login">
+            <label>
+              <span class="field-label">Username</span>
+              <div class="field-shell">
+                <span class="field-icon">📱</span>
+                <input id="loginPhone" type="text" placeholder="Enter username" autocomplete="username" />
+              </div>
+            </label>
+
+            <label>
+              <span class="field-label">Password</span>
+              <div class="field-shell password-shell">
+                <span class="field-icon">🔒</span>
+                <input id="loginPassword" type="password" placeholder="••••••••" autocomplete="current-password" />
+                <button class="eye-btn" type="button" aria-label="Show password">◔</button>
+              </div>
+            </label>
+
+            <div class="auth-actions-row">
+              <label class="remember-toggle">
+                <input type="checkbox" />
+                <span>Remember me</span>
+              </label>
+              <a href="#" class="auth-link">Forgot password?</a>
+            </div>
+
+            <button class="btn premium-btn full" id="loginBtn" type="submit">Login →</button>
+
+            <div class="or-divider"><span>or</span></div>
+
+            <button class="google-btn full" id="googleLoginBtn" type="button">
+              <span class="google-mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="">
+                  <path fill="#EA4335" d="M12 10.2v3.95h5.62c-.25 1.48-1.68 4.33-5.62 4.33-3.38 0-6.13-2.8-6.13-6.25S8.62 6 12 6c1.93 0 3.22.82 3.96 1.52l2.7-2.6C16.93 3.32 14.71 2.33 12 2.33 6.49 2.33 2 6.77 2 12.08S6.49 21.83 12 21.83c5.76 0 9.58-4.05 9.58-9.76 0-.66-.07-1.16-.15-1.65H12Z"/>
+                  <path fill="#4285F4" d="M21.18 12.08c0-.66-.07-1.16-.15-1.65H12v3.95h5.17c-.22 1.31-1.01 3.04-2.88 4.2l2.78 2.15c1.63-1.51 2.71-3.73 2.71-6.65Z"/>
+                  <path fill="#FBBC05" d="M5.87 14.11c-.21-.64-.34-1.31-.34-2.03s.12-1.39.34-2.03L3.02 7.88A9.6 9.6 0 0 0 2 12.08c0 1.51.36 2.94 1.02 4.2l2.85-2.17Z"/>
+                  <path fill="#34A853" d="M12 21.83c2.71 0 4.99-.89 6.65-2.43l-2.78-2.15c-.74.5-1.74 1.06-3.87 1.06-3.06 0-5.65-2.07-6.58-4.98L2.57 15.5C4.2 19.05 7.73 21.83 12 21.83Z"/>
+                  <path fill="#0F9D58" d="M12 2.33c2.71 0 4.57.95 5.6 1.75l-2.58 2.45C14.29 5.79 13.25 5.18 12 5.18c-2.26 0-4.19 1.45-4.98 3.47L3.98 6.5C5.8 3.18 8.68 2.33 12 2.33Z"/>
+                </svg>
+              </span>
+              <span>Continue with Google</span>
+            </button>
+          </form>
+
+          <form class="auth-form auth-form-signup" data-auth-form="signup" hidden>
+            <label>
+              <span class="field-label">Account Type</span>
+              <div class="role-grid">
+                <button class="role-chip active" type="button" data-role="client">Client</button>
+                <button class="role-chip" type="button" data-role="customer">Customer</button>
+                <button class="role-chip" type="button" data-role="admin">Admin</button>
+              </div>
+            </label>
+
+            <label>
+              <span class="field-label">Username</span>
+              <div class="field-shell">
+                <span class="field-icon">👤</span>
+                <input id="signupUsername" type="text" placeholder="Choose a username" autocomplete="username" />
+              </div>
+            </label>
+
+            <label>
+              <span class="field-label">Full Name</span>
+              <div class="field-shell">
+                <span class="field-icon">👤</span>
+                <input id="signupName" type="text" placeholder="Your full name" autocomplete="name" />
+              </div>
+            </label>
+
+            <label>
+              <span class="field-label">Password</span>
+              <div class="field-shell password-shell">
+                <span class="field-icon">🔒</span>
+                <input id="signupPassword" type="password" placeholder="Create a password" autocomplete="new-password" />
+                <button class="eye-btn" type="button" aria-label="Show password">◔</button>
+              </div>
+            </label>
+
+            <button class="btn premium-btn full" type="submit">Create Account →</button>
+
+            <div class="signup-note">Your account will use your username and password only.</div>
+          </form>
+
+          <div class="signup-footer">
+            <span>New customer?</span>
+            <a href="#" id="signupCta">Sign Up</a>
+          </div>
+
+          <a class="back-home" href="index.html">Back to Home</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer login-footer">
+      <div class="footer-wrap">
+        <div class="footer-branding">
+          <div class="footer-brand">cityvibe</div>
+          <p>Simple login, Google sign-in, and verified account access.</p>
+          <span class="footer-tag">Premium city experience</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="customer-dashboard.html">Dashboard</a>
+          <a href="#loginPhone">Login</a>
+          <a href="#signupName">Sign Up</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Need help?</h3>
+          <a href="mailto:support@cityvibe.com">support@cityvibe.com</a>
+          <span>Use the form above to sign in or create a new account.</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 cityvibe. All rights reserved.</span>
+        <span>Login secured with Firebase and backend session sync.</span>
+      </div>
+    </footer>
+
+    <script type="module">
+      const apiBase =
+        window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+          ? window.location.origin
+          : window.location.origin && window.location.origin !== "null"
+            ? window.location.origin
+            : "http://localhost:3000";
+
+      const authTabs = document.querySelectorAll("[data-auth-tab]");
+      const authForms = document.querySelectorAll("[data-auth-form]");
+      const copyTitle = document.querySelector(".login-copy h1");
+      const copySubtitle = document.querySelector(".login-copy p");
+      const signupFooterLink = document.querySelector(".signup-footer a");
+      const authStatus = document.getElementById("authStatus");
+      const googleLoginBtn = document.getElementById("googleLoginBtn");
+      const signupCta = document.getElementById("signupCta");
+      const loginPhone = document.getElementById("loginPhone");
+      const loginPassword = document.getElementById("loginPassword");
+      const signupName = document.getElementById("signupName");
+      const signupPassword = document.getElementById("signupPassword");
+      const signupUsername = document.getElementById("signupUsername");
+      const roleChips = document.querySelectorAll("[data-role]");
+
+      let selectedRole = "client";
+
+      function setStatus(message, kind = "info") {
+        authStatus.textContent = message;
+        authStatus.dataset.kind = kind;
+      }
+
+      function getDashboardUrl(role = "customer") {
+        const normalizedRole = String(role || "customer").toLowerCase();
+        if (normalizedRole === "admin") return "admin-dashboard.html";
+        if (normalizedRole === "client" || normalizedRole === "manager") return "client-dashboard.html";
+        return "customer-dashboard.html";
+      }
+
+      function goHome(role = selectedRole) {
+        window.location.href = getDashboardUrl(role);
+      }
+
+      function goOnboarding() {
+        window.location.href = "client-onboarding.html";
+      }
+
+      function setMode(mode) {
+        authTabs.forEach((item) => item.classList.toggle("active", item.dataset.authTab === mode));
+        authForms.forEach((form) => {
+          const isActive = form.dataset.authForm === mode;
+          form.hidden = !isActive;
+          form.classList.toggle("auth-form-active", isActive);
+        });
+
+        if (mode === "login") {
+          copyTitle.textContent = "Sign in to your account";
+          copySubtitle.textContent = "Access your event dashboard";
+          signupFooterLink.textContent = "Sign Up";
+        } else {
+          copyTitle.textContent = "Create your account";
+          copySubtitle.textContent = "New users sign up with a username and password";
+          signupFooterLink.textContent = "Login";
+        }
+      }
+
+      async function syncBackendSession(payload) {
+        const response = await fetch(`${apiBase}/api/auth/verify`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) {
+          throw new Error("Backend session could not be created");
+        }
+        return response.json();
+      }
+
+      async function signInLocalAccount(username, password) {
+        const response = await fetch(`${apiBase}/api/auth/local-login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, password }),
+        });
+        if (!response.ok) {
+          const error = await response.json().catch(() => ({}));
+          throw new Error(error.error || "Local login failed");
+        }
+        return response.json();
+      }
+
+      authTabs.forEach((tab) => {
+        tab.addEventListener("click", () => setMode(tab.dataset.authTab));
+      });
+      roleChips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          selectedRole = chip.dataset.role || "customer";
+          roleChips.forEach((item) => item.classList.toggle("active", item === chip));
+        });
+      });
+      signupCta.addEventListener("click", (event) => {
+        event.preventDefault();
+        setMode("signup");
+      });
+
+      document.querySelector(".auth-form-login")?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const loginValue = loginPhone.value.trim();
+        const password = loginPassword.value;
+        if (!loginValue || !password) {
+          setStatus("Enter your username and password.", "warning");
+          return;
+        }
+        try {
+          const result = await signInLocalAccount(loginValue, password);
+          selectedRole = result.user?.role || "customer";
+          setStatus("Login successful. Redirecting...", "success");
+          if ((selectedRole === "client" || selectedRole === "manager") && !result.user?.onboardingComplete) {
+            goOnboarding();
+            return;
+          }
+          goHome(selectedRole);
+        } catch (error) {
+          console.error("Login error:", error);
+          setStatus(error.message || "Login failed. Try again.", "warning");
+        }
+      });
+
+      document.querySelector(".auth-form-signup")?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const username = signupUsername.value.trim();
+        const fullName = signupName.value.trim();
+        const password = signupPassword.value;
+        if (!username || !fullName || !password) {
+          setStatus("Fill in username, name, and password.", "warning");
+          return;
+        }
+        try {
+          const response = await fetch(`${apiBase}/api/auth/register`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username,
+              name: fullName,
+              password,
+              role: selectedRole,
+            }),
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            throw new Error(data.error || "Registration failed");
+          }
+          selectedRole = data.user?.role || selectedRole;
+          setStatus("Account created. Redirecting...", "success");
+          if ((selectedRole === "client" || selectedRole === "manager") && !data.user?.onboardingComplete) {
+            goOnboarding();
+            return;
+          }
+          goHome(selectedRole);
+        } catch (error) {
+          setStatus(error.message || "Registration failed. Try again.", "warning");
+        }
+      });
+
+      googleLoginBtn.addEventListener("click", async () => {
+        setStatus("Google sign-in is not configured in this local build yet. Use username and password.", "info");
+      });
+
+      setMode("login");
+    </script>
+  </body>
+</html>

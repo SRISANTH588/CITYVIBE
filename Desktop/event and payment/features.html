@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Features</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body { background: #fff; }
+
+      /* ── HERO ── */
+      .ft-hero {
+        background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 60%, #fff 100%);
+        border-bottom: 1px solid #e2eafc;
+        padding: 4rem 0 3.5rem;
+        text-align: center;
+      }
+      .ft-hero-inner {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 1.4rem;
+      }
+      .ft-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(18,66,197,0.08);
+        border: 1px solid rgba(18,66,197,0.2);
+        border-radius: 999px;
+        padding: 0.32rem 0.9rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #1242c5;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+      }
+      .ft-hero h1 {
+        margin: 0 0 1rem;
+        font-size: clamp(2.6rem, 5vw, 4.2rem);
+        font-weight: 800;
+        letter-spacing: -0.06em;
+        line-height: 1.05;
+        color: #0a0f1e;
+      }
+      .ft-hero h1 span { color: #1242c5; }
+      .ft-hero p {
+        margin: 0 0 2rem;
+        color: #5a6480;
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+      .ft-hero-actions {
+        display: flex;
+        gap: 0.8rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .ft-btn-primary {
+        background: #1242c5;
+        color: #fff;
+        border: 0;
+        border-radius: 14px;
+        padding: 0.9rem 1.6rem;
+        font-weight: 800;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        box-shadow: 0 8px 24px rgba(18,66,197,0.25);
+        transition: background 0.18s, transform 0.15s;
+      }
+      .ft-btn-primary:hover { background: #0d36b2; transform: translateY(-1px); }
+      .ft-btn-secondary {
+        background: #fff;
+        color: #1242c5;
+        border: 1.5px solid #d0d9f0;
+        border-radius: 14px;
+        padding: 0.9rem 1.6rem;
+        font-weight: 800;
+        font-size: 0.95rem;
+        cursor: pointer;
+        text-decoration: none;
+        transition: border-color 0.18s, background 0.18s;
+      }
+      .ft-btn-secondary:hover { border-color: #1242c5; background: #f0f5ff; }
+
+      /* ── SECTION WRAPPER ── */
+      .ft-wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 1.4rem;
+      }
+      .ft-section { padding: 4rem 0; }
+      .ft-section-head {
+        text-align: center;
+        margin-bottom: 2.8rem;
+      }
+      .ft-eyebrow {
+        display: inline-block;
+        color: #1242c5;
+        font-weight: 800;
+        font-size: 0.75rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+      }
+      .ft-section-head h2 {
+        margin: 0;
+        font-size: clamp(1.9rem, 3.5vw, 3rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #0a0f1e;
+      }
+      .ft-section-head p {
+        margin: 0.6rem auto 0;
+        max-width: 520px;
+        color: #6b7280;
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      /* ── MAIN FEATURE GRID ── */
+      .ft-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.2rem;
+        align-items: start;
+      }
+      .ft-column {
+        border-left: 1px solid #edf1fb;
+        padding-left: 1rem;
+      }
+      .ft-column:first-child {
+        border-left: 0;
+        padding-left: 0;
+      }
+      .ft-column-label {
+        margin: 0 0 1rem;
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #9ca3af;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .ft-column-group {
+        display: grid;
+        gap: 1rem;
+      }
+      .ft-card {
+        border: 1.5px solid #e8edf8;
+        border-radius: 22px;
+        padding: 1.6rem;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.05);
+        transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      }
+      .ft-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(18,66,197,0.11);
+        border-color: #c7d9ff;
+      }
+      .ft-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #e8f0fe, #dce8ff);
+        display: grid;
+        place-items: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .ft-card h3 {
+        margin: 0 0 0.45rem;
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: #0a0f1e;
+        letter-spacing: -0.02em;
+      }
+      .ft-card p {
+        margin: 0;
+        color: #6b7280;
+        font-size: 0.88rem;
+        line-height: 1.65;
+      }
+      .ft-card-tag {
+        display: inline-block;
+        margin-top: 1rem;
+        background: #f0f5ff;
+        border: 1px solid #dce8ff;
+        color: #1242c5;
+        border-radius: 999px;
+        padding: 0.22rem 0.7rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+      }
+
+      /* ── HIGHLIGHT STRIP ── */
+      .ft-highlight {
+        background: linear-gradient(135deg, #1242c5 0%, #2f6bff 100%);
+        border-radius: 28px;
+        padding: 3rem 2.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+        margin: 0 0 4rem;
+      }
+      .ft-highlight h2 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #fff;
+        line-height: 1.1;
+      }
+      .ft-highlight p { margin: 0; color: rgba(255,255,255,0.75); font-size: 1rem; line-height: 1.65; }
+      .ft-highlight-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .ft-stat {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.18);
+        border-radius: 18px;
+        padding: 1.2rem;
+        text-align: center;
+      }
+      .ft-stat strong {
+        display: block;
+        font-size: 2rem;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -0.04em;
+      }
+      .ft-stat span { color: rgba(255,255,255,0.65); font-size: 0.82rem; font-weight: 600; }
+
+      /* ── HOW IT WORKS ── */
+      .ft-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem;
+        position: relative;
+      }
+      .ft-steps::before {
+        content: "";
+        position: absolute;
+        top: 26px;
+        left: 10%;
+        right: 10%;
+        height: 2px;
+        background: linear-gradient(90deg, #dce8ff, #1242c5, #dce8ff);
+        z-index: 0;
+      }
+      .ft-step {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .ft-step-num {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #1242c5;
+        color: #fff;
+        font-weight: 800;
+        font-size: 1.1rem;
+        display: grid;
+        place-items: center;
+        margin: 0 auto 1rem;
+        box-shadow: 0 6px 18px rgba(18,66,197,0.3);
+      }
+      .ft-step h3 { margin: 0 0 0.4rem; font-size: 0.95rem; font-weight: 800; color: #0a0f1e; }
+      .ft-step p { margin: 0; color: #6b7280; font-size: 0.82rem; line-height: 1.6; }
+
+      /* ── COMPARISON TABLE ── */
+      .ft-table-wrap {
+        border: 1.5px solid #e8edf8;
+        border-radius: 22px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.05);
+      }
+      .ft-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+      .ft-table thead tr {
+        background: linear-gradient(135deg, #f0f5ff, #e8f0fe);
+      }
+      .ft-table th {
+        padding: 1rem 1.2rem;
+        text-align: left;
+        font-weight: 800;
+        color: #0a0f1e;
+        font-size: 0.85rem;
+        letter-spacing: -0.01em;
+      }
+      .ft-table th:not(:first-child) { text-align: center; }
+      .ft-table td {
+        padding: 0.9rem 1.2rem;
+        border-top: 1px solid #f0f2f8;
+        color: #374151;
+        font-weight: 600;
+      }
+      .ft-table td:not(:first-child) { text-align: center; }
+      .ft-table tr:hover td { background: #fafbff; }
+      .ft-check { color: #1242c5; font-size: 1.1rem; }
+      .ft-cross { color: #d1d5db; font-size: 1.1rem; }
+      .ft-table .highlight-col { background: rgba(18,66,197,0.04); }
+      .ft-plan-badge {
+        display: inline-block;
+        background: #1242c5;
+        color: #fff;
+        border-radius: 999px;
+        padding: 0.18rem 0.6rem;
+        font-size: 0.68rem;
+        font-weight: 800;
+        margin-left: 0.4rem;
+        vertical-align: middle;
+      }
+
+      /* ── TABBED SHOWCASE ── */
+      .ft-showcase { padding: 0 0 4rem; }
+      .ft-showcase-head { margin-bottom: 1.6rem; }
+      .ft-showcase-head p { color: #6b7280; font-size: 0.95rem; margin: 0.4rem 0 1.2rem; max-width: 520px; }
+      .ft-showcase-tabs {
+        display: flex;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+        margin-bottom: 1.6rem;
+      }
+      .ft-stab {
+        display: flex;
+        align-items: center;
+        gap: 0.45rem;
+        border: 1.5px solid #d0d9f0;
+        background: #fff;
+        border-radius: 999px;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #4a5580;
+        cursor: pointer;
+        transition: all 0.18s;
+      }
+      .ft-stab.active {
+        background: #f0f5ff;
+        border-color: #1242c5;
+        color: #1242c5;
+      }
+      .ft-stab-icon { font-size: 1rem; }
+      .ft-showcase-panel { display: none; }
+      .ft-showcase-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+      .ft-showcase-box {
+        background: linear-gradient(135deg, #f4f6ff, #eef2ff);
+        border: 1.5px solid #e2eafc;
+        border-radius: 24px;
+        padding: 2rem;
+      }
+      .ft-showcase-eyebrow {
+        font-size: 0.72rem;
+        font-weight: 800;
+        color: #1242c5;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 0.8rem;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+      }
+      .ft-showcase-box h3 {
+        margin: 0 0 0.7rem;
+        font-size: clamp(1.5rem, 2.5vw, 2rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #0a0f1e;
+        line-height: 1.15;
+      }
+      .ft-showcase-box > p { margin: 0 0 1.2rem; color: #6b7280; font-size: 0.9rem; line-height: 1.65; }
+      .ft-showcase-list { display: grid; gap: 0.55rem; }
+      .ft-showcase-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: #374151;
+      }
+      .ft-showcase-item::before { content: "✓"; color: #1242c5; font-weight: 800; flex-shrink: 0; }
+      /* slot preview */
+      .ft-slot-preview {
+        background: #fff;
+        border: 1.5px solid #e8edf8;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.07);
+      }
+      .ft-slot-header {
+        background: linear-gradient(135deg, #f0f5ff, #e8f0fe);
+        padding: 0.9rem 1.2rem;
+        border-bottom: 1px solid #e2eafc;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .ft-slot-dot { width: 10px; height: 10px; border-radius: 50%; }
+      .ft-slot-dot.r { background: #ff5f57; }
+      .ft-slot-dot.y { background: #febc2e; }
+      .ft-slot-dot.g { background: #28c840; }
+      .ft-slot-label { margin-left: 0.4rem; font-size: 0.75rem; font-weight: 800; color: #6b7280; text-transform: uppercase; letter-spacing: 0.1em; }
+      .ft-slot-body { padding: 1rem; display: grid; gap: 0.6rem; }
+      .ft-slot-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #f7faff;
+        border: 1px solid #e8edf8;
+        border-radius: 12px;
+        padding: 0.75rem 1rem;
+      }
+      .ft-slot-info { display: flex; align-items: center; gap: 0.7rem; }
+      .ft-slot-ico { font-size: 1rem; color: #1242c5; }
+      .ft-slot-date { font-size: 0.88rem; font-weight: 800; color: #0a0f1e; }
+      .ft-slot-time { font-size: 0.75rem; color: #6b7280; }
+      .ft-slot-left { font-size: 0.78rem; font-weight: 800; }
+      .ft-slot-left.hi { color: #dc2626; }
+      .ft-slot-left.mid { color: #d97706; }
+      .ft-slot-left.lo { color: #16a34a; }
+      /* ticket preview */
+      .ft-ticket-preview { display: grid; gap: 0.7rem; padding: 1.2rem; background: #fff; border: 1.5px solid #e8edf8; border-radius: 20px; box-shadow: 0 4px 20px rgba(18,66,197,0.07); }
+      .ft-ticket-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 1rem;
+        border-radius: 12px;
+        border: 1.5px solid #e8edf8;
+        background: #f7faff;
+      }
+      .ft-ticket-row.featured { border-color: #1242c5; background: #f0f5ff; }
+      .ft-ticket-name { font-size: 0.88rem; font-weight: 800; color: #0a0f1e; }
+      .ft-ticket-price { font-size: 0.88rem; font-weight: 800; color: #1242c5; }
+      .ft-ticket-badge { font-size: 0.68rem; font-weight: 800; background: #1242c5; color: #fff; border-radius: 999px; padding: 0.15rem 0.5rem; }
+      /* discount preview */
+      .ft-discount-preview { display: grid; gap: 0.7rem; padding: 1.2rem; background: #fff; border: 1.5px solid #e8edf8; border-radius: 20px; box-shadow: 0 4px 20px rgba(18,66,197,0.07); }
+      .ft-discount-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; border-radius: 12px; border: 1.5px solid #e8edf8; background: #f7faff; }
+      .ft-discount-label { font-size: 0.88rem; font-weight: 800; color: #0a0f1e; }
+      .ft-discount-val { font-size: 0.88rem; font-weight: 800; color: #16a34a; }
+      /* coupon preview */
+      .ft-coupon-preview { display: grid; gap: 0.7rem; padding: 1.2rem; background: #fff; border: 1.5px solid #e8edf8; border-radius: 20px; box-shadow: 0 4px 20px rgba(18,66,197,0.07); }
+      .ft-coupon-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 1rem; border-radius: 12px; border: 1.5px dashed #dce8ff; background: #f7faff; }
+      .ft-coupon-code { font-size: 0.95rem; font-weight: 800; color: #1242c5; letter-spacing: 0.08em; }
+      .ft-coupon-off { font-size: 0.82rem; font-weight: 800; color: #16a34a; }
+      /* ── FAQ ── */
+      .ft-faq {
+        padding: 0 0 4rem;
+      }
+      .ft-faq-list {
+        display: grid;
+        gap: 0.8rem;
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .ft-faq-item {
+        border: 1.5px solid #e8edf8;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.04);
+      }
+      .ft-faq-q {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.2rem;
+        background: #fff;
+        border: 0;
+        font-weight: 800;
+        font-size: 0.92rem;
+        color: #0a0f1e;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: inherit;
+      }
+      .ft-faq-q::after { content: "+"; font-size: 1.2rem; color: #1242c5; }
+      .ft-faq-q.open::after { content: "−"; }
+      .ft-faq-a {
+        display: none;
+        padding: 0 1.2rem 1rem;
+        color: #6b7280;
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+      .ft-faq-a.open { display: block; }
+      @media (max-width: 860px) {
+        .ft-showcase-panel.active { grid-template-columns: 1fr; }
+      }
+
+      /* ── CTA ── */
+      .ft-cta {
+        background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 100%);
+        border: 1.5px solid #dce8ff;
+        border-radius: 28px;
+        padding: 3.5rem 2rem;
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .ft-cta h2 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #0a0f1e;
+      }
+      .ft-cta p { margin: 0 0 1.8rem; color: #6b7280; font-size: 1rem; }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 960px) {
+        .ft-highlight { grid-template-columns: 1fr; }
+        .ft-steps { grid-template-columns: repeat(2, 1fr); }
+        .ft-steps::before { display: none; }
+      }
+      @media (max-width: 600px) {
+        .ft-grid { grid-template-columns: 1fr; }
+        .ft-steps { grid-template-columns: 1fr; }
+        .ft-highlight { padding: 2rem 1.4rem; }
+        .ft-highlight-stats { grid-template-columns: 1fr 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="nav-wrap">
+        <div class="brand-block">
+          <div class="logo">cityvibe</div>
+          <div class="brand-sub">by OGSHOOTS LUXE</div>
+        </div>
+        <nav class="topnav">
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="features.html">Features</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="index.html#how">How it works</a>
+        </nav>
+        <div class="auth-actions">
+          <a class="nav-link" href="login.html">Login</a>
+          <a class="nav-cta" href="login.html">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- HERO -->
+      <section class="ft-hero">
+          <div class="ft-hero-inner">
+          <div class="ft-badge">✦ Platform Features</div>
+          <h1>Everything you need to<br><span>run great events</span></h1>
+          <p>From listing creation to instant payments — cityvibe gives organizers and guests across India a seamless experience in one place.</p>
+          <div class="ft-hero-actions">
+            <a class="ft-btn-primary" href="login.html">Start for Free</a>
+            <a class="ft-btn-secondary" href="events.html">Browse Events</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CORE FEATURES -->
+      <section class="ft-section">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">Core Features</span>
+            <h2>Built for ticketing, growth, and operations</h2>
+            <p>Everything you need to ticket events, reach guests, and keep operations running smoothly.</p>
+          </div>
+          <div class="ft-grid">
+            <div class="ft-column">
+              <div class="ft-column-group">
+                <div class="ft-card">
+                  <div class="ft-icon">🎟️</div>
+                  <h3>Smart Ticketing</h3>
+                  <p>QR-coded tickets with instant delivery for smooth entry and easy guest access.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">💳</div>
+                  <h3>Seamless Payments</h3>
+                  <p>UPI, card, wallet, net banking, EMI, and QR payments with auto-receipts for a smooth checkout.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">📋</div>
+                  <h3>QR Check-in Scanner</h3>
+                  <p>Verify guests in real time at the door with a fast scan flow for smooth check-ins.</p>
+                  <span class="ft-card-tag">Pro & Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">🔔</div>
+                  <h3>Custom Brand Pages</h3>
+                  <p>Beautiful event pages with your branding so every listing feels like your own space.</p>
+                  <span class="ft-card-tag">Pro & Business</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ft-column">
+              <div class="ft-column-group">
+                <div class="ft-card">
+                  <div class="ft-icon">🗺️</div>
+                  <h3>WhatsApp Broadcasts</h3>
+                  <p>Send tickets and reminders on WhatsApp to keep guests informed without extra steps.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">👥</div>
+                  <h3>Instagram Auto DMs</h3>
+                  <p>Auto-respond to story mentions and comments so engagement turns into bookings faster.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">📱</div>
+                  <h3>Email Campaigns</h3>
+                  <p>Automated invites, confirmations, and follow-ups that keep attendance moving.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">🔒</div>
+                  <h3>Referral & Promo Codes</h3>
+                  <p>Drive signups with discount codes and referral links that help events spread quickly.</p>
+                  <span class="ft-card-tag">All Plans</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="ft-column">
+              <div class="ft-column-group">
+                <div class="ft-card">
+                  <div class="ft-icon">📊</div>
+                  <h3>Analytics Dashboard</h3>
+                  <p>Track sales, attendance, and engagement from one clear dashboard.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">👤</div>
+                  <h3>Attendee Management</h3>
+                  <p>Manage guest lists, filters, and exports so you always know who’s coming.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">🛡️</div>
+                  <h3>Team & Permissions</h3>
+                  <p>Add volunteers with role-based access to keep operations secure and organized.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+                <div class="ft-card">
+                  <div class="ft-icon">⚡</div>
+                  <h3>Instant Payouts</h3>
+                  <p>Get your money within 24 hours after bookings are completed.</p>
+                  <span class="ft-card-tag">Business</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="ft-section" style="padding-top: 0;">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">Payments</span>
+            <h2>Supported payment methods.</h2>
+            <p>Cashfree-powered checkout with the payment methods your guests already trust.</p>
+          </div>
+          <div class="trust-grid pricing-trust-grid" aria-label="Payment methods and trust signals">
+            <div class="trust-item">
+              <span class="trust-icon">₹</span>
+              <div>
+                <strong>UPI</strong>
+                <p>Fast India-first payments</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">▣</span>
+              <div>
+                <strong>Card</strong>
+                <p>Credit and debit support</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">◉</span>
+              <div>
+                <strong>Wallet</strong>
+                <p>Popular digital wallets</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">↯</span>
+              <div>
+                <strong>Net Banking</strong>
+                <p>Trusted bank transfers</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">EMI</span>
+              <div>
+                <strong>EMI</strong>
+                <p>Flexible payment options</p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon">▣</span>
+              <div>
+                <strong>QR</strong>
+                <p>Scan and pay instantly</p>
+              </div>
+            </div>
+            <div class="trust-item trust-feature">
+              <span class="trust-icon">✓</span>
+              <div>
+                <strong>Secure checkout</strong>
+                <p>Powered by Cashfree</p>
+              </div>
+            </div>
+            <div class="trust-item trust-feature">
+              <span class="trust-icon">↗</span>
+              <div>
+                <strong>Instant confirmation</strong>
+                <p>Clear success status right away</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- HIGHLIGHT STRIP -->
+      <div class="ft-wrap">
+        <div class="ft-highlight">
+          <div>
+            <h2>Trusted by event organizers across India</h2>
+            <p>From small workshops to large exhibitions — cityvibe handles the booking and payment flow so you can focus on the event itself.</p>
+          </div>
+          <div class="ft-highlight-stats">
+            <div class="ft-stat"><strong>5+</strong><span>Live Events</span></div>
+            <div class="ft-stat"><strong>100%</strong><span>Uptime</span></div>
+            <div class="ft-stat"><strong>6</strong><span>Payment Methods</span></div>
+            <div class="ft-stat"><strong>∞</strong><span>Bookings</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <section class="ft-section" style="padding-top: 0;">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">How It Works</span>
+            <h2>From listing to confirmed booking</h2>
+            <p>Four simple steps — that's all it takes for a guest to go from discovery to confirmed seat.</p>
+          </div>
+          <div class="ft-steps">
+            <div class="ft-step">
+              <div class="ft-step-num">1</div>
+              <h3>Browse Events</h3>
+              <p>Guests discover events by category, date, or location on the events page.</p>
+            </div>
+            <div class="ft-step">
+              <div class="ft-step-num">2</div>
+              <h3>Select & Book</h3>
+              <p>Choose seats or passes, fill in details, and pick a payment method.</p>
+            </div>
+            <div class="ft-step">
+              <div class="ft-step-num">3</div>
+              <h3>Pay Instantly</h3>
+              <p>Complete payment via UPI, QR scan, card, or wallet in seconds.</p>
+            </div>
+            <div class="ft-step">
+              <div class="ft-step-num">4</div>
+              <h3>Get Confirmed</h3>
+              <p>Receive an instant booking confirmation with a unique code and receipt.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMPARISON TABLE -->
+      <section class="ft-section" style="padding-top: 0;">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">Plans</span>
+            <h2>Compare what's included</h2>
+            <p>Pick the plan that fits your event size and team.</p>
+          </div>
+          <div class="ft-table-wrap">
+            <table class="ft-table">
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>Free</th>
+                  <th class="highlight-col">Pro <span class="ft-plan-badge">Popular</span></th>
+                  <th>Business</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Event listings</td>
+                  <td>Up to 4</td>
+                  <td class="highlight-col">Unlimited</td>
+                  <td>Unlimited</td>
+                </tr>
+                <tr>
+                  <td>UPI & QR payments</td>
+                  <td><span class="ft-check">✓</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Card payments</td>
+                  <td><span class="ft-check">✓</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Booking dashboard</td>
+                  <td><span class="ft-check">✓</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Automated reminders</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Team & role management</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-cross">✗</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Analytics & reports</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-cross">✗</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+                <tr>
+                  <td>Priority support</td>
+                  <td><span class="ft-cross">✗</span></td>
+                  <td class="highlight-col"><span class="ft-check">✓</span></td>
+                  <td><span class="ft-check">✓</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- TABBED SHOWCASE -->
+      <section class="ft-showcase">
+        <div class="ft-wrap">
+          <div class="ft-showcase-head">
+            <span class="ft-eyebrow">Ticketing Tools</span>
+            <h2 style="font-size:clamp(1.9rem,3.5vw,3rem);font-weight:800;letter-spacing:-0.05em;color:#0a0f1e;margin:0.3rem 0 0;">Multiple dates, ticket types, coupons, group discounts.</h2>
+            <p>Set it up once, sell forever.</p>
+          </div>
+          <div class="ft-showcase-tabs">
+            <button class="ft-stab active" data-panel="slots"><span class="ft-stab-icon">🗓️</span> Time Slots</button>
+            <button class="ft-stab" data-panel="tickets"><span class="ft-stab-icon">🎟️</span> Ticket Types</button>
+            <button class="ft-stab" data-panel="discounts"><span class="ft-stab-icon">👥</span> Group Discounts</button>
+            <button class="ft-stab" data-panel="coupons"><span class="ft-stab-icon">🏷️</span> Coupon Codes</button>
+          </div>
+
+          <!-- TIME SLOTS -->
+          <div class="ft-showcase-panel active" id="panel-slots">
+            <div class="ft-showcase-box">
+              <div class="ft-showcase-eyebrow">🗓️ TIME SLOTS</div>
+              <h3>Same event, different dates. People pick their slot.</h3>
+              <p>Running a 3-day workshop? A weekend batch? Add multiple dates and times. Attendees choose when they want to come.</p>
+              <div class="ft-showcase-list">
+                <div class="ft-showcase-item">Multiple dates and times for one event</div>
+                <div class="ft-showcase-item">Attendees pick the slot that works</div>
+                <div class="ft-showcase-item">Each slot has its own capacity</div>
+              </div>
+            </div>
+            <div class="ft-slot-preview">
+              <div class="ft-slot-header">
+                <div class="ft-slot-dot r"></div><div class="ft-slot-dot y"></div><div class="ft-slot-dot g"></div>
+                <span class="ft-slot-label">Available Slots</span>
+              </div>
+              <div class="ft-slot-body">
+                <div class="ft-slot-row">
+                  <div class="ft-slot-info"><span class="ft-slot-ico">🕙</span><div><div class="ft-slot-date">Sat, Dec 14</div><div class="ft-slot-time">10:00 AM — 1:00 PM</div></div></div>
+                  <span class="ft-slot-left hi">8 left</span>
+                </div>
+                <div class="ft-slot-row">
+                  <div class="ft-slot-info"><span class="ft-slot-ico">🕙</span><div><div class="ft-slot-date">Sun, Dec 15</div><div class="ft-slot-time">10:00 AM — 1:00 PM</div></div></div>
+                  <span class="ft-slot-left mid">22 left</span>
+                </div>
+                <div class="ft-slot-row">
+                  <div class="ft-slot-info"><span class="ft-slot-ico">🕑</span><div><div class="ft-slot-date">Sat, Dec 21</div><div class="ft-slot-time">2:00 PM — 5:00 PM</div></div></div>
+                  <span class="ft-slot-left lo">30 left</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TICKET TYPES -->
+          <div class="ft-showcase-panel" id="panel-tickets">
+            <div class="ft-showcase-box">
+              <div class="ft-showcase-eyebrow">🎟️ TICKET TYPES</div>
+              <h3>Free, paid, VIP, or invite-only. You decide.</h3>
+              <p>Create multiple ticket tiers for the same event. Set different prices, capacities, and access levels for each type.</p>
+              <div class="ft-showcase-list">
+                <div class="ft-showcase-item">Unlimited ticket tiers per event</div>
+                <div class="ft-showcase-item">Set capacity per ticket type</div>
+                <div class="ft-showcase-item">Free, paid, or invite-only access</div>
+              </div>
+            </div>
+            <div class="ft-ticket-preview">
+              <div class="ft-ticket-row">
+                <span class="ft-ticket-name">General Admission</span>
+                <span class="ft-ticket-price">₹499</span>
+              </div>
+              <div class="ft-ticket-row featured">
+                <div><span class="ft-ticket-name">VIP Pass</span> <span class="ft-ticket-badge">Popular</span></div>
+                <span class="ft-ticket-price">₹1,499</span>
+              </div>
+              <div class="ft-ticket-row">
+                <span class="ft-ticket-name">Student</span>
+                <span class="ft-ticket-price">₹199</span>
+              </div>
+              <div class="ft-ticket-row">
+                <span class="ft-ticket-name">Complimentary</span>
+                <span class="ft-ticket-price" style="color:#16a34a;">Free</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- GROUP DISCOUNTS -->
+          <div class="ft-showcase-panel" id="panel-discounts">
+            <div class="ft-showcase-box">
+              <div class="ft-showcase-eyebrow">👥 GROUP DISCOUNTS</div>
+              <h3>Bigger groups, better deals. Automatically.</h3>
+              <p>Set tiered discounts based on group size. The more people book together, the more they save — applied automatically at checkout.</p>
+              <div class="ft-showcase-list">
+                <div class="ft-showcase-item">Auto-applied at checkout</div>
+                <div class="ft-showcase-item">Set your own group size thresholds</div>
+                <div class="ft-showcase-item">Works with all ticket types</div>
+              </div>
+            </div>
+            <div class="ft-discount-preview">
+              <div class="ft-discount-row"><span class="ft-discount-label">5–9 people</span><span class="ft-discount-val">10% off</span></div>
+              <div class="ft-discount-row"><span class="ft-discount-label">10–19 people</span><span class="ft-discount-val">20% off</span></div>
+              <div class="ft-discount-row"><span class="ft-discount-label">20+ people</span><span class="ft-discount-val">30% off</span></div>
+              <div class="ft-discount-row" style="border-color:#dce8ff;background:#f0f5ff;"><span class="ft-discount-label" style="color:#1242c5;">Corporate group (50+)</span><span class="ft-discount-val">Custom deal</span></div>
+            </div>
+          </div>
+
+          <!-- COUPON CODES -->
+          <div class="ft-showcase-panel" id="panel-coupons">
+            <div class="ft-showcase-box">
+              <div class="ft-showcase-eyebrow">🏷️ COUPON CODES</div>
+              <h3>Create codes. Share them. Watch bookings roll in.</h3>
+              <p>Generate custom coupon codes for early birds, sponsors, or partners. Set usage limits and expiry dates for each code.</p>
+              <div class="ft-showcase-list">
+                <div class="ft-showcase-item">Percentage or flat discount</div>
+                <div class="ft-showcase-item">Set usage limits & expiry</div>
+                <div class="ft-showcase-item">Track redemptions in dashboard</div>
+              </div>
+            </div>
+            <div class="ft-coupon-preview">
+              <div class="ft-coupon-row"><span class="ft-coupon-code">EARLYBIRD</span><span class="ft-coupon-off">20% off</span></div>
+              <div class="ft-coupon-row"><span class="ft-coupon-code">LUXE2026</span><span class="ft-coupon-off">Free entry</span></div>
+              <div class="ft-coupon-row"><span class="ft-coupon-code">STUDENT50</span><span class="ft-coupon-off">₹50 off</span></div>
+              <div class="ft-coupon-row"><span class="ft-coupon-code">PARTNER15</span><span class="ft-coupon-off">15% off</span></div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="ft-faq">
+        <div class="ft-wrap">
+          <div class="ft-section-head">
+            <span class="ft-eyebrow">Questions</span>
+            <h2>Common questions</h2>
+            <p>Quick answers about payments, tickets, and event management.</p>
+          </div>
+          <div class="ft-faq-list">
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Which payment methods are supported?</button>
+              <div class="ft-faq-a">cityvibe supports UPI, card, wallet, net banking, EMI, and QR payments.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Can I create free and paid tickets together?</button>
+              <div class="ft-faq-a">Yes. You can mix free, paid, VIP, and invite-only ticket types in the same event.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Do guests get tickets instantly?</button>
+              <div class="ft-faq-a">Yes. Tickets are delivered instantly after booking, with confirmation details sent right away.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Can I track attendance?</button>
+              <div class="ft-faq-a">Business users can track sales, attendance, and engagement from the analytics dashboard.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Is there a ticket limit on plans?</button>
+              <div class="ft-faq-a">Yes. Plan limits vary by tier, and you can upgrade whenever you need more event listings or higher usage.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">How do refunds work?</button>
+              <div class="ft-faq-a">Refund rules are set by the organizer for each event, so guests can review the policy before booking.</div>
+            </div>
+            <div class="ft-faq-item">
+              <button class="ft-faq-q">Can I add team members?</button>
+              <div class="ft-faq-a">Yes. Business plans support team permissions so you can add volunteers or staff with role-based access.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="ft-wrap">
+        <div class="ft-cta">
+          <h2>Ready to launch your event?</h2>
+          <p>Join organizers across Hyderabad using cityvibe to manage bookings and payments.</p>
+          <div class="ft-hero-actions">
+            <a class="ft-btn-primary" href="login.html">Get Started Free</a>
+            <a class="ft-btn-secondary" href="events.html">Browse Events</a>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-wrap">
+        <div class="footer-branding">
+          <div class="footer-brand">cityvibe</div>
+          <p>Events, workshops, and restaurant bookings in one smooth flow.</p>
+          <span class="footer-tag">Developed by Srisanth Boddu</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="features.html">Features</a>
+          <a href="index.html#pricing">Pricing</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="refund-policy.html">Refund Policy</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <a href="tel:+916305183601">6305183601</a>
+          <span>Contact details will be updated from the admin panel.</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 cityvibe. All rights reserved.</span>
+        <span>Built for events, workshops, and restaurant reservations.</span>
+      </div>
+    </footer>
+    <script>
+      document.querySelectorAll(".ft-stab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".ft-stab").forEach(t => t.classList.remove("active"));
+          document.querySelectorAll(".ft-showcase-panel").forEach(p => p.classList.remove("active"));
+          tab.classList.add("active");
+          document.getElementById("panel-" + tab.dataset.panel).classList.add("active");
+        });
+      });
+
+      document.querySelectorAll(".ft-faq-q").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const answer = btn.nextElementSibling;
+          const isOpen = btn.classList.contains("open");
+          document.querySelectorAll(".ft-faq-q").forEach(q => {
+            q.classList.remove("open");
+            q.nextElementSibling.classList.remove("open");
+          });
+          if (!isOpen) {
+            btn.classList.add("open");
+            answer.classList.add("open");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

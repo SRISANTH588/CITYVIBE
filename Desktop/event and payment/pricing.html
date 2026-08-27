@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cityvibe | Pricing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body { background: #fff; }
+
+      .pr-hero {
+        background: linear-gradient(135deg, #f0f5ff 0%, #e8f0fe 60%, #fff 100%);
+        border-bottom: 1px solid #e2eafc;
+        padding: 4rem 0 3.5rem;
+        text-align: center;
+      }
+      .pr-hero-inner { max-width: 680px; margin: 0 auto; padding: 0 1.4rem; }
+      .pr-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(18,66,197,0.08);
+        border: 1px solid rgba(18,66,197,0.2);
+        border-radius: 999px;
+        padding: 0.32rem 0.9rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #1242c5;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+      .pr-hero h1 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(3rem, 6.8vw, 5.2rem);
+        font-weight: 800;
+        letter-spacing: -0.06em;
+        color: #0a0f1e;
+        line-height: 1.05;
+      }
+      .pr-hero h1 span { color: #1242c5; }
+      .pr-hero p { margin: 0; color: #5a6480; font-size: 1rem; line-height: 1.7; }
+
+      .pr-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.4rem; }
+      .pr-section { padding: 4rem 0; }
+
+      /* PLANS */
+      .pr-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.4rem;
+        margin-top: 0;
+      }
+      .pr-card {
+        border: 1.5px solid #e8edf8;
+        border-radius: 24px;
+        padding: 2rem 1.6rem;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.06);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        position: relative;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      .pr-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(18,66,197,0.12);
+      }
+      .pr-card.featured {
+        border-color: #1242c5;
+        background: linear-gradient(180deg, #f0f5ff, #fff);
+        box-shadow: 0 8px 40px rgba(18,66,197,0.16);
+      }
+      .pr-popular {
+        position: absolute;
+        top: -14px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1242c5;
+        color: #fff;
+        border-radius: 999px;
+        padding: 0.28rem 1rem;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .pr-plan-name {
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #1242c5;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .pr-price {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #0a0f1e;
+        letter-spacing: -0.06em;
+        line-height: 1;
+        margin: 0.4rem 0 0.2rem;
+      }
+      .pr-price sup { font-size: 1.2rem; vertical-align: super; }
+      .pr-price-note { font-size: 0.82rem; color: #6b7280; font-weight: 600; }
+      .pr-fee {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: #f0f5ff;
+        border: 1px solid #dce8ff;
+        border-radius: 999px;
+        padding: 0.3rem 0.8rem;
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #1242c5;
+        margin: 0.4rem 0;
+        width: fit-content;
+      }
+      .pr-fee.free { background: #dcfce7; border-color: #bbf7d0; color: #166534; }
+      .pr-divider { border: none; border-top: 1px solid #f0f2f8; margin: 0.8rem 0; }
+      .pr-features { display: grid; gap: 0.6rem; flex: 1; }
+      .pr-feature {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        font-size: 0.88rem;
+        color: #374151;
+        font-weight: 600;
+      }
+      .pr-feature::before { content: "✓"; color: #1242c5; font-weight: 800; flex-shrink: 0; }
+      .pr-feature.muted { color: #9ca3af; }
+      .pr-feature.muted::before { content: "—"; color: #d1d5db; }
+      .pr-btn {
+        display: block;
+        text-align: center;
+        margin-top: 1.4rem;
+        padding: 0.85rem;
+        border-radius: 14px;
+        font-weight: 800;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: all 0.18s;
+        border: 0;
+        cursor: pointer;
+      }
+      .pr-btn.outline {
+        border: 1.5px solid #d0d9f0;
+        color: #1242c5;
+        background: #fff;
+      }
+      .pr-btn.outline:hover { background: #f0f5ff; border-color: #1242c5; }
+      .pr-btn.solid {
+        background: #1242c5;
+        color: #fff;
+        box-shadow: 0 6px 20px rgba(18,66,197,0.25);
+      }
+      .pr-btn.solid:hover { background: #0d36b2; }
+
+      /* OGSHOOTS LUXE HIGHLIGHT */
+      .pr-luxe {
+        background: linear-gradient(135deg, #0a0f1e 0%, #1242c5 100%);
+        border-radius: 28px;
+        padding: 3rem 2.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+        align-items: center;
+        margin: 0 0 4rem;
+      }
+      .pr-luxe-left h2 {
+        margin: 0 0 0.8rem;
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: -0.05em;
+        color: #fff;
+        line-height: 1.1;
+      }
+      .pr-luxe-left h2 span { color: #7eb3ff; }
+      .pr-luxe-left p { margin: 0 0 1.4rem; color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.7; }
+      .pr-luxe-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 999px;
+        padding: 0.4rem 1rem;
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 1.2rem;
+        width: fit-content;
+      }
+      .pr-luxe-perks {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+      .pr-luxe-perk {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.14);
+        border-radius: 16px;
+        padding: 1rem;
+      }
+      .pr-luxe-perk strong {
+        display: block;
+        color: #fff;
+        font-size: 0.9rem;
+        margin-bottom: 0.2rem;
+      }
+      .pr-luxe-perk span { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
+      .pr-luxe-perk .perk-icon { font-size: 1.3rem; margin-bottom: 0.4rem; display: block; }
+
+      /* FEE CALCULATOR */
+      .pr-calc {
+        border: 1.5px solid #e8edf8;
+        border-radius: 24px;
+        padding: 2rem;
+        background: #fff;
+        box-shadow: 0 4px 20px rgba(18,66,197,0.06);
+        margin-bottom: 4rem;
+      }
+      .pr-calc h2 {
+        margin: 0 0 0.4rem;
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #0a0f1e;
+      }
+      .pr-calc p { margin: 0 0 1.6rem; color: #6b7280; font-size: 0.9rem; }
+      .pr-calc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1.2rem;
+        align-items: end;
+      }
+      .pr-calc-label { display: grid; gap: 0.4rem; }
+      .pr-calc-label span {
+        font-size: 0.75rem;
+        font-weight: 800;
+        color: #5f6f95;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .pr-calc-input, .pr-calc-select {
+        padding: 0.8rem 1rem;
+        border: 1.5px solid #d0d9f0;
+        border-radius: 12px;
+        background: #f7faff;
+        color: #0f172a;
+        font-size: 0.95rem;
+        font-family: inherit;
+        font-weight: 700;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .pr-calc-input:focus, .pr-calc-select:focus { border-color: #1242c5; background: #fff; }
+      .pr-calc-result {
+        margin-top: 1.4rem;
+        background: #f0f5ff;
+        border: 1.5px solid #dce8ff;
+        border-radius: 16px;
+        padding: 1.2rem 1.4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .pr-calc-result-item { text-align: center; }
+      .pr-calc-result-item span { display: block; font-size: 0.78rem; color: #6b7280; font-weight: 700; margin-bottom: 0.2rem; }
+      .pr-calc-result-item strong { font-size: 1.3rem; font-weight: 800; color: #0a0f1e; }
+      .pr-calc-result-item strong.free-val { color: #166534; }
+      .pr-calc-result-item strong.blue-val { color: #1242c5; }
+
+      /* FAQ */
+      .pr-faq { padding: 0 0 4rem; }
+      .pr-faq h2 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        color: #0a0f1e;
+        margin: 0 0 1.4rem;
+      }
+      .pr-faq-list { display: grid; gap: 0.8rem; }
+      .pr-faq-item {
+        border: 1.5px solid #e8edf8;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .pr-faq-q {
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.2rem;
+        background: #fff;
+        border: 0;
+        font-weight: 800;
+        font-size: 0.92rem;
+        color: #0a0f1e;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-family: inherit;
+      }
+      .pr-faq-q::after { content: "+"; font-size: 1.2rem; color: #1242c5; }
+      .pr-faq-q.open::after { content: "−"; }
+      .pr-faq-a {
+        display: none;
+        padding: 0 1.2rem 1rem;
+        color: #6b7280;
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+      .pr-faq-a.open { display: block; }
+
+      @media (max-width: 900px) {
+        .pr-grid { grid-template-columns: 1fr; }
+        .pr-luxe { grid-template-columns: 1fr; padding: 2rem 1.4rem; }
+        .pr-calc-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="nav-wrap">
+        <div class="brand-block">
+          <div class="logo">cityvibe</div>
+          <div class="brand-sub">by OGSHOOTS LUXE</div>
+        </div>
+        <nav class="topnav">
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="features.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+        </nav>
+        <div class="auth-actions">
+          <a class="nav-link" href="login.html">Login</a>
+          <a class="nav-cta" href="login.html">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- HERO -->
+      <section class="pr-hero">
+        <div class="pr-hero-inner">
+          <div class="pr-badge">✦ Pricing</div>
+          <h1>Simple fees,<br><span>zero surprises</span></h1>
+        </div>
+      </section>
+
+      <!-- PLANS -->
+      <section class="pr-section">
+        <div class="pr-wrap">
+          <div class="pr-grid">
+
+            <!-- FREE -->
+            <div class="pr-card">
+              <div class="pr-plan-name">Starter</div>
+              <div class="pr-price"><sup>₹</sup>0</div>
+              <div class="pr-price-note">per month</div>
+              <div class="pr-fee">2% per ticket sold</div>
+              <hr class="pr-divider" />
+              <div class="pr-features">
+                <div class="pr-feature">Up to 4 event listings</div>
+                <div class="pr-feature">UPI & QR payments</div>
+                <div class="pr-feature">Basic booking page</div>
+                <div class="pr-feature">Email confirmations</div>
+                <div class="pr-feature muted">No dashboard analytics</div>
+                <div class="pr-feature muted">No team management</div>
+                <div class="pr-feature muted">No priority support</div>
+              </div>
+              <a class="pr-btn outline" href="login.html">Get Started Free</a>
+            </div>
+
+            <!-- OGSHOOTS LUXE -->
+            <div class="pr-card">
+              <div class="pr-plan-name">OGSHOOTS LUXE</div>
+              <div class="pr-price"><sup>₹</sup>0</div>
+              <div class="pr-price-note">forever free</div>
+              <div class="pr-fee free">✦ 0% — Completely Free</div>
+              <hr class="pr-divider" />
+              <div class="pr-features">
+                <div class="pr-feature">6 events per month</div>
+                <div class="pr-feature">All payment methods</div>
+                <div class="pr-feature">Full booking dashboard</div>
+                <div class="pr-feature muted">No automated reminders</div>
+                <div class="pr-feature">Analytics & reports</div>
+                <div class="pr-feature muted">No team & role management</div>
+                <div class="pr-feature muted">No priority support</div>
+              </div>
+              <a class="pr-btn solid" href="login.html">Join OGSHOOTS LUXE</a>
+            </div>
+
+            <!-- PRO -->
+            <div class="pr-card featured">
+              <div class="pr-popular">Most Popular</div>
+              <div class="pr-plan-name">Pro</div>
+              <div class="pr-price"><sup>₹</sup>999</div>
+              <div class="pr-price-note">per month</div>
+              <div class="pr-fee">1% per ticket sold</div>
+              <hr class="pr-divider" />
+              <div class="pr-features">
+                <div class="pr-feature">Unlimited event listings</div>
+                <div class="pr-feature">UPI, QR, Card & Wallet</div>
+                <div class="pr-feature">Booking dashboard</div>
+                <div class="pr-feature">Automated reminders</div>
+                <div class="pr-feature">Analytics & reports</div>
+                <div class="pr-feature muted">No team management</div>
+                <div class="pr-feature">Priority support</div>
+              </div>
+              <a class="pr-btn solid" href="login.html">Start Pro Plan</a>
+            </div>
+
+            <!-- BUSINESS -->
+            <div class="pr-card">
+              <div class="pr-plan-name">Business</div>
+              <div class="pr-price"><sup>₹</sup>2,499</div>
+              <div class="pr-price-note">per month</div>
+              <div class="pr-fee">0.5% per ticket sold</div>
+              <hr class="pr-divider" />
+              <div class="pr-features">
+                <div class="pr-feature">Unlimited event listings</div>
+                <div class="pr-feature">UPI, QR, Card & Wallet</div>
+                <div class="pr-feature">Advanced booking dashboard</div>
+                <div class="pr-feature">Automated reminders</div>
+                <div class="pr-feature">Analytics & reports</div>
+                <div class="pr-feature">Team & role management</div>
+                <div class="pr-feature">Priority support</div>
+                <div class="pr-feature">White-label branding</div>
+              </div>
+              <a class="pr-btn outline" href="login.html">Start Business Plan</a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- OGSHOOTS LUXE HIGHLIGHT -->
+      <div class="pr-wrap">
+        <div class="pr-luxe">
+          <div class="pr-luxe-left">
+            <div class="pr-luxe-badge">✦ OGSHOOTS LUXE</div>
+            <h2>Zero fees.<br><span>Every feature.</span><br>Forever.</h2>
+            <p>OGSHOOTS LUXE customers get full access to cityvibe with absolutely no platform fee on any ticket — no hidden charges, no monthly bills, no limits.</p>
+          </div>
+          <div class="pr-luxe-perks">
+            <div class="pr-luxe-perk">
+              <span class="perk-icon">🎟️</span>
+              <strong>0% Fee</strong>
+              <span>No charge on any ticket sold</span>
+            </div>
+            <div class="pr-luxe-perk">
+              <span class="perk-icon">♾️</span>
+              <strong>Unlimited Events</strong>
+              <span>List as many as you need</span>
+            </div>
+            <div class="pr-luxe-perk">
+              <span class="perk-icon">📊</span>
+              <strong>Full Analytics</strong>
+              <span>Every insight, no restrictions</span>
+            </div>
+            <div class="pr-luxe-perk">
+              <span class="perk-icon">🛡️</span>
+              <strong>Priority Support</strong>
+              <span>Dedicated help, always first</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEE CALCULATOR -->
+      <div class="pr-wrap">
+        <div class="pr-calc">
+          <h2>Fee Calculator</h2>
+          <p>See how each plan affects the booking charge and organizer payout.</p>
+          <div class="pr-calc-grid">
+            <div class="pr-calc-label">
+              <span>Ticket Price (₹)</span>
+              <input class="pr-calc-input" type="number" id="calcPrice" value="500" min="0" />
+            </div>
+            <div class="pr-calc-label">
+              <span>Number of Tickets</span>
+              <input class="pr-calc-input" type="number" id="calcTickets" value="100" min="1" />
+            </div>
+            <div class="pr-calc-label">
+              <span>Your Plan</span>
+              <select class="pr-calc-select" id="calcPlan">
+                <option value="2">Starter (2% fee)</option>
+                <option value="1">Pro (1% fee)</option>
+                <option value="0.5">Business (0.5% fee)</option>
+                <option value="0">OGSHOOTS LUXE (0% fee)</option>
+              </select>
+            </div>
+          </div>
+          <div class="pr-calc-result">
+            <div class="pr-calc-result-item">
+              <span>Gross Revenue</span>
+              <strong id="calcGross">₹50,000</strong>
+            </div>
+            <div class="pr-calc-result-item">
+              <span>Booking Charge</span>
+              <strong id="calcFee" class="blue-val">₹1,000</strong>
+            </div>
+            <div class="pr-calc-result-item">
+              <span>Organizer Receives</span>
+              <strong id="calcNet" class="blue-val">₹49,000</strong>
+            </div>
+            <div class="pr-calc-result-item">
+              <span>OGSHOOTS LUXE Saves</span>
+              <strong id="calcSave" class="free-val">₹1,000</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <section class="pr-faq">
+        <div class="pr-wrap">
+          <h2>Frequently asked questions</h2>
+          <div class="pr-faq-list">
+            <div class="pr-faq-item">
+              <button class="pr-faq-q">What is the booking charge?</button>
+              <div class="pr-faq-a">For Starter plan users, a 2% booking and payment charge applies. The organizer still receives the full ticket amount.</div>
+            </div>
+            <div class="pr-faq-item">
+              <button class="pr-faq-q">How do OGSHOOTS LUXE customers get 0% fee?</button>
+              <div class="pr-faq-a">OGSHOOTS LUXE is our exclusive partner program. Members get full access to cityvibe with zero platform fees on all ticket sales — forever, with no conditions.</div>
+            </div>
+            <div class="pr-faq-item">
+              <button class="pr-faq-q">When is the charge applied?</button>
+              <div class="pr-faq-a">The booking charge is applied automatically at checkout. The organizer receives the full ticket amount directly to the linked account.</div>
+            </div>
+            <div class="pr-faq-item">
+              <button class="pr-faq-q">Are free events charged a fee?</button>
+              <div class="pr-faq-a">No. If your event is free (₹0 ticket price), there is no booking charge regardless of your plan.</div>
+            </div>
+            <div class="pr-faq-item">
+              <button class="pr-faq-q">Can I upgrade or downgrade my plan?</button>
+              <div class="pr-faq-a">Yes. You can switch between Starter and Pro at any time from your dashboard. OGSHOOTS LUXE membership is by invitation only.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-wrap">
+        <div class="footer-branding">
+          <div class="footer-brand">cityvibe</div>
+          <p>Events, workshops, and restaurant bookings in one smooth flow.</p>
+          <span class="footer-tag">Developed by Srisanth Boddu</span>
+        </div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="events.html">Events</a>
+          <a href="features.html">Features</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <a href="terms-and-conditions.html">Terms & Conditions</a>
+          <a href="refund-policy.html">Refund Policy</a>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact</h3>
+          <a href="tel:+916305183601">6305183601</a>
+          <span>Contact details will be updated from the admin panel.</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 cityvibe. All rights reserved.</span>
+        <span>Built for events, workshops, and restaurant reservations.</span>
+      </div>
+    </footer>
+
+    <script>
+      // Calculator
+      const calcPrice   = document.getElementById("calcPrice");
+      const calcTickets = document.getElementById("calcTickets");
+      const calcPlan    = document.getElementById("calcPlan");
+      const calcGross   = document.getElementById("calcGross");
+      const calcFee     = document.getElementById("calcFee");
+      const calcNet     = document.getElementById("calcNet");
+      const calcSave    = document.getElementById("calcSave");
+
+      function fmt(n) { return "₹" + Math.round(n).toLocaleString("en-IN"); }
+
+      function updateCalc() {
+        const price   = parseFloat(calcPrice.value) || 0;
+        const tickets = parseInt(calcTickets.value) || 0;
+        const feeRate = parseFloat(calcPlan.value) / 100;
+        const gross   = price * tickets;
+        const fee     = gross * feeRate;
+        const net     = gross - fee;
+        const save    = fee; // what Luxe saves compared with the selected plan
+
+        calcGross.textContent = fmt(gross);
+        calcFee.textContent   = fmt(fee);
+        calcNet.textContent   = fmt(net);
+        calcSave.textContent  = fmt(save);
+
+        calcFee.className = feeRate === 0 ? "free-val" : "blue-val";
+        calcNet.className = "blue-val";
+      }
+
+      calcPrice.addEventListener("input", updateCalc);
+      calcTickets.addEventListener("input", updateCalc);
+      calcPlan.addEventListener("change", updateCalc);
+      updateCalc();
+
+      // FAQ accordion
+      document.querySelectorAll(".pr-faq-q").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const ans = btn.nextElementSibling;
+          const isOpen = btn.classList.contains("open");
+          document.querySelectorAll(".pr-faq-q").forEach(b => { b.classList.remove("open"); b.nextElementSibling.classList.remove("open"); });
+          if (!isOpen) { btn.classList.add("open"); ans.classList.add("open"); }
+        });
+      });
+    </script>
+  </body>
+</html>
